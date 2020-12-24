@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    <title>记一次因使用Date引起的线上BUG处理 | 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    
+
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1.13.0.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+        }
+        window.aomori_logo_typed_animated = true
+        window.aomori_search_algolia = false
+    </script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <div id="typed-strings" style="display:none">
+                        <p>程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</p>
+                    </div>
+                    <a class="header-type-title" id="typed" href="/"></a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">Home</a>
+                
+                <a href="/archives">Archives</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">Home</a>
+                    
+                    <a href="/archives">Archives</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="post">
+    <article id="post-ckj329qmj00502qp4aeoda1ez" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      记一次因使用Date引起的线上BUG处理
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2020-04-20T15:40:47.000Z" itemprop="datePublished">2020-04-20</time>
+</div>
+
+            
+            <div class="article-category">
+                <a class="article-category-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+            </div>
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+            </div>
+            
+
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <blockquote>
+<p>生活中，我们需要掌控自己的时间，减少加班，提高效率；日常开发中，我们需要操作时间API，保证效率、安全、稳定。现在都2020年了，了解如何在JDK8及以后的版本中更好地操控时间就很有必要，尤其是一次线上BUG的发生，让小明更是深有体会。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在<strong>Java8</strong>以前，每每操控时间，我们经常使用的类库就是<strong>Date</strong>，并且会通过<strong>SimpleDateFormat</strong>类对时间进行格式化。你可知道？<strong>Date</strong>类是一个可变类，<strong>SimpleDateFormat</strong>类也是线程不安全的，因此在多线程的场景下执行格式化操作时，就会发生意想不到的情况。下面我们看一下使用<strong>Date</strong>、<strong>SimpleDateFormat</strong>在多线程下可能发生的问题以及使用<strong>LocalDateTime</strong>、<strong>DateTimeFormatter</strong>的方法和优势。</p>
+<h2 id="问题来了"><a href="#问题来了" class="headerlink" title="问题来了"></a>问题来了</h2><p>多线程环境下，使用<strong>Date</strong>、<strong>SimpleDateFormat</strong>时，如果我们将它定义为一个静态变量使用，虽然会避免重复创建实例， 但是会出现个别线程获取时间失败的现象，我们通过代码模拟这个场景：</p>
+<p><img src="https://img.mynamecoder.com/java7time.jpeg"></p>
+<p>运行<strong>main</strong>方法，查看控制台会发现有个别线程会报<strong>java.lang.NumberFormatException</strong>异常。类似下图所示:</p>
+<p><img src="https://img.mynamecoder.com/20200420005215.png"></p>
+<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p>接下来，我们通过查看源码进一步分析（多图预警），可以看到<strong>SimpleDateFormat</strong>是直接继承的<strong>DateFormat</strong>类：</p>
+<p><img src="https://img.mynamecoder.com/20200420011327.png">并重写了**parse()**（字符串转日期）和 **format()**（日期转字符串）方法，因此我们重点从这两个方法来分析。</p>
+<p>首先是<strong>SimpleDateFormat</strong>的<strong>parse()**方法，该方法中创建了一个</strong>CalendarBuilder**对象，</p>
+<p><img src="https://img.mynamecoder.com/20200420011757.png"></p>
+<p>再往下看，会看到<strong>CalendarBuilder</strong>使用<strong>establish</strong>方法将变量<strong>calendar</strong>设值到其属性中，</p>
+<p>![image-20200420012213545](/Users/xin/Library/Application Support/typora-user-images/image-20200420012213545.png) </p>
+<p>而<strong>calendar</strong>是父类<strong>DateFormat</strong>类的共享变量，可以被多个线程访问到</p>
+<p><img src="https://img.mynamecoder.com/20200420010713.png"></p>
+<p>因此当<strong>SimpleDateFormat</strong>声明为<strong>static</strong>时，线程并不安全，多个线程同时操作访问就会抛出异常。</p>
+<p>同样地通过查看<strong>format()**，我们发现</strong>format<strong>方法中有一行<code>calendar.setTime(date)</code>;也是操作的该共享变量</strong>calendar**，线程也是不安全的。</p>
+<p><img src="https://img.mynamecoder.com/20200420013251.png"></p>
+<p>有趣的是，在<strong>DateFormat</strong>源码注释上作者也已经给出醒目的提示:</p>
+<p><img src="https://img.mynamecoder.com/20200420013620.png"></p>
+<p>使用Google翻译过来就是</p>
+<blockquote>
+<p>日期格式不同步。 建议为每个线程创建单独的格式实例。 如果多个线程同时访问一种格式，则必须在外部同步该格式。</p>
+</blockquote>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>小明有一句座右铭，方法总比问题多。我们来看几个小明认为不错的解决方案。</p>
+<h5 id="1、仅在需要用到的地方创建一个新的实例，就没有线程安全问题。"><a href="#1、仅在需要用到的地方创建一个新的实例，就没有线程安全问题。" class="headerlink" title="1、仅在需要用到的地方创建一个新的实例，就没有线程安全问题。"></a>1、仅在需要用到的地方创建一个新的实例，就没有线程安全问题。</h5><p><strong>点评</strong>：加重了创建对象的负担，频繁地创建和销毁对象，消耗资源，效率较低。</p>
+<h5 id="2、通过synchronized解决线程安全问题；"><a href="#2、通过synchronized解决线程安全问题；" class="headerlink" title="2、通过synchronized解决线程安全问题；"></a>2、通过<strong>synchronized</strong>解决线程安全问题；</h5><p><strong>点评</strong>：并发量大的时候会对性能有影响，容易造成线程阻塞。</p>
+<h5 id="3、通过ThreadLocal保证线程之间变量不共享"><a href="#3、通过ThreadLocal保证线程之间变量不共享" class="headerlink" title="3、通过ThreadLocal保证线程之间变量不共享"></a>3、通过ThreadLocal保证线程之间变量不共享</h5><p><strong>点评：</strong>ThreadLocal可以确保每个线程都可以得到单独的一个<strong>SimpleDateFormat</strong>的对象，那么自然也就不存在竞争问题了。就是有点大材小用。</p>
+<p><img src="https://img.mynamecoder.com/20200420014512.png"></p>
+<p>以上就是小明能够提供的所有方案。什么，都不满意？我们来看一下2020年JDK8的解决方案。</p>
+<h2 id="使用LocalDateTime"><a href="#使用LocalDateTime" class="headerlink" title="使用LocalDateTime"></a>使用<strong>LocalDateTime</strong></h2><p>在<strong>Java8</strong>以后，我们有了新的选择，使用<strong>LocalDateTime</strong>时间类。首先，<strong>LocalDateTime</strong>本身是线程安全的，其对应的格式化工具类<strong>DateTimeFormatter</strong>也是线程安全的，不存在变量共享，每一个属性字段都用了final关键字修饰，因此每次操作后都是返回的copy对象。并且<strong>LocalDateTime</strong>类本身也有很多操作时间的API来替代传统的<strong>Calendar</strong>类。</p>
+<p>基于<strong>Java8</strong>的<strong>DateTimeFormatter</strong>的解决方案，我们对之前的代码进行改造，多线程环境下，运行代码，并未发现任何异常，稳定高效:</p>
+<p><img src="https://img.mynamecoder.com/20200420015556.png"></p>
+<p>我们可以看到<strong>在DateTimeFormatter</strong>源码上作者也贴心的加注释说明，该类是不可变的，并且是线程安全的。</p>
+<p><img src="https://img.mynamecoder.com/20200420015208.png"></p>
+<p>同理，这点我们也可以从<strong>LocalDateTime</strong>的官方源码中看出。</p>
+<h2 id="其他骚操作"><a href="#其他骚操作" class="headerlink" title="其他骚操作"></a>其他骚操作</h2><p>为了让大家忘掉之前使用<strong>Calendar</strong>操作时间的笨拙，我们来切实感受一下<strong>LocalDateTime</strong>给实际开发中带来的便利: </p>
+<p><img src="https://img.mynamecoder.com/20200420021510.png"></p>
+<blockquote>
+<p>更多举例说明，请点击文末阅读原文</p>
+<p>代码地址：<a target="_blank" rel="noopener" href="https://github.com/WhenCoding/coder-xiaoming">https://github.com/WhenCoding/coder-xiaoming</a></p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>综上，小明推荐小伙伴们使用JDK8的<strong>LocalDateTime</strong>系列来取代<strong>Date</strong>系列，这样做不仅能够保证线上项目平稳运行，而且通过其自带的API还能操作时间，还能提高开发效率，今晚可以不加班！</p>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+<div class="article-copyright hairline">
+  <p>
+    本作品采用 <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a> 进行许可。
+  </p>
+</div>
+
+
+    
+
+    
+<nav class="article-nav">
+  
+    <a href="/p/44847.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-caption">下一篇</div>
+      <div class="article-nav-title">
+        
+          【Python】使用Selenium实现淘宝抢单
+        
+      </div>
+    </a>
+  
+  
+    <a href="/p/44518.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">Java中的try，如何开启新姿势？</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=记一次因使用Date引起的线上BUG处理 - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&url=https://mynamecoder.com/p/6653.html">
+            <box-icon type='logo' name='twitter'></box-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=记一次因使用Date引起的线上BUG处理 - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&u=https://mynamecoder.com/p/6653.html">
+            <box-icon name='facebook-square' type='logo' ></box-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=记一次因使用Date引起的线上BUG处理 - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&url=https://mynamecoder.com/p/6653.html&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+
+
+
+</div>
+                </section>
+            </section>
+
+             
+            <aside class="sidebar">
+            
+                
+
+
+<div class="widget" id="widget">
+    
+      
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Elasticsearch/">Elasticsearch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jenkins/">Jenkins</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MQ/">MQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mybatis/">Mybatis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1/">微信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">系统运维</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Freemarker/" rel="tag">Freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdn/" rel="tag">cdn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/" rel="tag">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/" rel="tag">dev</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/email/" rel="tag">email</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/homebrew/" rel="tag">homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mq/" rel="tag">mq</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/" rel="tag">swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98/" rel="tag">支付</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/p/21452.html">「Elasticsearch」SpringBoot快速集成ES</a>
+          </li>
+        
+          <li>
+            <a href="/p/35755.html">Linux服务器的晴雨表——top命令</a>
+          </li>
+        
+          <li>
+            <a href="/p/62773.html">通过shell脚本一键安装python3</a>
+          </li>
+        
+          <li>
+            <a href="/p/8425.html">如何使用Freemarker生成Word文件</a>
+          </li>
+        
+          <li>
+            <a href="/p/38722.html">解决SpringBoot jar包中的文件读取问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-archive">
+    <div class="widget-title"><span>Archive</span></div>
+    <div class="widget-inner">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">2018</a></li></ul>
+    </div>
+  </div>
+
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享 &copy; 2020<br>
+            Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
+        </div>
+    </div>
+
+</footer>
+
+
+
+
+<script src="/dist/build.js?1.13.0.js"></script>
+
+
+<script src="/dist/custom.js?1.13.0.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    <title>程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    
+
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1.13.0.css">
+
+
+    <script>
+        window.isPost = false
+        window.aomori = {
+            
+        }
+        window.aomori_logo_typed_animated = true
+        window.aomori_search_algolia = false
+    </script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <div id="typed-strings" style="display:none">
+                        <p>程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</p>
+                    </div>
+                    <a class="header-type-title" id="typed" href="/"></a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">Home</a>
+                
+                <a href="/archives">Archives</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">Home</a>
+                    
+                    <a href="/archives">Archives</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="index">
+  
+    
+      <article
+  id="post-git小技巧--如何从其他分支merge个别文件或文件夹"
+  class="article article-type-post"
+>
+
+  
+
+  <div class="article-inner">
+    
+
+    <div class="article-body">
+      <header class="article-title">
+        <a href="/p/8834.html">git小技巧--如何从其他分支merge个别文件或文件夹</a>
+      </header>
+      <div class="article-entry post-inner-html">
+        
+          <blockquote>
+<p>小明发现在实际项目开发过程中，总会遇到各种各样的情况，比如一个大型的项目或版本迭代可能不是一次上线，可能会分好几次上线，这时候就会涉及创建多个分支，分别开发。</p>
+</blockquote>
+<h2 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h2><p>产品经理：我们本次开发三个功能，列表页功能、详情页功能、系统消息功能，分两次上线，先上列表功能，再上详情页和系统消息。</p>
+<p>小明：好的吧。</p>
+<p>紧接着，小明就将本次需求分为2个分支，分别为A、B。</p>
+<ul>
+<li>A：开发列表页功能</li>
+<li>B：开发详情页功能、系统消息功能</li>
+</ul>
+<p><strong>原计划</strong>：产品经理说先上列表功能，那小明就先开发A分支，列表功能很快开发完成（厉害吧）。</p>
+<p><strong>计划有变</strong>：风云变幻，第二天小明按照计划开发B分支，开发到一半，产品经理突然说目前的系统消息功能（位于B分支）比较紧急，需要和列表功能（位于A分支）一起上线，当时小明就懵逼了。赶紧暂停开发详情页（位于B分支，虽然已经开发了一部分），转战系统消息功能的开发。当系统消息功能开发完成之后，就需要考虑将系统消息功能（位于B分支）和列表功能（位于A分支）放在一个分支上提测（开发一部分的详情页功能暂先不需要合并）的问题，这时候<strong>分支合并</strong>就要派上用场了。</p>
+<h2 id="分支合并"><a href="#分支合并" class="headerlink" title="分支合并"></a>分支合并</h2><p>说起<strong>分支合并</strong>，大家第一个想到的命令肯定是<code>git merge</code> ，因为这是<strong>分支合并</strong>的常用命令。</p>
+<p>使用<code>git merge</code> 合并分支会将两个分支的<strong>所有内容</strong>进行比较合并，因此我们如果想合并两个分支中的<strong>一部分</strong>，显然直接使用这个命令是行不通的。</p>
+<p>So what happens next ? 嘿嘿，有两种方案可供我们选择：</p>
+<h2 id="强制合并"><a href="#强制合并" class="headerlink" title="强制合并"></a>强制合并</h2><p>从其他分支<code>merge</code>指定文件到当前分支，<code>git checkout</code>是个合适的工具。</p>
+<p>语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout source_branch &lt;path&gt;...</span><br></pre></td></tr></table></figure>
+<p>我们使用git checkout 将B分支上的系统消息功能添加到A分支上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ git branch</span><br><span class="line">  * A  </span><br><span class="line">    B</span><br><span class="line">    </span><br><span class="line">$ git checkout B message.html message.css message.js other.js</span><br><span class="line"></span><br><span class="line">$ git status</span><br><span class="line"># On branch A</span><br><span class="line"># Changes to be committed:</span><br><span class="line">#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line">#</span><br><span class="line">#    new file:   message.css</span><br><span class="line">#    new file:   message.html</span><br><span class="line">#    new file:   message.js</span><br><span class="line">#    modified:   other.js</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+<p>合并完成</p>
+<p>但是……</p>
+<p><strong>注意：在使用git checkout某文件到当前分支时，会将当前分支的对应文件强行覆盖</strong></p>
+<p>因此，合并A分支上没有存在的文件没问题，但是如果合并A分支上原先就存在的文件（比如两个分支上都对<strong>other.js</strong>进行过修改），位于分支A上的文件<strong>other.js</strong>就会被<strong>checkout</strong>（分支B）过来的<strong>other.js</strong>覆盖，导致分支A上之前开发的<strong>列表功能</strong>付之东流，这样做肯定是优雅的！</p>
+<p>那如何避免同一个文件不强制覆盖，有没有更好的解决方案呢（调一下味口）？我们一起来看一下第二种方案。</p>
+<h2 id="智能合并"><a href="#智能合并" class="headerlink" title="智能合并"></a>智能合并</h2><p><strong>思路</strong>：曲线救国，我们通过<strong>git merge</strong> 强大的分支合并功能来完成此次无缝合并。</p>
+<ol>
+<li>首先使用<code>git checkout</code>根据A分支创建一个A_temp分支(避免影响A分支)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b A_temp</span><br><span class="line">Switched to a new branch &#39;A_temp&#39;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>然后将B分支合并到A_temp分支，此时两个都经修改过的文件会跑出冲突，我们只需解决冲突即可。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git merge B</span><br><span class="line">Updating 1f73596..04627b5</span><br><span class="line">Fast-forward</span><br><span class="line"> message.css                     | 0</span><br><span class="line"> message.html                    | 0</span><br><span class="line"> message.js                      | 0</span><br><span class="line"> other.js                        | 1 +</span><br><span class="line"> 4 files changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 message.css</span><br><span class="line"> create mode 100644 message.html</span><br><span class="line"> create mode 100644 message.js</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>再次切换到A分支，并使用<strong>git checkout</strong> 将A_temp分支上的系统消息功能相关文件或文件夹覆盖到A分支，此时可以大胆的覆盖！因为我们已经在第二步处理过冲突问题。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ git checkout A</span><br><span class="line">Switched to branch &#39;A&#39;</span><br><span class="line"></span><br><span class="line">$ git checkout A_temp message.html message.css message.js other.js</span><br><span class="line"></span><br><span class="line">$ git status</span><br><span class="line"># On branch A</span><br><span class="line"># Changes to be committed:</span><br><span class="line">#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line">#</span><br><span class="line">#    new file:   message.css</span><br><span class="line">#    new file:   message.html</span><br><span class="line">#    new file:   message.js</span><br><span class="line">#    modified:   other.js</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p>最后，有强迫症的患者可以卸磨杀驴，把刚刚根据分支A创建的A_temp删除。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -d A_temp</span><br></pre></td></tr></table></figure>
+<p>OK，到此分支合并就完结了，现在我们就可以自信地召唤产品经理（我们公司产品兼测试）测试这两个功能。</p>
+</li>
+</ol>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p>另外给大家介绍一下<code>git merge</code> 使用的小技巧</p>
+<p>举例：要把<code>master</code>分支合并到<code>dev</code>分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout dev &#x2F;&#x2F; 切换到dev分支</span><br><span class="line">git merge master --no-ff &#x2F;&#x2F; 使用--no-ff</span><br></pre></td></tr></table></figure>
+<p>默认使用<code>merge</code>命令是<code>ff</code>，即 <code>fast-forward</code>，这种方式从Git 合并历史中是无法查看到是哪几个提交对象在一起实现了一个功能。</p>
+<p>而<code>--no-ff</code> 标记会在分支合并的时候，创建一个新的提交对象，可以避免丢失<code>master</code>分支的历史信息，并且把所有的功能叠加在一起提交上去。两者的区别如下图所示，大家可以自己体验一下两者的区别。</p>
+<p><img src="https://s2.ax1x.com/2019/09/18/nHeDPS.png" alt="两者的区别"></p>
+<p>以上就是小明工作中使用git合并总结的经验，希望能帮助到大家，仅供参考，有错误请指出，谢谢！</p>
+
+        
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-more-info">
+      <div class="article-date">
+  <time datetime="2019-05-09T07:13:59.000Z" itemprop="datePublished">2019-05-09</time>
+</div>
+      
+        <div class="article-category">
+          <a class="article-category-link" href="/categories/Git/">Git</a>
+        </div>
+      
+      
+        <div class="article-tag">
+          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+        </div>
+      
+    </div>
+  </footer>
+
+</article>
+
+    
+  
+    
+      <article
+  id="post-icp"
+  class="article article-type-post"
+>
+
+  
+
+  <div class="article-inner">
+    
+
+    <div class="article-body">
+      <header class="article-title">
+        <a href="/p/54c3.html">还没有自己的网站？ICP备案了解一下！</a>
+      </header>
+      <div class="article-entry post-inner-html">
+        
+          <blockquote>
+<p>小明近期计划发誓要搭建属于自己的网站!</p>
+</blockquote>
+<h2 id="关于ICP-Internet-Content-Provider-即网络内容提供商"><a href="#关于ICP-Internet-Content-Provider-即网络内容提供商" class="headerlink" title="关于ICP(Internet Content Provider)即网络内容提供商"></a>关于ICP(Internet Content Provider)即网络内容提供商</h2><p>ICP可以理解为经过国家主管部门批准的正式企业或部门，向用户提供互联网业务和服务的运营商,比如：阿里云、腾讯云、华为等众多服务商……那ICP备案就是域名的备案，域名就是网站访问的链接地址。举个例子，百度的访问地址：<a target="_blank" rel="noopener" href="http://www.baidu.com./">www.baidu.com。</a></p>
+<h2 id="那我们为什么要通过ICP备案呢？"><a href="#那我们为什么要通过ICP备案呢？" class="headerlink" title="那我们为什么要通过ICP备案呢？"></a>那我们为什么要通过ICP备案呢？</h2><p>根据工信部《互联网信息服务管理办法》，<strong>网站在未完成备案之前，不能指向大陆境内服务器开通访问</strong>。当今庞大的互联网世界里，需要一个良好的环境，那么国家就需要对所有企业和个人建立的网站进行统一登记和管理，就像我们每个人出生后，父母都要为我们上户口一样，我们企业或个人，在购买域名建立一个网站时，都需要完成相应的登记才行。没有登记的就是不合法的，也就是没有备案的网站，都是不允许面向用户，不许提供服务上线的。</p>
+<h2 id="准备备案所需基本资料"><a href="#准备备案所需基本资料" class="headerlink" title="准备备案所需基本资料"></a>准备备案所需基本资料</h2><ul>
+<li>购买/拥有一个域名 </li>
+<li>购买/拥有一个轻量级云服务器（3个月以上）,<strong><a target="_blank" rel="noopener" href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=1qsydng8">阿里云服务器购买链接</a></strong></li>
+<li>准备备案材料,<strong><a target="_blank" rel="noopener" href="https://help.aliyun.com/knowledge_detail/36890.html">详细介绍</a></strong></li>
+</ul>
+<h2 id="备案流程"><a href="#备案流程" class="headerlink" title="备案流程"></a>备案流程</h2><p>以上准备工作好了以后，<a target="_blank" rel="noopener" href="https://beian.aliyun.com/">访问</a> <a target="_blank" rel="noopener" href="https://beian.aliyun.com/">https://beian.aliyun.com/</a> 开始备案流程<br><img src="https://i.ibb.co/4TFLJY1/2019-05-09-4-10-32.png" alt="备案流程图">，上传资料后等待阿里客服审核资料</p>
+<p>1个工作日左右，阿里客服MM会电话与你联系，确认信息，后边的流程根据提示做即可！</p>
+<h3 id="欢迎关注微信公众号，获取更多资源"><a href="#欢迎关注微信公众号，获取更多资源" class="headerlink" title="欢迎关注微信公众号，获取更多资源"></a>欢迎关注微信公众号，获取更多资源</h3><p><img src="https://i.ibb.co/rMxVLpD/qrcode-for-gh-912975c21d10-344.jpg" alt="程序员小明"></p>
+
+        
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-more-info">
+      <div class="article-date">
+  <time datetime="2019-05-09T07:13:59.000Z" itemprop="datePublished">2019-05-09</time>
+</div>
+      
+        <div class="article-category">
+          <a class="article-category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">系统运维</a>
+        </div>
+      
+      
+        <div class="article-tag">
+          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag">建站</a></li></ul>
+        </div>
+      
+    </div>
+  </footer>
+
+</article>
+
+    
+  
+    
+      <article
+  id="post-cdn"
+  class="article article-type-post"
+>
+
+  
+
+  <div class="article-inner">
+    
+
+    <div class="article-body">
+      <header class="article-title">
+        <a href="/p/ead7.html">这就是CDN回源原理和CDN多级缓存啊！</a>
+      </header>
+      <div class="article-entry post-inner-html">
+        
+          <blockquote>
+<p>小明对项目中的cdn缓存一直不是太明白……</p>
+</blockquote>
+<h2 id="CDN回源"><a href="#CDN回源" class="headerlink" title="CDN回源"></a>CDN回源</h2><h3 id="回源原理"><a href="#回源原理" class="headerlink" title="回源原理"></a>回源原理</h3><ul>
+<li><p>回源是指浏览器在发送请求报文时，响应该请求报文的是源站点的服务器，而不是各节点上的缓存服务器（比如nginx开启缓存），那么这个过程相对于通过各节点上的缓存服务器来响应的话就称作为回源。回源的请求或流量太多的话，有可能会让源站点的服务器承载着过大的访问压力，进而影响服务的正常访问。</p>
+</li>
+<li><p>回源域名一般是cdn领域的专业术语，通常情况下，是直接用ip进行回源的，但是如果客户源站有多个ip，并且ip地址会经常变化，对于cdn厂商来说，为了避免经常更改配置（回源ip），会采用回源域名方式进行回源，这样即使源站的ip变化了，也不影响原有的配置。</p>
+</li>
+<li><p>常规的CDN都是回源的。即：当有用户访问某一个URL的时候，如果被解析到的那个CDN节点没有缓存响应的内容，或者是缓存已经到期，就会回源站去获取。如果没有人访问，那么CDN节点不会主动去源站拿的。</p>
+</li>
+<li><p>源站内容有更新的时候，源站可以主动把内容推送到CDN节点。参考阿里云url预热<a target="_blank" rel="noopener" href="https://help.aliyun.com/knowledge_detail/40106.html?spm=a2c4e.11153987.0.0.419f6ec5UvPSJ1">https://help.aliyun.com/knowledge_detail/40106.html?spm=a2c4e.11153987.0.0.419f6ec5UvPSJ1</a></p>
+</li>
+<li><p>CDN本来是给我们的网站加速的，但是有时会因为不合适的回源策略给服务器带来负担，只有选择正确的策略才能给自己的网站带来更高的访问效率。</p>
+</li>
+</ul>
+<h2 id="CDN回源率计算方法"><a href="#CDN回源率计算方法" class="headerlink" title="CDN回源率计算方法"></a>CDN回源率计算方法</h2><p>回源比分为回源请求数比例及回源流量比例两种：</p>
+<h3 id="回源请求数比"><a href="#回源请求数比" class="headerlink" title="回源请求数比"></a>回源请求数比</h3><p>统计数据来自所有边缘节点上的请求记录，其中，对于没有缓存或缓存过期（可缓存）的请求以及不可缓存的请求，均计入回源请求中，其他直接命中缓存的，则为命中请求。</p>
+<h3 id="回源流量比"><a href="#回源流量比" class="headerlink" title="回源流量比"></a>回源流量比</h3><p>回源流量是回源请求文件大小产生的流量和请求本身产生的流量   回源流量比=回源流量/回源流量+用户请求访问的流量</p>
+<h2 id="CDN常见多级缓存"><a href="#CDN常见多级缓存" class="headerlink" title="CDN常见多级缓存"></a>CDN常见多级缓存</h2><h3 id="CDN概念"><a href="#CDN概念" class="headerlink" title="CDN概念"></a>CDN概念</h3><p>CDN的全称是Content Delivery Network，即内容分发网络。其基本思路是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快、更稳定。通过在网络各处放置节点服务器所构成的在现有的互联网基础之上的一层智能虚拟网络，CDN系统能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。其目的是使用户可就近取得所需内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度。</p>
+<h3 id="CDN工作方法"><a href="#CDN工作方法" class="headerlink" title="CDN工作方法"></a>CDN工作方法</h3><p>客户端浏览器先检查是否有本地缓存是否过期，如果过期，则向CDN边缘节点发起请求，CDN边缘节点会检测用户请求数据的缓存是否过期，如果没有过期，则直接响应用户请求，此时一个完成http请求结束；如果数据已经过期，那么CDN还需要向源站发出回源请求（back to the source request）,来拉取最新的数据。CDN的典型拓扑图如下：</p>
+<p><img src="https://i.ibb.co/x1SX6SH/cdn.png" alt="CDN的典型拓扑图"></p>
+<h3 id="CDN层级划分："><a href="#CDN层级划分：" class="headerlink" title="CDN层级划分："></a>CDN层级划分：</h3><ul>
+<li><p>CDN系统中，直接面向用户，负责给用户提供内容服务的的Cache设备都部署在整个 CDN网络的边缘位置，所以将这一层称为边缘层。</p>
+</li>
+<li><p>CDN系统中，中心层负责全局的管理和控制，同时也保存了最多的内容Cache。在边缘层设备未能命中Cache时，需要向中心层设备请求；而中心层未能命中时，则需要向源站请求。不同的CDN系统设计存在差异，中心层可能具备用户服务的能力，也可能只会向下一层提供服务。</p>
+</li>
+<li><p>如果CDN系统比较庞大，边缘层向中心层请求内容太多，会造成中心层负载压力太大。此时，需要在中心层和边缘层之间部署一个区域层，负责一个区域的管理和控制，也可以提供一些内容Cache供边缘层访问。</p>
+</li>
+</ul>
+<h3 id="CDN缓存"><a href="#CDN缓存" class="headerlink" title="CDN缓存"></a>CDN缓存</h3><p>浏览器本地缓存失效后，浏览器会向CDN边缘节点发起请求。类似浏览器缓存，CDN边缘节点也存在着一套缓存机制。</p>
+<h3 id="CDN缓存的缺点"><a href="#CDN缓存的缺点" class="headerlink" title="CDN缓存的缺点"></a>CDN缓存的缺点</h3><p>CDN的分流作用不仅减少了用户的访问延时，也减少的源站的负载。但其缺点也很明显：当网站更新时，如果CDN节点上数据没有及时更新，即便用户再浏览器使用Ctrl +F5的方式使浏览器端的缓存失效，也会因为CDN边缘节点没有同步最新数据而导致用户访问异常。</p>
+<h3 id="CDN缓存策略"><a href="#CDN缓存策略" class="headerlink" title="CDN缓存策略"></a>CDN缓存策略</h3><ul>
+<li><p>CDN边缘节点缓存策略因服务商不同而不同，但一般都会遵循http标准协议，通过http响应头中的Cache-control: max-age的字段来设置CDN边缘节点数据缓存时间。</p>
+</li>
+<li><p>当客户端向CDN节点请求数据时，CDN节点会判断缓存数据是否过期，若缓存数据并没有过期，则直接将缓存数据返回给客户端；否则，CDN节点就会向源站发出回源请求，从源站拉取最新数据，更新本地缓存，并将最新数据返回给客户端。</p>
+</li>
+<li><p>CDN服务商一般会提供基于文件后缀、目录多个维度来指定CDN缓存时间，为用户提供更精细化的缓存管理。</p>
+</li>
+<li><p>CDN缓存时间会对“回源率”产生直接的影响。若CDN缓存时间较短，CDN边缘节点上的数据会经常失效，导致频繁回源，增加了源站的负载，同时也增大的访问延时；若CDN缓存时间太长，会带来数据更新时间慢的问题。开发者需要增对特定的业务，来做特定的数据缓存时间管理。</p>
+</li>
+</ul>
+<h3 id="CDN缓存刷新"><a href="#CDN缓存刷新" class="headerlink" title="CDN缓存刷新"></a>CDN缓存刷新</h3><p>CDN边缘节点对开发者是透明的，相比于浏览器Ctrl+F5的强制刷新来使浏览器本地缓存失效，开发者可以通过CDN服务商提供的“刷新缓存”接口来达到清理CDN边缘节点缓存的目的。这样开发者在更新数据后，可以使用“刷新缓存”功能来强制CDN节点上的数据缓存过期，保证客户端在访问时，拉取到最新的数据。</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/mountains2001/article/details/52766431">https://blog.csdn.net/mountains2001/article/details/52766431</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wangxin1982314/article/details/51050206/">https://blog.csdn.net/wangxin1982314/article/details/51050206/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/songchunmin_/article/details/69942991">https://blog.csdn.net/songchunmin_/article/details/69942991</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7b749b49201a">https://www.jianshu.com/p/7b749b49201a</a></p>
+</li>
+</ul>
+<h2 id="欢迎关注微信公众号，获取更多资源"><a href="#欢迎关注微信公众号，获取更多资源" class="headerlink" title="欢迎关注微信公众号，获取更多资源"></a>欢迎关注微信公众号，获取更多资源</h2><p><img src="https://i.ibb.co/rMxVLpD/qrcode-for-gh-912975c21d10-344.jpg" alt="程序员小明"></p>
+
+        
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-more-info">
+      <div class="article-date">
+  <time datetime="2019-05-08T02:09:43.000Z" itemprop="datePublished">2019-05-08</time>
+</div>
+      
+        <div class="article-category">
+          <a class="article-category-link" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a>
+        </div>
+      
+      
+        <div class="article-tag">
+          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cdn/" rel="tag">cdn</a></li></ul>
+        </div>
+      
+    </div>
+  </footer>
+
+</article>
+
+    
+  
+    
+      <article
+  id="post-Git删除暂存区或版本库中的文件"
+  class="article article-type-post"
+>
+
+  
+
+  <div class="article-inner">
+    
+
+    <div class="article-body">
+      <header class="article-title">
+        <a href="/p/48.html">Git删除暂存区或版本库中的文件</a>
+      </header>
+      <div class="article-entry post-inner-html">
+        
+          <h1 id="故事提要"><a href="#故事提要" class="headerlink" title="故事提要"></a>故事提要</h1><blockquote>
+<p>小明今天遇到了一个bug，莫名奇妙改着改着就乱了，万分后悔，一心想回退到之前的版本重新开始，不过庆幸的是使用了git托管，一起来看看git作为管理工具的强大之处吧。</p>
+</blockquote>
+<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><p>Git有三大区（工作区、暂存区、版本库）以及几个状态（untracked、unstaged、uncommited），下面只是简述下Git的大概工作流程，详细的可以参见<a target="_blank" rel="noopener" href="http://www.cnblogs.com/cposture/category/642672.html">其他有关Git的文章</a>。 </p>
+<ul>
+<li><p>打开你的项目文件夹，除了隐藏的.git文件夹，其他项目文件位于的地方便是工作区，工作区的文件需要添加到Git的暂存区（git add），随后再提交到Git的版本库（git commit）。</p>
+</li>
+<li><p>首次新建的文件都是untracked状态（未跟踪），此时需要git add到暂存区，Git便会在暂存区中生成一个该文件的索引，文件此时处于uncommited状态，需要git commit生成版本库。添加到了版本库之后，再对文件进行修改，那么文件的状态会变为unstaged状态。<br>简单的认识了Git的工作流程，接下来便可以看看如何删除错误添加到暂存区或版本库里的文件了！</p>
+</li>
+</ul>
+<h1 id="删除错误添加到暂存区的文件"><a href="#删除错误添加到暂存区的文件" class="headerlink" title="删除错误添加到暂存区的文件"></a>删除错误添加到暂存区的文件</h1><p>有时你在工作区新建了文件TestFile，并且已经将它添加到了暂存区，git会告知，现有有一个文件未提交到版本库，如下图：<br><img src="https://i.ibb.co/t3dWQ1r/2019-05-07-6-32-30.png" alt="未提交到版本库"></p>
+<h1 id="仅仅删除暂存区里的文件"><a href="#仅仅删除暂存区里的文件" class="headerlink" title="仅仅删除暂存区里的文件"></a>仅仅删除暂存区里的文件</h1><p>此时你想撤销错误添加到暂存区里的文件，可以输入以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm --cache 文件名</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.ibb.co/fkp4Khq/2019-05-07-6-33-26.png" alt="撤销错误添加到暂存区"></p>
+<p>上面的命令仅仅删除暂存区的文件而已，不会影响工作区的文件，如上图，TestFile.txt仍然存在，此时输入下面命令，git会告知有一个未跟踪的文件TestFile.txt。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="删除暂存区和工作区的文件"><a href="#删除暂存区和工作区的文件" class="headerlink" title="删除暂存区和工作区的文件"></a>删除暂存区和工作区的文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm -f 文件名</span><br></pre></td></tr></table></figure>
+<p><strong>工作区的文件也被删除了。</strong></p>
+<p><img src="https://i.ibb.co/K6K77vj/2019-05-07-6-33-54.png" alt="工作区的文件"></p>
+<h1 id="删除错误提交的commit"><a href="#删除错误提交的commit" class="headerlink" title="删除错误提交的commit"></a>删除错误提交的commit</h1><p>有时，不仅添加到了暂存区，而且commit到了版本库，这个时候就不能使用git rm了，需要使用git reset命令。<br>错误提交到了版本库，此时无论工作区、暂存区，还是版本库，这三者的内容都是一样的，所以在这种情况下，只是删除了工作区和暂存区的文件，下一次用该版本库回滚那个误添加的文件还会重新生成。<br>这个时候，我们必须撤销版本库的修改才能解决问题！<br>git reset有三个选项，–hard、–mixed、–soft。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;仅仅只是撤销已提交的版本库，不会修改暂存区和工作区</span><br><span class="line">git reset --soft 版本库ID</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;仅仅只是撤销已提交的版本库和暂存区，不会修改工作区</span><br><span class="line">git reset --mixed 版本库ID</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;彻底将工作区、暂存区和版本库记录恢复到指定的版本库</span><br><span class="line">git reset --hard 版本库ID</span><br></pre></td></tr></table></figure>
+<p>那我们到底应该用哪个选项好呢？</p>
+<ul>
+<li>如果你是在提交了后，对工作区的代码做了修改，并且想保留这些修改，那么可以使用git reset –mixed 版本库ID，注意这个版本库ID应该不是你刚刚提交的版本库ID，而是刚刚提交版本库的上一个版本库。如下图：</li>
+<li>如果不想保留这些修改，可以直接使用彻底的恢复命令，git reset –hard 版本库ID。</li>
+<li>为什么不使用–soft呢，因为它只是恢复了版本库，暂存区仍然存在你错误提交的文件索引，还需要进一步使用上一节的删除错误添加到暂存区的文件，详细见上文。</li>
+</ul>
+<p><img src="https://i.ibb.co/L9QcfCR/2019-05-07-6-34-10.png" alt="版本历史"></p>
+<h2 id="欢迎关注微信公众号，获取更多资源"><a href="#欢迎关注微信公众号，获取更多资源" class="headerlink" title="欢迎关注微信公众号，获取更多资源"></a>欢迎关注微信公众号，获取更多资源</h2><p><img src="https://i.ibb.co/rMxVLpD/qrcode-for-gh-912975c21d10-344.jpg" alt="程序员小明"></p>
+
+        
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-more-info">
+      <div class="article-date">
+  <time datetime="2019-05-07T10:13:41.000Z" itemprop="datePublished">2019-05-07</time>
+</div>
+      
+        <div class="article-category">
+          <a class="article-category-link" href="/categories/Git/">Git</a>
+        </div>
+      
+      
+        <div class="article-tag">
+          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+        </div>
+      
+    </div>
+  </footer>
+
+</article>
+
+    
+  
+    
+      <article
+  id="post-Nginx配置upstream实现负载均衡"
+  class="article article-type-post"
+>
+
+  
+
+  <div class="article-inner">
+    
+
+    <div class="article-body">
+      <header class="article-title">
+        <a href="/p/bf32.html">Nginx配置upstream实现负载均衡</a>
+      </header>
+      <div class="article-entry post-inner-html">
+        
+          <blockquote>
+<p>今天小明试了一把运维的活，通过配置nginx upstream模块，实现访问不同的域名地址指向不同端口（不用对外报漏应用程序的端口号）。具体操作如下：<br>Nginx能够配置代理多台服务器。当一台服务器宕机之后。仍能保持系统可用。详细配置步骤如下：</p>
+</blockquote>
+<ul>
+<li>在http节点下，加入upstream节点。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">upstream direct_server &#123; </span><br><span class="line">      server 10.0.6.108:7080; # 可以指向本地服务器或者远程服务器</span><br><span class="line">      server 10.0.0.85:8980;  # 配置多个可以实现负载均衡</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将server节点下的location节点中的proxy_pass配置为：http:// + upstream名称，即“<a target="_blank" rel="noopener" href="http://direct_server”/">http://direct_server”</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name blog.mynamecoder.com; # 根据你的访问域名设置</span><br><span class="line">    location &#x2F; &#123; </span><br><span class="line">            root  html; </span><br><span class="line">            index  index.html index.htm; </span><br><span class="line">            proxy_pass http:&#x2F;&#x2F;direct_server; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如今负载均衡初步完毕了。upstream依照轮询（默认）方式进行负载，每一个请求按时间顺序逐一分配到不同的后端服务器。假设后端服务器down掉。能自己主动剔除。尽管这样的方式简便、成本低廉。但缺点是：可靠性低和负载分配不均衡。适用于图片服务器集群和纯静态页面服务器集群。</p>
+<p>除此之外，upstream还有其他的分配策略，分别例如以下：</p>
+<ul>
+<li>weight（权重）<br>指定轮询几率，weight和訪问比率成正比，用于后端服务器性能不均的情况。例如以下所看到的。10.0.0.88的訪问比率要比10.0.0.77的訪问比率高一倍。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">upstream direct_server&#123; </span><br><span class="line">      server 10.0.0.77 weight&#x3D;5; </span><br><span class="line">      server 10.0.0.88 weight&#x3D;10; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>ip_hash（访问ip）</li>
+</ul>
+<p>每一个请求按访问ip的hash结果分配。这样每一个訪客固定訪问一个后端服务器，能够解决session的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">upstream favresin&#123; </span><br><span class="line">      ip_hash; </span><br><span class="line">      server 10.0.0.10:8080; </span><br><span class="line">      server 10.0.0.11:8080; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>fair（第三方）</li>
+</ul>
+<p>按后端服务器的响应时间来分配请求。响应时间短的优先分配。</p>
+<p>与weight分配策略相似。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">upstream favresin&#123;      </span><br><span class="line">      server 10.0.0.10:8080; </span><br><span class="line">      server 10.0.0.11:8080; </span><br><span class="line">      fair; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>url_hash（第三方）</li>
+</ul>
+<p>按訪问url的hash结果来分配请求，使每一个url定向到同一个后端服务器。后端服务器为缓存时比較有效。</p>
+<p>注意：在upstream中加入hash语句。server语句中不能写入weight等其他的參数，hash_method是使用的hash算法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">upstream resinserver&#123; </span><br><span class="line">      server 10.0.0.10:7777; </span><br><span class="line">      server 10.0.0.11:8888; </span><br><span class="line">      hash $request_uri; </span><br><span class="line">      hash_method crc32; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="为每一个设备设置状态值"><a href="#为每一个设备设置状态值" class="headerlink" title="为每一个设备设置状态值"></a>为每一个设备设置状态值</h2><p>这些状态值的含义分别例如以下：</p>
+<ul>
+<li><p>down 表示单前的server临时不參与负载.</p>
+</li>
+<li><p>weight 默觉得1.weight越大，负载的权重就越大。</p>
+</li>
+<li><p>max_fails ：同意请求失败的次数默觉得1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误.</p>
+</li>
+<li><p>fail_timeout : max_fails次失败后。暂停的时间。</p>
+</li>
+<li><p>backup： 其他全部的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">upstream bakend&#123; #定义负载均衡设备的Ip及设备状态 </span><br><span class="line">    ip_hash; </span><br><span class="line">    server 10.0.0.11:9090 down; </span><br><span class="line">    server 10.0.0.11:8080 weight&#x3D;2; </span><br><span class="line">    server 10.0.0.11:6060; </span><br><span class="line">    server 10.0.0.11:7070 backup; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上就是小明配置负载均衡时遇到的一点小总结，和大家一块分享一下，希望可以帮助到大家。</p>
+<h2 id="关注微信公众号，获取更多资源"><a href="#关注微信公众号，获取更多资源" class="headerlink" title="关注微信公众号，获取更多资源"></a>关注微信公众号，获取更多资源</h2><p><img src="https://i.ibb.co/rMxVLpD/qrcode-for-gh-912975c21d10-344.jpg" alt="关注公众号"></p>
+</li>
+</ul>
+
+        
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-more-info">
+      <div class="article-date">
+  <time datetime="2019-05-06T06:52:02.000Z" itemprop="datePublished">2019-05-06</time>
+</div>
+      
+        <div class="article-category">
+          <a class="article-category-link" href="/categories/nginx/">nginx</a>
+        </div>
+      
+      
+        <div class="article-tag">
+          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
+        </div>
+      
+    </div>
+  </footer>
+
+</article>
+
+    
+  
+
+  
+    <nav class="pagination">
+        <a class="extend prev" rel="prev" href="/page/9/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/11/">Next</a>
+    </nav>
+  
+</div>
+
+                </section>
+            </section>
+
+             
+            <aside class="sidebar">
+            
+                
+
+
+<div class="widget" id="widget">
+    
+      
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Elasticsearch/">Elasticsearch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jenkins/">Jenkins</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MQ/">MQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mybatis/">Mybatis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1/">微信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">系统运维</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Freemarker/" rel="tag">Freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdn/" rel="tag">cdn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/" rel="tag">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/" rel="tag">dev</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/email/" rel="tag">email</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/homebrew/" rel="tag">homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mq/" rel="tag">mq</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/" rel="tag">swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98/" rel="tag">支付</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/p/21452.html">「Elasticsearch」SpringBoot快速集成ES</a>
+          </li>
+        
+          <li>
+            <a href="/p/35755.html">Linux服务器的晴雨表——top命令</a>
+          </li>
+        
+          <li>
+            <a href="/p/62773.html">通过shell脚本一键安装python3</a>
+          </li>
+        
+          <li>
+            <a href="/p/8425.html">如何使用Freemarker生成Word文件</a>
+          </li>
+        
+          <li>
+            <a href="/p/38722.html">解决SpringBoot jar包中的文件读取问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-archive">
+    <div class="widget-title"><span>Archive</span></div>
+    <div class="widget-inner">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">2018</a></li></ul>
+    </div>
+  </div>
+
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享 &copy; 2020<br>
+            Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
+        </div>
+    </div>
+
+</footer>
+
+
+
+
+<script src="/dist/build.js?1.13.0.js"></script>
+
+
+<script src="/dist/custom.js?1.13.0.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

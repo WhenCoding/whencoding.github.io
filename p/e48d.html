@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    <title>springboot快速集成swagger | 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    
+
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1.13.0.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+        }
+        window.aomori_logo_typed_animated = true
+        window.aomori_search_algolia = false
+    </script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <div id="typed-strings" style="display:none">
+                        <p>程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</p>
+                    </div>
+                    <a class="header-type-title" id="typed" href="/"></a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">Home</a>
+                
+                <a href="/archives">Archives</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">Home</a>
+                    
+                    <a href="/archives">Archives</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="post">
+    <article id="post-ckj329qnf007x2qp42ol8a3la" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      springboot快速集成swagger
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2019-05-30T13:29:56.000Z" itemprop="datePublished">2019-05-30</time>
+</div>
+
+            
+            <div class="article-category">
+                <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+            </div>
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/swagger/" rel="tag">swagger</a></li></ul>
+            </div>
+            
+
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <blockquote>
+<p>今天技术总监说：小明，我们本次3.0改造，使用swagger2.0作为前后端分离的接口规范，它可以一键生成前后端的API,一劳永逸……小明：？？？</p>
+</blockquote>
+<p>Spring Boot 框架是目前非常流行的微服务框架，我们很多情况下使用它来提供 Rest API，而对于 Rest API 来说很重要的一部分内容就是文档，Swagger 为我们提供了一套通过代码和注解自动生成文档的方法，这一点对于保证 API 文档的及时性将有很大的帮助。本文将使用 Swagger 2 规范的 Springfox 实现来了解如何在 Spring Boot 项目中使用 Swagger，主要包含了如何使用 Swagger 自动生成文档、使用 Swagger 文档以及 Swagger 相关的一些高级配置和注解。</p>
+<h1 id="Swagger-简介"><a href="#Swagger-简介" class="headerlink" title="Swagger 简介"></a>Swagger 简介</h1><p>Swagger 是一套基于 OpenAPI 规范构建的开源工具，可以帮助我们设计、构建、记录以及使用 Rest API。Swagger 主要包含了以下三个部分：</p>
+<ol>
+<li>Swagger Editor：基于浏览器的编辑器，我们可以使用它编写我们 OpenAPI 规范。</li>
+<li>Swagger UI：它会将我们编写的 OpenAPI 规范呈现为交互式的 API 文档，后文我将使用浏览器来查看并且操作我们的 Rest API。</li>
+<li>Swagger Codegen：它可以通过为 OpenAPI（以前称为 Swagger）规范定义的任何 API 生成服务器存根和客户端 SDK 来简化构建过程。</li>
+</ol>
+<h2 id="为什么要使用-Swagger"><a href="#为什么要使用-Swagger" class="headerlink" title="为什么要使用 Swagger"></a>为什么要使用 Swagger</h2><p>当下很多公司都采取前后端分离的开发模式，前端和后端的工作由不同的工程师完成。在这种开发模式下，维持一份及时更新且完整的 Rest API 文档将会极大的提高我们的工作效率。传统意义上的文档都是后端开发人员手动编写的，相信大家也都知道这种方式很难保证文档的及时性，这种文档久而久之也就会失去其参考意义，反而还会加大我们的沟通成本。而 Swagger 给我们提供了一个全新的维护 API 文档的方式，下面我们就来了解一下它的优点：</p>
+<ol>
+<li><p>代码变，文档变。只需要少量的注解，Swagger 就可以根据代码自动生成 API 文档，很好的保证了文档的时效性。</p>
+</li>
+<li><p>跨语言性，支持 40 多种语言。</p>
+</li>
+<li><p>Swagger UI 呈现出来的是一份可交互式的 API 文档，我们可以直接在文档页面尝试 API 的调用，省去了准备复杂的调用参数的过程。</p>
+</li>
+<li><p>还可以将文档规范导入相关的工具（例如 SoapUI）, 这些工具将会为我们自动地创建自动化测试。</p>
+</li>
+</ol>
+<p>以上这些优点足以说明我们为什么要使用 Swagger 了，您是否已经对 Swagger 产生了浓厚的兴趣了呢？下面我们就将一步一步地在 Spring Boot 项目中集成和使用 Swagger，让我们从准备一个 Spring Boot 的 Web 项目开始吧。</p>
+<h1 id="准备-Spring-Boot-Web-项目"><a href="#准备-Spring-Boot-Web-项目" class="headerlink" title="准备 Spring Boot Web 项目"></a>准备 Spring Boot Web 项目</h1><p>在这一步我们将准备一个基础的 Spring Boot 的 Web 项目，并且提供后面所需要的所有 API。</p>
+<h2 id="创建一个空的-Spring-Boot-项目"><a href="#创建一个空的-Spring-Boot-项目" class="headerlink" title="创建一个空的 Spring Boot 项目"></a>创建一个空的 Spring Boot 项目</h2><p>您可以通过 Spring Initializr 页面生成一个空的 Spring Boot 项目，当然也可以下载 springboot-pom.xml 文件，然后使用 Maven 构建一个 Spring Boot 项目。项目创建完成后，为了方便后面代码的编写您可以将其导入到您喜欢的 IDE 中，我这里选择了 Intelli IDEA 打开。</p>
+<h2 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h2><p>由于创建的是一个 Web 项目，所以我们需要依赖 Spring Boot 的 Web 组件，只需要在 pom.xml 增加如下内容即可：</p>
+<p>清单 1. 添加 Web 依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="编写接口"><a href="#编写接口" class="headerlink" title="编写接口"></a>编写接口</h2><ol>
+<li>首先我们创建三个包：cn.itweknow.sbswagger.controller、cn.itweknow.sbswagger.testcontroller 以及 cn.itweknow.sbswagger.model。</li>
+<li>在 controller 包下新建 UserController.java 类，在 testcontroller 包下新建 TestController.java 类，在 model 包下新建 User.java 类。</li>
+<li>UserController 提供用户的增、删、改、查四个接口，TestContrller 提供一个测试接口，这里粘上 UserController.java 的代码，其余代码可以查看源码。</li>
+</ol>
+<p>清单 2. UserController.java 代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;&#x2F;user&quot;)</span><br><span class="line">public class UserController &#123;</span><br><span class="line">    @PostMapping(&quot;&#x2F;add&quot;)</span><br><span class="line">    public boolean addUser(@RequestBody User user) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    @GetMapping(&quot;&#x2F;find&#x2F;&#123;id&#125;&quot;)</span><br><span class="line">    public User findById(@PathVariable(&quot;id&quot;) int id) &#123;</span><br><span class="line">        return new User();</span><br><span class="line">    &#125;</span><br><span class="line">    @PutMapping(&quot;&#x2F;update&quot;)</span><br><span class="line">    public boolean update(@RequestBody User user) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    @DeleteMapping(&quot;&#x2F;delete&#x2F;&#123;id&#125;&quot;)</span><br><span class="line">    public boolean delete(@PathVariable(&quot;id&quot;) int id) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="集成-Swagger2"><a href="#集成-Swagger2" class="headerlink" title="集成 Swagger2"></a>集成 Swagger2</h1><p>经过上面的步骤，我们已经拥有了五个接口，分别是:</p>
+<ol>
+<li>/user/add：新增用户。</li>
+<li>/user/find/{id}：根据 id 查询用户。</li>
+<li>/user/update：更新用户。</li>
+<li>/user/delete/{id}：根据 id 删除用户。</li>
+<li>/test/test：测试接口。</li>
+</ol>
+<p>下面我们将通过集成 Swagger2，然后为这 5 个 Rest API 自动生成接口文档。</p>
+<h2 id="添加依赖-1"><a href="#添加依赖-1" class="headerlink" title="添加依赖"></a>添加依赖</h2><p>首先要做的自然是添加 Swagger2 所需要的依赖包：</p>
+<p>清单 3. 添加 Swagger 依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;io.springfox&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;springfox-swagger2&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.9.2&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Java-配置"><a href="#Java-配置" class="headerlink" title="Java 配置"></a>Java 配置</h2><p>Springfox 提供了一个 Docket 对象，让我们可以灵活的配置 Swagger 的各项属性。下面我们新建一个 cn.itweknow.sbswagger.conf.SwaggerConfig.java 类，并增加如下内容:</p>
+<p>清单 4. Swagger Java 配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableSwagger2</span><br><span class="line">public class SwaggerConfig &#123;</span><br><span class="line">    @Bean</span><br><span class="line">    public Docket api() &#123;</span><br><span class="line">        return new Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">                .select()</span><br><span class="line">                .apis(RequestHandlerSelectors.any())</span><br><span class="line">                .paths(PathSelectors.any())</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意: @Configuration 是告诉 Spring Boot 需要加载这个配置类，@EnableSwagger2 是启用 Swagger2，如果没加的话自然而然也就看不到后面的验证效果了。</p>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>至此，我们已经成功的在 Spring Boot 项目中集成了 Swagger2，启动项目后，我们可以通过在浏览器中访问 <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080/</a> v2/api-docs 来验证，您会发现返回的结果是一段 JSON 串，可读性非常差。幸运的是 Swagger2 为我们提供了可视化的交互界面 SwaggerUI，下面我们就一起来试试吧。</p>
+<h1 id="集成-Swagger-UI"><a href="#集成-Swagger-UI" class="headerlink" title="集成 Swagger UI"></a>集成 Swagger UI</h1><h2 id="添加依赖-2"><a href="#添加依赖-2" class="headerlink" title="添加依赖"></a>添加依赖</h2><p>和之前一样，集成的第一步就是添加相关依赖，在 pom.xml 中添加如下内容即可：</p>
+<p>清单 5. 添加 Swagger UI 依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;io.springfox&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;springfox-swagger-ui&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.9.2&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="访问验证"><a href="#访问验证" class="headerlink" title="访问验证"></a>访问验证</h2><p>其实就只需要添加一下依赖就可以了，我们重新启动一下项目，然后在浏览器中访问 <a target="_blank" rel="noopener" href="http://localhost:8080/swagger-ui.html">http://localhost:8080/swagger-ui.html</a> 就可以看到如下的效果了:</p>
+<p>图 1. Swagger UI</p>
+<p><img src="https://s2.ax1x.com/2019/06/06/VdbBqK.png" alt="点击查看大图"></p>
+<p>可以看到虽然可读性好了一些，但对接口的表述还不是那么的清楚，接下来我们就通过一些高级配置，让这份文档变的更加的易读。</p>
+<h1 id="高级配置"><a href="#高级配置" class="headerlink" title="高级配置"></a>高级配置</h1><h2 id="文档相关描述配置"><a href="#文档相关描述配置" class="headerlink" title="文档相关描述配置"></a>文档相关描述配置</h2><ol>
+<li>通过在控制器类上增加@Api 注解，可以给控制器增加描述和标签信息。</li>
+</ol>
+<p>清单 6. 给 Controller 添加描述信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Api(tags &#x3D; &quot;用户相关接口&quot;, description &#x3D; &quot;提供用户相关的 Rest API&quot;)</span><br><span class="line">public class UserController</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>通过在接口方法上增加 @ApiOperation 注解来展开对接口的描述，当然这个注解还可以指定很多内容，我们在下面的相关注解说明章节中详细解释。</li>
+</ol>
+<p>清单 7. 给接口添加描述信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@ApiOperation(&quot;新增用户接口&quot;)</span><br><span class="line">@PostMapping(&quot;&#x2F;add&quot;)</span><br><span class="line">public boolean addUser(@RequestBody User user) &#123;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>实体描述，我们可以通过 @ApiModel 和 @ApiModelProperty 注解来对我们 API 中所涉及到的对象做描述。</li>
+</ol>
+<p>清单 8. 给实体类添加描述信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@ApiModel(&quot;用户实体&quot;)</span><br><span class="line">public class User &#123;</span><br><span class="line">    @ApiModelProperty(&quot;用户 id&quot;)</span><br><span class="line">private int id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>文档信息配置，Swagger 还支持设置一些文档的版本号、联系人邮箱、网站、版权、开源协议等等信息，但与上面几条不同的是这些信息不是通过注解配置，而是通过创建一个 ApiInfo 对象，并且使用 Docket.appInfo() 方法来设置，我们在 SwaggerConfig.java 类中新增如下内容即可。</li>
+</ol>
+<p>清单 9. 配置文档信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@Bean</span><br><span class="line">public Docket api() &#123;</span><br><span class="line">return new Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">.select()</span><br><span class="line">            .apis(RequestHandlerSelectors.any())</span><br><span class="line">            .paths(PathSelectors.any())</span><br><span class="line">            .build()</span><br><span class="line">            .apiInfo(apiInfo());</span><br><span class="line">&#125;</span><br><span class="line">private ApiInfo apiInfo() &#123;</span><br><span class="line">return new ApiInfo(</span><br><span class="line">            &quot;Spring Boot 项目集成 Swagger 实例文档&quot;,</span><br><span class="line">            &quot;我的博客网站：https:&#x2F;&#x2F;itweknow.cn，欢迎大家访问。&quot;,</span><br><span class="line">            &quot;API V1.0&quot;,</span><br><span class="line">            &quot;Terms of service&quot;,</span><br><span class="line">            new Contact(&quot;名字想好没&quot;, &quot;https:&#x2F;&#x2F;itweknow.cn&quot;, &quot;gancy.programmer@gmail.com&quot;),</span><br><span class="line">                &quot;Apache&quot;, &quot;http:&#x2F;&#x2F;www.apache.org&#x2F;&quot;, Collections.emptyList());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>经过上面的步骤，我们的文档将会变成下图的样子，现在看起来就清楚很多了。</p>
+<p>图 2. 补全信息后的 Swagger 文档界面</p>
+<p><img src="https://s2.ax1x.com/2019/06/06/VdqRkF.png" alt="点击查看大图"></p>
+<h2 id="接口过滤"><a href="#接口过滤" class="headerlink" title="接口过滤"></a>接口过滤</h2><p>有些时候我们并不是希望所有的 Rest API 都呈现在文档上，这种情况下 Swagger2 提供给我们了两种方式配置，一种是基于 @ApiIgnore 注解，另一种是在 Docket 上增加筛选。</p>
+<ol>
+<li>@ApiIgnore 注解。</li>
+</ol>
+<p>如果想在文档中屏蔽掉删除用户的接口（user/delete），那么只需要在删除用户的方法上加上 @ApiIgnore 即可。</p>
+<p>清单 10. @ApiIgnore 使用实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@ApiIgnore</span><br><span class="line">public boolean delete(@PathVariable(&quot;id&quot;) int id)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在 Docket 上增加筛选。Docket 类提供了 apis() 和 paths()两 个方法来帮助我们在不同级别上过滤接口：</li>
+</ol>
+<ul>
+<li><p>apis()：这种方式我们可以通过指定包名的方式，让 Swagger 只去某些包下面扫描。</p>
+</li>
+<li><p>paths()：这种方式可以通过筛选 API 的 url 来进行过滤。</p>
+</li>
+</ul>
+<p>在集成 Swagger2 的章节中我们这两个方法指定的都是扫描所有，没有指定任何过滤条件。如果我们在我们修改之前定义的 Docket 对象的 apis() 方法和 paths() 方法为下面的内容，那么接口文档将只会展示 /user/add 和 /user/find/{id} 两个接口。</p>
+<p>清单 11. 使用 Docket 配置接口筛选</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.apis(RequestHandlerSelectors.basePackage(&quot;cn.itweknow.sbswagger.controller&quot;))</span><br><span class="line">.paths(Predicates.or(PathSelectors.ant(&quot;&#x2F;user&#x2F;add&quot;),</span><br><span class="line">        PathSelectors.ant(&quot;&#x2F;user&#x2F;find&#x2F;*&quot;)))</span><br></pre></td></tr></table></figure>
+<p>图 3. 经过筛选过后的 Swagger 文档界面</p>
+<p><img src="https://s2.ax1x.com/2019/06/06/VdqcwT.png" alt="点击查看大图"></p>
+<h2 id="自定义响应消息"><a href="#自定义响应消息" class="headerlink" title="自定义响应消息"></a>自定义响应消息</h2><p>Swagger 允许我们通过 Docket 的 globalResponseMessage() 方法全局覆盖 HTTP 方法的响应消息，但是首先我们得通过 Docket 的 useDefaultResponseMessages 方法告诉 Swagger 不使用默认的 HTTP 响应消息，假设我们现在需要覆盖所有 GET 方法的 500 和 403 错误的响应消息，我们只需要在 SwaggerConfig.java 类中的 Docket Bean 下添加如下内容：</p>
+<p>清单 12. 自定义响应消息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.useDefaultResponseMessages(false)</span><br><span class="line">.globalResponseMessage(RequestMethod.GET, newArrayList(</span><br><span class="line">new ResponseMessageBuilder()</span><br><span class="line">              .code(500)</span><br><span class="line">              .message(&quot;服务器发生异常&quot;)</span><br><span class="line">              .responseModel(new ModelRef(&quot;Error&quot;))</span><br><span class="line">              .build(),</span><br><span class="line">       new ResponseMessageBuilder()</span><br><span class="line">              .code(403)</span><br><span class="line">              .message(&quot;资源不可用&quot;)</span><br><span class="line">              .build()</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+<p>添加如上面的代码后，如下图所示，您会发现在 SwaggerUI 页面展示的所有 GET 类型请求的 403 以及 500 错误的响应消息都变成了我们自定义的内容。</p>
+<p>图 4. 自定义响应消息</p>
+<p><img src="https://s2.ax1x.com/2019/06/06/Vdq6mV.png" alt="点击查看大图"></p>
+<h1 id="Swagger-UI-的使用"><a href="#Swagger-UI-的使用" class="headerlink" title="Swagger UI 的使用"></a>Swagger UI 的使用</h1><h2 id="接口查看"><a href="#接口查看" class="headerlink" title="接口查看"></a>接口查看</h2><p>SwaggerUI 会以列表的方式展示所有扫描到的接口，初始状态是收缩的，我们只需要点击展开就好，而且会在左边标识接口的请求方式（GET、POST、PUT、DELETE 等等）。</p>
+<p>图 5. Swagger 接口列表界面</p>
+<p><img src="https://s2.ax1x.com/2019/06/06/VdqsO0.png" alt="点击查看大图"></p>
+<h2 id="接口调用"><a href="#接口调用" class="headerlink" title="接口调用"></a>接口调用</h2><p>如下图所示，点击接口展开后页面右上角的 Try it out 按钮后，页面会变成如图所示：</p>
+<p>图 6. 接口详情界面</p>
+<p><img src="https://s2.ax1x.com/2019/06/06/Vdqryq.png" alt="点击查看大图"></p>
+<p>SwaggerUI 会给我们自动填充请求参数的数据结构，我们需要做的只是点击 Execute 即可发起调用</p>
+<p>图 7. 接口调用界面</p>
+<p><img src="https://s2.ax1x.com/2019/06/06/VdqgTU.png" alt="点击查看大图"></p>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>如下图所示，SwaggerUI 会通过我们在实体上使用的 @ApiModel 注解以及@ApiModelProperty 注解来自动补充实体以及其属性的描述和备注。</p>
+<p>图 8. 实体界面</p>
+<p><img src="https://s2.ax1x.com/2019/06/06/VdqWY4.png" alt="点击查看大图"></p>
+<h1 id="相关注解说明"><a href="#相关注解说明" class="headerlink" title="相关注解说明"></a>相关注解说明</h1><p>在本章节中我将给出一些 Swagger 中常用的注解以及其常用的属性，并对其一一解释，方便您查看。</p>
+<h2 id="Controller-相关注解"><a href="#Controller-相关注解" class="headerlink" title="Controller 相关注解"></a>Controller 相关注解</h2><p>@Api: 可设置对控制器的描述。</p>
+<p>表 1. @Api 主要属性<br>|注解属性    |类型    |描述|<br>| ——|——–|——–|<br>|tags    |String[]    |控制器标签。|<br>|description    |String    |控制器描述（该字段被申明为过期）。|</p>
+<h2 id="接口相关注解"><a href="#接口相关注解" class="headerlink" title="接口相关注解"></a>接口相关注解</h2><ol>
+<li>@ApiOperation: 可设置对接口的描述。</li>
+</ol>
+<p>表 2. @ApiOperation 主要属性<br>|注解属性    |类型    |描述|<br>| ——|——–|——–|<br>|value|    String|    接口说明。|<br>|notes    |String    |接口发布说明。|<br>|tags    |Stirng[]|    标签。|<br>|response    |Class&lt;?&gt;|    接口返回类型。|<br>|httpMethod|    String|    接口请求方式。|<br>2. @ApiIgnore: Swagger 文档不会显示拥有该注解的接口。</p>
+<ol start="3">
+<li><p>@ApiImplicitParams: 用于描述接口的非对象参数集。</p>
+</li>
+<li><p>@ApiImplicitParam: 用于描述接口的非对象参数，一般与 @ApiImplicitParams 组合使用。</p>
+</li>
+</ol>
+<p>表 3. @ApiImplicitParam 主要属性<br>| 注解属性        | 描述                                                                                                                               |<br>|————-|———————————————————————————————————————————-|<br>|  paramType  |  查询参数类型，实际上就是参数放在那里。取值：path：以地址的形式提交数据，根据 id 查询用户的接口就是这种形式传参。query：Query string 的方式传参。header：以流的形式提交。form：以 Form 表单的形式提交。 |<br>|  dataType   |  参数的数据类型。取值：Long、String|<br>|  name       |  参数名字。                                                                                                                           |<br>|  value      |  参数意义的描述。                                                                                                                        |<br>|  required   |  是否必填。取值：true：必填参数。false：非必填参数。|</p>
+<h2 id="Model-相关注解"><a href="#Model-相关注解" class="headerlink" title="Model 相关注解"></a>Model 相关注解</h2><ol>
+<li>@ApiModel: 可设置接口相关实体的描述。</li>
+<li>@ApiModelProperty: 可设置实体属性的相关描述。</li>
+</ol>
+<p>表 4. @ApiModelProperty 主要属性<br>|注解属性|    类型|    描述|<br>|——-|——-|——|<br>|value    |String|    字段说明。|<br>|name    |String    |重写字段名称。|<br>|dataType|    Stirng|    重写字段类型。|<br>|required    |boolean|    是否必填。|<br>|example    |Stirng|    举例说明。|<br>|hidden    |boolean    |是否在文档中隐藏该字段。|<br>|allowEmptyValue|    boolean    |是否允许为空。|<br>|allowableValues|    String    |该字段允许的值，当我们 API 的某个参数为枚举类型时，使用这个属性就可以清楚地告诉 API 使用者该参数所能允许传入的值。|</p>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>在本教程中，我们学会了如何使用 Swagger 2 来生成 Spring Boot REST API 的文档。我们还研究了如何过滤 API、自定义 HTTP 响应消息以及如何使用 SwaggerUI 直接调用我们的 API。您可以在 Github 上找到本教程的完整实现，这是一个基于 IntelliJ IDEA 的项目，因此它应该很容易导入和运行，当然如果您想对本教程做补充的话欢迎发邮件给我 (<a href="mailto:&#x6d;&#x79;&#x6e;&#x61;&#x6d;&#x65;&#99;&#111;&#100;&#x65;&#114;&#x40;&#x31;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#x6d;">&#x6d;&#x79;&#x6e;&#x61;&#x6d;&#x65;&#99;&#111;&#100;&#x65;&#114;&#x40;&#x31;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#x6d;</a>) 或者直接在 GitHub 上提交 Pull Request。</p>
+<h1 id="参考资源"><a href="#参考资源" class="headerlink" title="参考资源"></a>参考资源</h1><p><a target="_blank" rel="noopener" href="https://spring.io/guides">Spring 指南</a><br><a target="_blank" rel="noopener" href="https://spring.io/">Spring 主页</a><br><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/">Spring Boot 参考指南</a><br><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/">Swagger 主页</a><br><a target="_blank" rel="noopener" href="https://github.com/WhenCoding/spring-tutorial/tree/master/sb-swagger">本文源码地址</a></p>
+<h3 id="欢迎关注微信公众号，获取更多资源"><a href="#欢迎关注微信公众号，获取更多资源" class="headerlink" title="欢迎关注微信公众号，获取更多资源"></a>欢迎关注微信公众号，获取更多资源</h3><p><img src="https://i.ibb.co/rMxVLpD/qrcode-for-gh-912975c21d10-344.jpg" alt="程序员小明"></p>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+<div class="article-copyright hairline">
+  <p>
+    本作品采用 <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a> 进行许可。
+  </p>
+</div>
+
+
+    
+
+    
+<nav class="article-nav">
+  
+    <a href="/p/d6b5.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-caption">下一篇</div>
+      <div class="article-nav-title">
+        
+          jdk8 Optional 的正确使用姿势
+        
+      </div>
+    </a>
+  
+  
+    <a href="/p/6d2.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">程序员的简历到底该怎么写？</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=springboot快速集成swagger - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&url=https://mynamecoder.com/p/e48d.html">
+            <box-icon type='logo' name='twitter'></box-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=springboot快速集成swagger - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&u=https://mynamecoder.com/p/e48d.html">
+            <box-icon name='facebook-square' type='logo' ></box-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=springboot快速集成swagger - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&url=https://mynamecoder.com/p/e48d.html&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+
+
+
+</div>
+                </section>
+            </section>
+
+             
+            <aside class="sidebar">
+            
+                
+
+
+<div class="widget" id="widget">
+    
+      
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Elasticsearch/">Elasticsearch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jenkins/">Jenkins</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MQ/">MQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mybatis/">Mybatis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1/">微信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">系统运维</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Freemarker/" rel="tag">Freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdn/" rel="tag">cdn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/" rel="tag">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/" rel="tag">dev</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/email/" rel="tag">email</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/homebrew/" rel="tag">homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mq/" rel="tag">mq</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/" rel="tag">swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98/" rel="tag">支付</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/p/21452.html">「Elasticsearch」SpringBoot快速集成ES</a>
+          </li>
+        
+          <li>
+            <a href="/p/35755.html">Linux服务器的晴雨表——top命令</a>
+          </li>
+        
+          <li>
+            <a href="/p/62773.html">通过shell脚本一键安装python3</a>
+          </li>
+        
+          <li>
+            <a href="/p/8425.html">如何使用Freemarker生成Word文件</a>
+          </li>
+        
+          <li>
+            <a href="/p/38722.html">解决SpringBoot jar包中的文件读取问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-archive">
+    <div class="widget-title"><span>Archive</span></div>
+    <div class="widget-inner">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">2018</a></li></ul>
+    </div>
+  </div>
+
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享 &copy; 2020<br>
+            Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
+        </div>
+    </div>
+
+</footer>
+
+
+
+
+<script src="/dist/build.js?1.13.0.js"></script>
+
+
+<script src="/dist/custom.js?1.13.0.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

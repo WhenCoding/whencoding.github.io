@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    <title>JDK 1.8 处理时间常用举例 | 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    
+
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1.13.0.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+        }
+        window.aomori_logo_typed_animated = true
+        window.aomori_search_algolia = false
+    </script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <div id="typed-strings" style="display:none">
+                        <p>程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</p>
+                    </div>
+                    <a class="header-type-title" id="typed" href="/"></a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">Home</a>
+                
+                <a href="/archives">Archives</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">Home</a>
+                    
+                    <a href="/archives">Archives</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="post">
+    <article id="post-ckj329qkn00042qp495pr3cgg" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      JDK 1.8 处理时间常用举例
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2019-05-16T09:00:55.000Z" itemprop="datePublished">2019-05-16</time>
+</div>
+
+            
+            <div class="article-category">
+                <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+            </div>
+            
+
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <blockquote>
+<p>在Java 8以前，日期和时间处理一直被广大java程序员抱怨太难用，首先是<code>java.util</code>和<code>java.sql</code>中，都包含<code>Date</code>类，如果要处理<code>java.text.DateFormat</code>类处理。同时<code>java.util.Date</code>中既包含了日期，又包含了时间，所以java8新的日期和时间库，很好的解决了以前日期和时间类的很多弊端。并且也借鉴了第三方日期库<code>joda</code>很多的优点。</p>
+</blockquote>
+<p>在java8中，<code>java.time</code>包下主要包含下面几个主要的类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Instant：时间戳  </span><br><span class="line">Duration：持续时间，时间差  </span><br><span class="line">LocalDate：只包含日期，比如：2016-10-20  </span><br><span class="line">LocalTime：只包含时间，比如：23:12:10  </span><br><span class="line">LocalDateTime：包含日期和时间，比如：2016-10-20 23:14:21  </span><br><span class="line">Period：时间段  </span><br><span class="line">ZoneOffset：时区偏移量，比如：+8:00  </span><br><span class="line">ZonedDateTime：带时区的时间  </span><br><span class="line">Clock：时钟，比如获取目前美国纽约的时间  </span><br></pre></td></tr></table></figure>
+<p>以及<code>java.time.format</code>包中的</p>
+<p><code>DateTimeFormatter：时间格式化</code></p>
+<p>下面我们通过例子来看如何使用java8新的日期时间库</p>
+<h2 id="获取今天的日期"><a href="#获取今天的日期" class="headerlink" title="获取今天的日期"></a>获取今天的日期</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LocalDate todayDate &#x3D; LocalDate.now();  </span><br><span class="line">System.out.println(&quot;今天的日期：&quot;+todayDate);  </span><br><span class="line">&#x2F;&#x2F;结果</span><br><span class="line">今天的日期：2016-10-20</span><br></pre></td></tr></table></figure>
+<h2 id="指定日期，进行相应操作"><a href="#指定日期，进行相应操作" class="headerlink" title="指定日期，进行相应操作"></a>指定日期，进行相应操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;取2016年10月的第1天</span><br><span class="line">LocalDate firstDay &#x3D; oneday.with(TemporalAdjusters.firstDayOfMonth());  </span><br><span class="line">System.out.println(firstDay);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;取2016年10月的第1天，另外一种写法</span><br><span class="line">LocalDate firstDay2 &#x3D; oneday.withDayOfMonth(1);  </span><br><span class="line">System.out.println(firstDay2);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;取2016年10月的最后1天，不用考虑大月，小月，平年，闰年</span><br><span class="line">LocalDate lastDay &#x3D; oneday.with(TemporalAdjusters.lastDayOfMonth());  </span><br><span class="line">System.out.println(lastDay);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;当前日期＋1天</span><br><span class="line">LocalDate tomorrow &#x3D; oneday.plusDays(1);  </span><br><span class="line">System.out.println(tomorrow);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;当前日期-7天</span><br><span class="line">LocalDate minus &#x3D; oneday.minus(7, ChronoUnit.DAYS);</span><br><span class="line">&#x2F;&#x2F;或者</span><br><span class="line">LocalDate minus &#x3D; oneday.minusDays(7);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;判断是否为闰年</span><br><span class="line">boolean isLeapYear &#x3D; tomorrow.isLeapYear();  </span><br><span class="line">System.out.println(isLeapYear);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;运行结果</span><br><span class="line">2016-10-20  </span><br><span class="line">2016-10-01  </span><br><span class="line">2016-10-01  </span><br><span class="line">2016-10-31  </span><br><span class="line">2016-10-21  </span><br><span class="line">true  </span><br></pre></td></tr></table></figure>
+<h2 id="生日检查或者账单日检查"><a href="#生日检查或者账单日检查" class="headerlink" title="生日检查或者账单日检查"></a>生日检查或者账单日检查</h2><p>开发过程中，经常需要为过生日的用户送上一些祝福，例如，用户的生日为1990-10-12，如果今天是2016-10-12，那么今天就是用户的生日（按公历／身份证日期来算），那么通过java8新的日期库，我们该如何来进行判断？</p>
+<p>在java8中，可以使用<code>MonthDay</code>，该类不包含年份信息，当然还有一个类是<code>YearMonth</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LocalDate birthday &#x3D; LocalDate.of(1990, 10, 12);  </span><br><span class="line">MonthDay birthdayMd &#x3D; MonthDay.of(birthday.getMonth(), birthday.getDayOfMonth());  </span><br><span class="line">MonthDay today &#x3D; MonthDay.from(LocalDate.of(2016, 10, 12));  </span><br><span class="line">System.out.println(today.equals(birthdayMd));  </span><br><span class="line">&#x2F;&#x2F;结果</span><br><span class="line">true  </span><br></pre></td></tr></table></figure>
+<h2 id="获取当前的时间"><a href="#获取当前的时间" class="headerlink" title="获取当前的时间"></a>获取当前的时间</h2><p>日期主要是使用LocalTime，该类不包含日期，只有时间信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;获取当前的时间</span><br><span class="line">LocalTime nowTime &#x3D; LocalTime.now(); &#x2F;&#x2F;结果14:29:40.558</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;如果不想显示毫秒</span><br><span class="line">LocalTime nowTime2 &#x3D; LocalTime.now().withNano(0); &#x2F;&#x2F;14:43:14</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;指定时间</span><br><span class="line">LocalTime time &#x3D; LocalTime.of(14, 10, 21); &#x2F;&#x2F;14:10:21  </span><br><span class="line">LocalTime time2 &#x3D; LocalTime.parse(&quot;12:00:01&quot;); &#x2F;&#x2F; 12:00:01</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;当前时间增加2小时</span><br><span class="line">LocalTime nowTimePlus2Hour &#x3D; nowTime.plusHours(2); &#x2F;&#x2F;16:47:23.144  </span><br><span class="line">&#x2F;&#x2F;或者</span><br><span class="line">LocalTime nowTimePlus2Hour2 &#x3D; nowTime.plus(2, ChronoUnit.HOURS);  </span><br></pre></td></tr></table></figure>
+<h2 id="日期前后比较"><a href="#日期前后比较" class="headerlink" title="日期前后比较"></a>日期前后比较</h2><p>比较2个日期哪个在前，哪个在后，java8 LocalDate提供了2个方法，<code>isAfter()</code>,<code>isBefore</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LocalDate today &#x3D; LocalDate.now();  </span><br><span class="line">LocalDate specifyDate &#x3D; LocalDate.of(2015, 10, 20);  </span><br><span class="line">System.out.println(today.isAfter(specifyDate)); &#x2F;&#x2F;true  </span><br></pre></td></tr></table></figure>
+<h2 id="处理不同时区的时间"><a href="#处理不同时区的时间" class="headerlink" title="处理不同时区的时间"></a>处理不同时区的时间</h2><p>java8中，将日期，时间，时区都很好的进行了分离。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;查看当前的时区</span><br><span class="line">ZoneId defaultZone &#x3D; ZoneId.systemDefault();  </span><br><span class="line">System.out.println(defaultZone); &#x2F;&#x2F;Asia&#x2F;Shanghai</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;查看美国纽约当前的时间</span><br><span class="line">ZoneId america &#x3D; ZoneId.of(&quot;America&#x2F;New_York&quot;);  </span><br><span class="line">LocalDateTime shanghaiTime &#x3D; LocalDateTime.now();  </span><br><span class="line">LocalDateTime americaDateTime &#x3D; LocalDateTime.now(america);  </span><br><span class="line">System.out.println(shanghaiTime); &#x2F;&#x2F;2016-11-06T15:20:27.996  </span><br><span class="line">System.out.println(americaDateTime); &#x2F;&#x2F;2016-11-06T02:20:27.996 ，可以看到美国与北京时间差了13小时</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;带有时区的时间</span><br><span class="line">ZonedDateTime americaZoneDateTime &#x3D; ZonedDateTime.now(america);  </span><br><span class="line">System.out.println(americaZoneDateTime); &#x2F;&#x2F;2016-11-06T02:23:44.863-05:00[America&#x2F;New_York]  </span><br></pre></td></tr></table></figure>
+<h2 id="比较两个日期之前时间差"><a href="#比较两个日期之前时间差" class="headerlink" title="比较两个日期之前时间差"></a>比较两个日期之前时间差</h2><p>在项目中，经常需要比较两个日期之间相差几天，或者相隔几个月，我们可以使用java8的Period来进行处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">LocalDate today &#x3D; LocalDate.now();  </span><br><span class="line">LocalDate specifyDate &#x3D; LocalDate.of(2015, 10, 2);  </span><br><span class="line">Period period &#x3D; Period.between(specifyDate, today);</span><br><span class="line"></span><br><span class="line">System.out.println(period.getDays());  &#x2F;&#x2F;4  </span><br><span class="line">System.out.println(period.getMonths()); &#x2F;&#x2F;1  </span><br><span class="line">System.out.println(specifyDate.until(today, ChronoUnit.DAYS)); &#x2F;&#x2F;401  </span><br><span class="line">&#x2F;&#x2F;输出结果</span><br><span class="line">4  </span><br><span class="line">1  </span><br><span class="line">401  </span><br></pre></td></tr></table></figure>
+<p>我们可以看到，我们使用<code>Period</code>类比较天数，比较奇怪，他返回的值，并不是2个日期之间总共的天数差，而是一个相对天数差，比如，5月1日，和10月2日，他比较的是仅仅2个天之间的差，那1号和2号，相差1天，而实际上，因为中间相差了好几个月，所以真正的天数差肯定不是1天，所以我们可以使用<code>until</code>，并指明精度单位是<code>days</code>，就可以计算真正的天数差了。</p>
+<h2 id="日期时间格式解析、格式化"><a href="#日期时间格式解析、格式化" class="headerlink" title="日期时间格式解析、格式化"></a>日期时间格式解析、格式化</h2><p>在java8之前，我们进行时间格式化主要是使用<code>SimpleDateFormat</code>，而在java8中，主要是使用<code>DateTimeFormatter</code>,java8中，预定义了一些标准的时间格式，我们可以直接将时间转换为标准的时间格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">String specifyDate &#x3D; &quot;20151011&quot;;  </span><br><span class="line">DateTimeFormatter formatter &#x3D; DateTimeFormatter.BASIC_ISO_DATE;  </span><br><span class="line">LocalDate formatted &#x3D; LocalDate.parse(specifyDate,formatter);  </span><br><span class="line">System.out.println(formatted);  </span><br><span class="line">&#x2F;&#x2F;输出</span><br><span class="line">2015-10-11  </span><br><span class="line">当然，很多时间标准的时间格式可能也不满足我们的要求，我们需要转为自定义的时间格式</span><br><span class="line"></span><br><span class="line">DateTimeFormatter formatter2 &#x3D; DateTimeFormatter.ofPattern(&quot;YYYY MM dd&quot;);  </span><br><span class="line">System.out.println(formatter2.format(LocalDate.now()));  </span><br><span class="line">&#x2F;&#x2F;结果</span><br><span class="line">2015 10 11  </span><br></pre></td></tr></table></figure>
+<h2 id="java8-时间类与Date类的相互转化"><a href="#java8-时间类与Date类的相互转化" class="headerlink" title="java8 时间类与Date类的相互转化"></a>java8 时间类与Date类的相互转化</h2><p>在转换中，我们需要注意，因为java8之前<code>Date</code>是包含日期和时间的，而<code>LocalDate</code>只包含日期，<code>LocalTime</code>只包含时间，所以与<code>Date</code>在互转中，势必会丢失日期或者时间，或者会使用起始时间。如果转<code>LocalDateTime</code>，那么就不存在信息误差。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;Date与Instant的相互转化</span><br><span class="line">Instant instant  &#x3D; Instant.now();  </span><br><span class="line">Date date &#x3D; Date.from(instant);  </span><br><span class="line">Instant instant2 &#x3D; date.toInstant();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Date转为LocalDateTime</span><br><span class="line">Date date2 &#x3D; new Date();  </span><br><span class="line">LocalDateTime localDateTime2 &#x3D; LocalDateTime.ofInstant(date2.toInstant(), ZoneId.systemDefault());</span><br><span class="line">&#x2F;&#x2F;Date转为LocalDate</span><br><span class="line">LocalDate localDate &#x3D; date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;LocalDateTime转Date</span><br><span class="line">LocalDateTime localDateTime3 &#x3D; LocalDateTime.now();  </span><br><span class="line">Instant instant3 &#x3D; localDateTime3.atZone(ZoneId.systemDefault()).toInstant();  </span><br><span class="line">Date date3 &#x3D; Date.from(instant);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;LocalDate转Date</span><br><span class="line">&#x2F;&#x2F;因为LocalDate不包含时间，所以转Date时，会默认转为当天的起始时间，00:00:00</span><br><span class="line">LocalDate localDate4 &#x3D; LocalDate.now();  </span><br><span class="line">Instant instant4 &#x3D; localDate4.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();  </span><br><span class="line">Date date4 &#x3D; Date.from(instant); </span><br></pre></td></tr></table></figure>
+<h3 id="欢迎关注微信公众号，获取更多资源"><a href="#欢迎关注微信公众号，获取更多资源" class="headerlink" title="欢迎关注微信公众号，获取更多资源"></a>欢迎关注微信公众号，获取更多资源</h3><p><img src="https://i.ibb.co/rMxVLpD/qrcode-for-gh-912975c21d10-344.jpg" alt="程序员小明"></p>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+<div class="article-copyright hairline">
+  <p>
+    本作品采用 <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a> 进行许可。
+  </p>
+</div>
+
+
+    
+
+    
+<nav class="article-nav">
+  
+    <a href="/p/5d3b.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-caption">下一篇</div>
+      <div class="article-nav-title">
+        
+          常用的几个消息组件
+        
+      </div>
+    </a>
+  
+  
+    <a href="/p/d6d4.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">9 个你应该知道的支付系统开源项目</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=JDK 1.8 处理时间常用举例 - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&url=https://mynamecoder.com/p/f00a.html">
+            <box-icon type='logo' name='twitter'></box-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=JDK 1.8 处理时间常用举例 - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&u=https://mynamecoder.com/p/f00a.html">
+            <box-icon name='facebook-square' type='logo' ></box-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=JDK 1.8 处理时间常用举例 - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&url=https://mynamecoder.com/p/f00a.html&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+
+
+
+</div>
+                </section>
+            </section>
+
+             
+            <aside class="sidebar">
+            
+                
+
+
+<div class="widget" id="widget">
+    
+      
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Elasticsearch/">Elasticsearch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jenkins/">Jenkins</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MQ/">MQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mybatis/">Mybatis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1/">微信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">系统运维</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Freemarker/" rel="tag">Freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdn/" rel="tag">cdn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/" rel="tag">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/" rel="tag">dev</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/email/" rel="tag">email</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/homebrew/" rel="tag">homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mq/" rel="tag">mq</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/" rel="tag">swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98/" rel="tag">支付</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/p/21452.html">「Elasticsearch」SpringBoot快速集成ES</a>
+          </li>
+        
+          <li>
+            <a href="/p/35755.html">Linux服务器的晴雨表——top命令</a>
+          </li>
+        
+          <li>
+            <a href="/p/62773.html">通过shell脚本一键安装python3</a>
+          </li>
+        
+          <li>
+            <a href="/p/8425.html">如何使用Freemarker生成Word文件</a>
+          </li>
+        
+          <li>
+            <a href="/p/38722.html">解决SpringBoot jar包中的文件读取问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-archive">
+    <div class="widget-title"><span>Archive</span></div>
+    <div class="widget-inner">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">2018</a></li></ul>
+    </div>
+  </div>
+
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享 &copy; 2020<br>
+            Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
+        </div>
+    </div>
+
+</footer>
+
+
+
+
+<script src="/dist/build.js?1.13.0.js"></script>
+
+
+<script src="/dist/custom.js?1.13.0.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

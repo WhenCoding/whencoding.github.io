@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    <title>程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    
+
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1.13.0.css">
+
+
+    <script>
+        window.isPost = false
+        window.aomori = {
+            
+        }
+        window.aomori_logo_typed_animated = true
+        window.aomori_search_algolia = false
+    </script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <div id="typed-strings" style="display:none">
+                        <p>程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</p>
+                    </div>
+                    <a class="header-type-title" id="typed" href="/"></a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">Home</a>
+                
+                <a href="/archives">Archives</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">Home</a>
+                    
+                    <a href="/archives">Archives</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="index">
+  
+    
+      <article
+  id="post-maven的scope属性"
+  class="article article-type-post"
+>
+
+  
+
+  <div class="article-inner">
+    
+
+    <div class="article-body">
+      <header class="article-title">
+        <a href="/p/2bdc.html">牢记maven的scope属性</a>
+      </header>
+      <div class="article-entry post-inner-html">
+        
+          <blockquote>
+<p>小明今天带大家回顾一下maven依赖的作用域</p>
+</blockquote>
+<p>在POM4中，<code>&lt;dependency&gt;</code>引入了<code>&lt;scope&gt;</code>，它主要管理依赖的部署。目前<code>&lt;scope&gt;</code>可以使用5个值： </p>
+<ul>
+<li>compile，缺省值，适用于所有阶段，会随着项目一起发布。 </li>
+<li>provided，类似compile，期望JDK、容器或使用者会提供这个依赖。如servlet.jar。 </li>
+<li>runtime，只在运行时使用，如JDBC驱动，适用运行和测试阶段。 </li>
+<li>test，只在测试时使用，用于编译和运行测试代码。不会随项目发布。 </li>
+<li>system，类似provided，需要显式提供包含依赖的jar，Maven不会在Repository中查找它。</li>
+</ul>
+<p>依赖范围控制哪些依赖在哪些classpath 中可用，哪些依赖包含在一个应用中。让我们详细看一下每一种范围：</p>
+<h2 id="compile-（编译范围）"><a href="#compile-（编译范围）" class="headerlink" title="compile （编译范围）"></a>compile （编译范围）</h2><p>compile是默认的范围；如果没有提供一个范围，那该依赖的范围就是编译范围。编译范围依赖在所有的classpath 中可用，同时它们也会被打包。</p>
+<h2 id="provided-（已提供范围）"><a href="#provided-（已提供范围）" class="headerlink" title="provided （已提供范围）"></a>provided （已提供范围）</h2><p>provided 依赖只有在当JDK 或者一个容器已提供该依赖之后才使用。例如， 如果你开发了一个web 应用，你可能在编译 classpath 中需要可用的Servlet API 来编译一个servlet，但是你不会想要在打包好的WAR 中包含这个Servlet API；这个Servlet API JAR 由你的应用服务器或者servlet 容器提供。已提供范围的依赖在编译classpath （不是运行时）可用。它们不是传递性的，也不会被打包。</p>
+<h2 id="runtime-（运行时范围）"><a href="#runtime-（运行时范围）" class="headerlink" title="runtime （运行时范围）"></a>runtime （运行时范围）</h2><p>runtime 依赖在运行和测试系统的时候需要，但在编译的时候不需要。比如，你可能在编译的时候只需要JDBC API JAR，而只有在运行的时候才需要JDBC<br>驱动实现。</p>
+<h2 id="test-（测试范围）"><a href="#test-（测试范围）" class="headerlink" title="test （测试范围）"></a>test （测试范围）</h2><p>test范围依赖 在一般的编译和运行时都不需要，它们只有在测试编译和测试运行阶段可用。</p>
+<h2 id="system-（系统范围）"><a href="#system-（系统范围）" class="headerlink" title="system （系统范围）"></a>system （系统范围）</h2><p>system范围依赖与provided 类似，但是你必须显式的提供一个对于本地系统中JAR 文件的路径。这么做是为了允许基于本地对象编译，而这些对象是系统类库的一部分。这样的构件应该是一直可用的，Maven 也不会在仓库中去寻找它。如果你将一个依赖范围设置成系统范围，你必须同时提供一个 systemPath 元素。注意该范围是不推荐使用的（你应该一直尽量去从公共或定制的 Maven 仓库中引用依赖）。</p>
+<h3 id="欢迎关注微信公众号，获取更多资源"><a href="#欢迎关注微信公众号，获取更多资源" class="headerlink" title="欢迎关注微信公众号，获取更多资源"></a>欢迎关注微信公众号，获取更多资源</h3><p><img src="https://i.ibb.co/rMxVLpD/qrcode-for-gh-912975c21d10-344.jpg" alt="程序员小明"></p>
+
+        
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-more-info">
+      <div class="article-date">
+  <time datetime="2019-05-10T13:09:20.000Z" itemprop="datePublished">2019-05-10</time>
+</div>
+      
+        <div class="article-category">
+          <a class="article-category-link" href="/categories/Maven/">Maven</a>
+        </div>
+      
+      
+        <div class="article-tag">
+          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/maven/" rel="tag">maven</a></li></ul>
+        </div>
+      
+    </div>
+  </footer>
+
+</article>
+
+    
+  
+    
+      <article
+  id="post-Mac安装Homebrew并更换国内镜像源"
+  class="article article-type-post"
+>
+
+  
+
+  <div class="article-inner">
+    
+
+    <div class="article-body">
+      <header class="article-title">
+        <a href="/p/75a0.html">Mac安装Homebrew的那些事儿</a>
+      </header>
+      <div class="article-entry post-inner-html">
+        
+          <blockquote>
+<p>最近小明刚换置了一个 Mac 本，想搭建一个属于自己的博客网站，需要用到 Node.js 环境，而Node.js 在 MacOS 中是由 Homebrew 进行安装管理的……因此，便有了Homebrew的安装历程。</p>
+</blockquote>
+<h2 id="什么是Homebrew"><a href="#什么是Homebrew" class="headerlink" title="什么是Homebrew?"></a>什么是Homebrew?</h2><p>简而言之，Homebrew是Mac Os的包管理工具，相当于Redhat Linux(Centos/RHEL/Fedora)的<code>yum</code>或者Debian Linux(Debian/Ubuntu)的<code>apt-get</code>。</p>
+<h2 id="如何安装Homebrew？"><a href="#如何安装Homebrew？" class="headerlink" title="如何安装Homebrew？"></a>如何安装Homebrew？</h2><p>我们使用官网提供的统一安装方法，只需执行下面的命令即可</p>
+<blockquote>
+<p>因为这个链接随时可能会更新，所以还是建议去<a target="_blank" rel="noopener" href="https://brew.sh/index_zh-cn">官网首页</a>确认一下这个命令，如果显示超时，可以尝试将脚本下载到本地，再执行命令。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;bin&#x2F;bash -c &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install.sh)&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><em>Ruby</em> 是一种开源的面向对象程序设计的服务器端脚本语言，Mac上默认已经给我们安装好了。一段漫长的时间过后，当出现**Installation successful!**提示时就表示已经安装成功。</p>
+<p>如果文章到此结束，那这篇文章的价值也太低了吧。接下来给大家扩展一下。</p>
+<h2 id="安装时可能遇到的问题"><a href="#安装时可能遇到的问题" class="headerlink" title="安装时可能遇到的问题"></a>安装时可能遇到的问题</h2><h3 id="读写权限不够"><a href="#读写权限不够" class="headerlink" title="读写权限不够"></a>读写权限不够</h3><p>小明安装的时候遇到一个问题就是出现如下的提示，表明当前用户权限不够：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch: &#x2F;Users&#x2F;xiaoming&#x2F;Library&#x2F;Caches&#x2F;Homebrew&#x2F;.cleaned: Permission denied</span><br></pre></td></tr></table></figure>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>需要超级管理员（root）赋予权限，执行以下的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R $&#123;USER&#125; &#x2F;Users&#x2F;xiaoming&#x2F;Library&#x2F;Caches&#x2F;Homebrew&#x2F;</span><br></pre></td></tr></table></figure>
+<p>根据提示输入密码即可。</p>
+<blockquote>
+<p><code>chown</code>指令是由系统管理者(root)所使用，一般使用者没有权限可以改变别人的文件拥有者，也没有权限可以自己的文件拥有者改设为别人。只有系统管理者(root)才有这样的权限。表示使用root用户赋予当前用户对该目录的操作权限。</p>
+</blockquote>
+<h2 id="如何提高brew安装软件的速度？"><a href="#如何提高brew安装软件的速度？" class="headerlink" title="如何提高brew安装软件的速度？"></a>如何提高brew安装软件的速度？</h2><p>当我们一路披荆斩棘或者顺风顺水安装成功brew过后，即可执行自己为所欲为安装自己想要的软件，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure>
+<p>但是好像有点不妙，执行命令过后，下载安装的速度怎么这么感人？发现问题是一个很好的开始，有强迫症的小明第一时间就在网上搜集各种资料，一边享受着互联网时代的福祉，一边自己不停的踩坑，经历过数次<strong>下载-安装-卸载</strong>过后终于从坑里成功爬出。</p>
+<h3 id="更换Bottles源"><a href="#更换Bottles源" class="headerlink" title="更换Bottles源"></a>更换Bottles源</h3><p>Homebrew 安装的软件默认都在以下目录中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Cellar</strong>意为酒窖、地窖，⽽Homebrew官⽅预先编译好的⼀个软件叫做⼀个 Bottle(酒瓶⼦)，Bottles就是很多酒瓶⼦(即软件)，Homebrew把安装⼀个软件叫做把⼀个酒瓶⼦放到酒窖(地窖)⾥（不过其实是pour，即倒到酒窖⾥）。</p>
+</blockquote>
+<p>Homebrew官⽅的软件（即Bottles）是放在 <a target="_blank" rel="noopener" href="https://bintray.com/">bintray</a>⽹站中的，因为是国外⽹站及众所周知的原因，如果直接从这⾥下载是⾮常慢的，所以我们还是要把它换成国内的源（由中科⼤提供）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#39;export HOMEBREW_BOTTLE_DOMAIN&#x3D;https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;homebrew-bottles&#39; &gt;&gt; ~&#x2F;.bash_profile</span><br></pre></td></tr></table></figure>
+<p>该命令执行过后，我们就可以体验一下飞一般的速度了～嗖嗖嗖～</p>
+<p>等一下（尔康表情包），顺便再提一嘴，明哥经常用到的几个命令吧。</p>
+<h2 id="brew几个基本使用命令"><a href="#brew几个基本使用命令" class="headerlink" title="brew几个基本使用命令"></a>brew几个基本使用命令</h2><ul>
+<li><p>查询软件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew search 软件名</span><br></pre></td></tr></table></figure></li>
+<li><p>安装软件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install 软件名</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p>启动|停止|重启软件</p>
+<p>对于需要在后台运行的软件，大部分可用以下方式启动|停止|重启（它的原理是用launchctl+plist，用这种方式启动的软件重启电脑后也会自动启动）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services start|stop|restart 软件名</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>关于brew services的原理及详细用法，大家可以查看：Mac服务管理 – launchd、launchctl、LaunchAgent、LaunchDaemon、brew services详解。</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>卸载软件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew uninstall 软件名</span><br></pre></td></tr></table></figure></li>
+<li><p>查看软件的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew info 软件名</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p>查看安装了哪些软件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew list 软件名</span><br></pre></td></tr></table></figure></li>
+<li><p>查看安装了哪些软件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew list 软件名</span><br></pre></td></tr></table></figure></li>
+<li><p>查看帮助</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew help</span><br></pre></td></tr></table></figure>
+<p>以上就是brew常用的几个命令，最后的最后再说一下，再多提一嘴，如何和优雅地和brew说分手。</p>
+</li>
+</ul>
+<h2 id="我用brew干什么"><a href="#我用brew干什么" class="headerlink" title="我用brew干什么"></a>我用brew干什么</h2><h3 id="解压文件"><a href="#解压文件" class="headerlink" title="解压文件"></a>解压文件</h3><p>mac解压zip毫无压力，但是总是有些同事会发给你一些rar文件，我们就可以通过使用<strong>urar</strong>这个工具解压文件</p>
+<h4 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install unrar</span><br></pre></td></tr></table></figure>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>打开终端，cd到要解压文件的目录下，然后在终端输入下列命令即可，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unrar x 压缩文件.rar</span><br></pre></td></tr></table></figure>
+<p>此时 .rar 文件与 解压的文件夹在同一目录下（解压出来的文件所在目录和命令行执行目录一致）。</p>
+<h2 id="卸载brew"><a href="#卸载brew" class="headerlink" title="卸载brew"></a>卸载brew</h2><p>因为一开始我们使用的是官方安装方式，因此好聚好散，我们还是使用官方的卸载方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;bin&#x2F;ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;homebrew&#x2F;brew&#x2F;install&#x2F;master&#x2F;uninstall)&quot;  </span><br></pre></td></tr></table></figure>
+<p>执行过后，一切宛如初见～</p>
+<p>各位，祝好。有什么问题记得留言哈。</p>
+
+        
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-more-info">
+      <div class="article-date">
+  <time datetime="2019-05-09T07:13:59.000Z" itemprop="datePublished">2019-05-09</time>
+</div>
+      
+        <div class="article-category">
+          <a class="article-category-link" href="/categories/Mac/">Mac</a>
+        </div>
+      
+      
+        <div class="article-tag">
+          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/homebrew/" rel="tag">homebrew</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/" rel="tag">mac</a></li></ul>
+        </div>
+      
+    </div>
+  </footer>
+
+</article>
+
+    
+  
+    
+      <article
+  id="post-Mac安装破解Navicat"
+  class="article article-type-post"
+>
+
+  
+
+  <div class="article-inner">
+    
+
+    <div class="article-body">
+      <header class="article-title">
+        <a href="/p/2246.html">Mac安装破解Navicat</a>
+      </header>
+      <div class="article-entry post-inner-html">
+        
+          <blockquote>
+<p>本文目的如题，navicat 优点不再赘述。如有侵权，请联系我立即删除。</p>
+</blockquote>
+<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><p>Mac版 Navicat Premium 12 v12.0.23.0 官网下载地址：</p>
+<p>英文64位 <a target="_blank" rel="noopener" href="http://download.navicat.com/download/navicat120_premium_en.dmg">http://download.navicat.com/download/navicat120_premium_en.dmg</a><br>中文简体64位 <a target="_blank" rel="noopener" href="http://download.navicat.com/download/navicat120_premium_cs.dmg">http://download.navicat.com/download/navicat120_premium_cs.dmg</a></p>
+<blockquote>
+<p><strong>注意</strong>：我没有下载最新版本的navicat，因为上面那个版本比较稳定，而且我用起来挺舒服的。当然最主要的原因是：本文的破解方式也只是针对该版本，并不支持最新版本（后续待更新）。</p>
+</blockquote>
+<h2 id="生成自己的RSA公钥私钥对"><a href="#生成自己的RSA公钥私钥对" class="headerlink" title="生成自己的RSA公钥私钥对"></a>生成自己的RSA公钥私钥对</h2><p>为了节省时间，大家可以使用我提供的一对密钥。</p>
+<h3 id="公钥"><a href="#公钥" class="headerlink" title="公钥"></a>公钥</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN PUBLIC KEY-----</span><br><span class="line">MIIBITANBgkqhkiG9w0BAQEFAAOCAQ4AMIIBCQKCAQB8vXG0ImYhLHvHhpi5FS3g</span><br><span class="line">d2QhxSQiU6dQ04F1OHB0yRRQ3NXF5py2NNDw962i4WP1zpUOHh94&#x2F;mg&#x2F;KA8KHNJX</span><br><span class="line">HtQVLXMRms+chomsQCwkDi2jbgUa4jRFN&#x2F;6N3QejJ42jHasY3MJfALcnHCY3KDEF</span><br><span class="line">h0N89FV4yGLyDLr+TLqpRecg9pkPnOp++UTSsxz&#x2F;e0ONlPYrra&#x2F;DiaBjsleAESZS</span><br><span class="line">I69sPD9xZRt+EciXVQfybI&#x2F;2SYeAdXMm1B7tHCcFlOxeUgqYV03VEqiC0jVMwRCd</span><br><span class="line">+03NU3wvEmLBvGOmNGudocWIF&#x2F;y3VOqyW1byXFLeZxl7s+Y&#x2F;SthxOYXzu3mF+2&#x2F;p</span><br><span class="line">AgMBAAE&#x3D;</span><br><span class="line">-----END PUBLIC KEY-----</span><br></pre></td></tr></table></figure>
+<h3 id="私钥"><a href="#私钥" class="headerlink" title="私钥"></a>私钥</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">MIIEogIBAAKCAQB8vXG0ImYhLHvHhpi5FS3gd2QhxSQiU6dQ04F1OHB0yRRQ3NXF</span><br><span class="line">5py2NNDw962i4WP1zpUOHh94&#x2F;mg&#x2F;KA8KHNJXHtQVLXMRms+chomsQCwkDi2jbgUa</span><br><span class="line">4jRFN&#x2F;6N3QejJ42jHasY3MJfALcnHCY3KDEFh0N89FV4yGLyDLr+TLqpRecg9pkP</span><br><span class="line">nOp++UTSsxz&#x2F;e0ONlPYrra&#x2F;DiaBjsleAESZSI69sPD9xZRt+EciXVQfybI&#x2F;2SYeA</span><br><span class="line">dXMm1B7tHCcFlOxeUgqYV03VEqiC0jVMwRCd+03NU3wvEmLBvGOmNGudocWIF&#x2F;y3</span><br><span class="line">VOqyW1byXFLeZxl7s+Y&#x2F;SthxOYXzu3mF+2&#x2F;pAgMBAAECggEAK5qZbYt8wenn1uZg</span><br><span class="line">6onRwJ5bfUaJjApL+YAFx&#x2F;ETtm83z9ByVbx4WWT7CNC7fK1nINy20&#x2F;mJrOTZkgIx</span><br><span class="line">x6otiNC4+DIsACJqol+RLoo8I9pk77Ucybn65ZteOz7hVZIU+8j6LzW0KDt6yowX</span><br><span class="line">e75r7G&#x2F;NEpfibNc3Zz81+oDd2x+bHyGbzc9QcePIVuEzkof6jgpbWrQZU14itx9l</span><br><span class="line">VxEgj&#x2F;fbMccvBx8brR&#x2F;l9ClmDZd9Y6TWsF1rfJpF3+DPeqFkKCiD7PGz3bs4O&#x2F;Zd</span><br><span class="line">ZrfV21ZNVusBW49G6bU63gQVKsOf1qGo3efbAW1HVxgTQ&#x2F;lExVdcMvdenZm+ADKp</span><br><span class="line">L4&#x2F;wUQKBgQDOfBjn3OC2IerUFu18EgCS7pSjTSibXw+TeX3D5zwszLC091G2rGlT</span><br><span class="line">5DihBUhMfesNdpoZynrs4YB6Sz9C3wSGAB8AM&#x2F;tNvPhtSVtbMHmrdT2DEEKCvLkO</span><br><span class="line">RNBnt+8aTu2hGRanw9aL1189gzwrmXK5ZuuURfgLrB9ihrvjo4VznQKBgQCapx13</span><br><span class="line">dEA1MwapBiIa3k8hVBCoGPsEPWqM33RBdUqUsP33f9&#x2F;PCx00j&#x2F;akwmjgQNnBlAJo</span><br><span class="line">Y7LOqPCyiwOkEf40T4IlHdzYntWQQvHhfBwqSgdkTE9tKj43Ddr7JVFRL6yMSbW3</span><br><span class="line">9qAp5UX&#x2F;+VzOLGAlfzJ8CBnkXwGrnKPCVbnZvQKBgQCd+iof80jlcCu3GteVrjxM</span><br><span class="line">LkcAbb8cqG1FWpVTNe4&#x2F;JFgqDHKzPVPUgG6nG2CGTWxxv4UFKHpGE&#x2F;11E28SHYjb</span><br><span class="line">cOpHAH5LqsGy84X2za649JkcVmtclUFMXm&#x2F;Ietxvl2WNdKF1t4rFMQFIEckOXnd8</span><br><span class="line">y&#x2F;Z&#x2F;Wcz+OTFF82l7L5ehrQKBgFXl9m7v6e3ijpN5LZ5A1jDL0Yicf2fmePUP9DGb</span><br><span class="line">ZTZbbGR46SXFpY4ZXEQ9GyVbv9dOT1wN7DXvDeoNXpNVzxzdAIt&#x2F;H7hN2I8NL+4v</span><br><span class="line">EjHG9n4WCJO4v9+yWWvfWWA&#x2F;m5Y8JqusV1+N0iiQJ6T4btrE4JSVp1P6FSJtmWOK</span><br><span class="line">W&#x2F;T9AoGAcMhPMCL+N+AvWcYt4Y4mhelvDG8e&#x2F;Jj4U+lwS3g7YmuQuYx7h5tjrS33</span><br><span class="line">w4o20g&#x2F;3XudPMJHhA3z+d8b3GaVM3ZtcRM3+Rvk+zSOcGSwn3yDy4NYlv9bdUj&#x2F;4</span><br><span class="line">H+aU1Qu1ZYojFM1Gmbe4HeYDOzRsJ5BhNrrV12h27JWkiRJ4F&#x2F;Q&#x3D;</span><br><span class="line">-----END RSA PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
+<h2 id="安装程序，并替换应用包内容目录中rpk文件的公钥"><a href="#安装程序，并替换应用包内容目录中rpk文件的公钥" class="headerlink" title="安装程序，并替换应用包内容目录中rpk文件的公钥"></a>安装程序，并替换应用包内容目录中rpk文件的公钥</h2><p>安装完毕后打开finder，找到应用程序，右键显示包内容，打开目录 /Contents/Resources，编辑<strong>rpk</strong>文件，将<strong>公钥</strong>替换并保存。</p>
+<h2 id="解密请求码，生成激活码"><a href="#解密请求码，生成激活码" class="headerlink" title="解密请求码，生成激活码"></a>解密请求码，生成激活码</h2><ol>
+<li><p>打开应用，<strong>断网</strong>，点击注册，输入密钥 <code>NAVH-T4PX-WT8W-QBL5</code>，然后选择手动激活。</p>
+</li>
+<li><p>复制请求码，根据私钥解密请求码（弹框显示），得到激活码明文<br>注意必须自己解密，因为解密后得到的“DI”是不同的<br>激活码明文示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;K&quot; : &quot;NAVHT4PXWT8WQBL5&quot;,</span><br><span class="line">  &quot;P&quot; : &quot;Mac 10.13&quot;,</span><br><span class="line">  &quot;DI&quot; : &quot;ODQ2Yjg2ZDBjMTEzMjhh&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>附上在线RSA私钥解密网址：<a target="_blank" rel="noopener" href="http://tool.chacuo.net/cryptrsaprikey">http://tool.chacuo.net/cryptrsaprikey</a></p>
+</li>
+<li><p>将得到的激活码明文进行修改，修改后格式如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;K&quot;:&quot;NAVHT4PXWT8WQBL5&quot;, &quot;N&quot;:&quot;xiaoming&quot;, &quot;O&quot;:&quot;xiaoming&quot;, &quot;DI&quot;:&quot;ODQ2Yjg2ZDBjMTEzMjhh&quot;, &quot;T&quot;:1516939200&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：上面的<code>&quot;P&quot;</code>没有了，激活码明文格式最好复制我的，改变 ” ” 内的字符即可，在同一行哦，不要换行，否则激活失败！！！ <code>“K”</code> <code>“DI”</code> 都替换成自己机器解密的信息，<code>”N”</code> <code>“O”</code> 可以自己定义（比如，小明为了表明是自己整理的，就填上了xiaoming）。<code>&quot;T&quot;</code> 这个Unix时间戳一定要使用当天的。比如你激活那一天是2018/08/19，你就需要去生成一个2018/08/19 00:00:00（时分秒无所谓）的时间戳，替换那个<code>&quot;T&quot;</code>之后，再去加密，即可顺利激活。</p>
+<p>附上转换时间戳的的地址：<a target="_blank" rel="noopener" href="http://tool.chinaz.com/Tools/unixtime.aspx">http://tool.chinaz.com/Tools/unixtime.aspx</a></p>
+</li>
+<li><p>加密激活码明文，使用私钥加密激活码明文。</p>
+<p>再次附上在线RSA私钥解密网址：<a target="_blank" rel="noopener" href="http://tool.chacuo.net/cryptrsaprikey">http://tool.chacuo.net/cryptrsaprikey</a></p>
+<p>复制加密后激活码信息到程序激活窗口，点击激活，即可成功激活！</p>
+</li>
+</ol>
+<p>   <strong>大家有什么问题都可以随时留言哈～</strong></p>
+
+        
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-more-info">
+      <div class="article-date">
+  <time datetime="2019-05-09T07:13:59.000Z" itemprop="datePublished">2019-05-09</time>
+</div>
+      
+        <div class="article-category">
+          <a class="article-category-link" href="/categories/Mac/">Mac</a>
+        </div>
+      
+      
+        <div class="article-tag">
+          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li></ul>
+        </div>
+      
+    </div>
+  </footer>
+
+</article>
+
+    
+  
+    
+      <article
+  id="post-SpringBoot优雅的全局异常处理"
+  class="article article-type-post"
+>
+
+  
+
+  <div class="article-inner">
+    
+      <div class="article-feature">
+          <a href="/p/de65.html">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E"
+              data-src="/gallery/sparkler-677774_640.jpg"
+              alt="item.title"
+              class="lazy"
+            />
+          </a>
+      </div>
+    
+
+    <div class="article-body">
+      <header class="article-title">
+        <a href="/p/de65.html">SpringBoot:如何优雅地处理全局异常？</a>
+      </header>
+      <div class="article-entry post-inner-html">
+        
+          <blockquote>
+<p>之前用springboot的时候，只知道捕获异常使用try{}catch，一个接口一个try{}catch，这也是大多数开发人员异常处理的常用方式，虽然屡试不爽，但会造成一个问题，就是一个Controller下面，满屏幕的try{}catch，看着一点都不优雅，一点都不符合小明的气质，憋了这么久，小明今天终于决定对所有异常实施统一处理的方案。</p>
+</blockquote>
+<h3 id="开发准备"><a href="#开发准备" class="headerlink" title="开发准备"></a>开发准备</h3><p>JDK8、正常的springboot项目</p>
+<h3 id="代码编写"><a href="#代码编写" class="headerlink" title="代码编写"></a>代码编写</h3><h4 id="通用异常处理"><a href="#通用异常处理" class="headerlink" title="通用异常处理"></a>通用异常处理</h4><p>其实Spring系列的项目全局异常处理方式早已存在，只不过我们一直忙于搬砖，很少停下脚步去审视这个日夜与我们相伴的朋友。为了贴合主题，本次主要针对SpringBoot全局异常处理进行举例说明。</p>
+<p>SpringBoot中有一个<code>@ControllerAdvice</code>的注解，使用该注解即表示开启全局异常捕获，接下来我们只需在自定义的方法上使用<code>@ExceptionHandler</code>注解，并定义捕获异常的类型，对这种类型的异常进行统一的处理。</p>
+<p><strong>举个例子:</strong></p>
+<p>假如我们需要针对NullException（空指针异常，是Java程序员最痛恨的异常，没有之一）进行全局处理（如下所示）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@RestControllerAdvice</span><br><span class="line">public class GlobalExceptionHandler &#123;</span><br><span class="line">		&#x2F;**</span><br><span class="line">     * 处理空指针的异常</span><br><span class="line">     * @param req</span><br><span class="line">     * @param e</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @ExceptionHandler(value &#x3D;NullPointerException.class)</span><br><span class="line">    public BaseResponseFacade exceptionHandler(HttpServletRequest req, NullPointerException e)&#123;</span><br><span class="line">        log.error(&quot;发生空指针异常！原因是:&quot;,e);</span><br><span class="line">        return ResponseUtil.error(ResponseCode.ERROR);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>讷，就这么简单。其他可能发生的异常，都可以以这种方式处理快速处理。此处大家应该表现的十分兴奋，但请不要高兴太早，因为接下来，有更令激动人心的事情。</p>
+<h4 id="自定义异常处理"><a href="#自定义异常处理" class="headerlink" title="自定义异常处理"></a>自定义异常处理</h4><h5 id="自定义一个异常"><a href="#自定义一个异常" class="headerlink" title="自定义一个异常"></a>自定义一个异常</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import lombok.AllArgsConstructor;</span><br><span class="line">import lombok.Data;</span><br><span class="line">import lombok.experimental.Accessors;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * @Description 自定义异常</span><br><span class="line"> * @Date 2019-08-05 15:49</span><br><span class="line"> * @Created by 程序员小明</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Data</span><br><span class="line">@AllArgsConstructor</span><br><span class="line">@Accessors(chain &#x3D; true)</span><br><span class="line">public class BizException extends RuntimeException &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 错误码</span><br><span class="line">     *&#x2F;</span><br><span class="line">    protected Integer errorCode;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 错误信息</span><br><span class="line">     *&#x2F;</span><br><span class="line">    protected String errorMsg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>显而易见，这个异常继承了<code>RuntimeException</code>，属于运行时异常。细心的朋友已经发现，我使用了Lombok插件，非常契合今天的主题，给大家简单介绍一下：</p>
+<blockquote>
+<p>lombok是一个可以帮助我们简化java代码编写的工具类，尤其是简化javabean的编写，即通过采用注解的方式，消除代码中的构造方法，getter/setter等代码，使我们写的类更加简洁（如果使用的IDE是idea，需要安装插件哈）。</p>
+</blockquote>
+<p>定义过之后，我们就可以和之前处理NullException方式一样处理我们自定义的异常。包括处理其他异常，都是这种方式。直接贴代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">@Slf4j</span><br><span class="line">@RestControllerAdvice</span><br><span class="line">public class GlobalExceptionHandler &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 处理自定义的业务异常</span><br><span class="line">     * @param req</span><br><span class="line">     * @param e</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @ExceptionHandler(value &#x3D; BizException.class)</span><br><span class="line">    public BaseResponseFacade bizExceptionHandler(HttpServletRequest req, BizException e)&#123;</span><br><span class="line">        log.error(&quot;发生业务异常！原因是：&#123;&#125;&quot;,e.getErrorMsg());</span><br><span class="line">        return ResponseUtil.error(e.getErrorCode(),e.getErrorMsg());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 处理空指针的异常</span><br><span class="line">     * @param req</span><br><span class="line">     * @param e</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @ExceptionHandler(value &#x3D;NullPointerException.class)</span><br><span class="line">    public BaseResponseFacade exceptionHandler(HttpServletRequest req, NullPointerException e)&#123;</span><br><span class="line">        log.error(&quot;发生空指针异常！原因是:&quot;,e);</span><br><span class="line">        return ResponseUtil.error(ResponseCode.ERROR);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 处理其他异常</span><br><span class="line">     * @param req</span><br><span class="line">     * @param e</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @ExceptionHandler(value &#x3D;Exception.class)</span><br><span class="line">    public BaseResponseFacade exceptionHandler(HttpServletRequest req, Exception e)&#123;</span><br><span class="line">        log.error(&quot;未知异常！原因是:&quot;,e);</span><br><span class="line">        return ResponseUtil.error(ResponseCode.INTERNAL_SERVER_ERROR);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>整个全局异常处理方式核心就是以上介绍这些。下面用一个Demo给大家举个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@GetMapping(&quot;&#x2F;test&quot;)</span><br><span class="line">public BaseResponseFacade test()&#123;</span><br><span class="line">  if(true)&#123;</span><br><span class="line">  	throw new BizException(1,&quot;error&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  return ResponseUtil.success();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>地址栏请求，进入这个方法后，会抛出异常，此时全局异常生效，就会返回异常处理过后的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;errorCode&quot;:1,&quot;errorMsg&quot;:&quot;error&quot;,&quot;data&quot;:null&#125;</span><br></pre></td></tr></table></figure>
+<p>到此整个流程都然跑通了。当然，好多地方都可以根据我们自身实际业务情况以此为基础进一步丰富，比如返回数据可以改成跳转某一个具体的页面。这样的出场方式是不是都很优雅？大家有什么问题，期待各位留言。</p>
+
+        
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-more-info">
+      <div class="article-date">
+  <time datetime="2019-05-09T07:13:59.000Z" itemprop="datePublished">2019-05-09</time>
+</div>
+      
+        <div class="article-category">
+          <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+        </div>
+      
+      
+        <div class="article-tag">
+          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li></ul>
+        </div>
+      
+    </div>
+  </footer>
+
+</article>
+
+    
+  
+    
+      <article
+  id="post-Springboot日志配置-sl4j"
+  class="article article-type-post"
+>
+
+  
+
+  <div class="article-inner">
+    
+
+    <div class="article-body">
+      <header class="article-title">
+        <a href="/p/d0da.html">Springboot日志配置-sl4j</a>
+      </header>
+      <div class="article-entry post-inner-html">
+        
+          <blockquote>
+<p>本文主要给大家介绍SpringBoot中如何通过sl4j日志组件优雅地记录日志。其实，我们入门 <strong>JAVA</strong> 的第一行代码就是一行日志，那你现在还在使用<code>System.out.println(&quot;Hello,小明!&quot;)</code>记录日志吗？</p>
+</blockquote>
+<h2 id="我经历过的日志组件"><a href="#我经历过的日志组件" class="headerlink" title="我经历过的日志组件"></a>我经历过的日志组件</h2><p>我最开始接触的日志组件是<strong>Log4j</strong></p>
+<blockquote>
+<p><strong>Log4j</strong> 作为Apache的一个开放源代码的项目，通过使用<strong>Log4j</strong>，我们可以控制日志信息输送的目的地是控制台、文件等我们期望它输出到的地方；我们也可以控制每一条日志的输出格式；通过定义每一条日志信息的级别，我们能够更加细致地控制日志的生成过程。</p>
+</blockquote>
+<p>我们可以通过一个配置文件来灵活地进行上面的配置，而不需要修改应用的代码。<strong>Log4j</strong>作为当时作为最先比较流行的日志框架，给我们在应用开发和维护带来了很大的便捷。</p>
+<p>但是，如今还是慢慢的走下“神坛”呢，逐渐被<strong>Logback</strong>替代，众里寻她千百度，原来<strong>Logback</strong>是<strong>升级版</strong>，相对<strong>Log4j</strong>而言有了更多的改进，而且开发人员竟然是同班人马（其实就是一个人写的）！</p>
+<h2 id="新星Logback"><a href="#新星Logback" class="headerlink" title="新星Logback"></a>新星Logback</h2><p><strong>Logback</strong>主要有下面的特性：</p>
+<ol>
+<li>更快的执行速度：基于我们先前在<strong>Log4j</strong>上的工作，<strong>Logback</strong> 重写了内部的实现，在某些特定的场景上面，甚至可以比之前的速度快上10倍。在保证<strong>Logback</strong>的组件更加快速的同时，同时所需的内存更加少；</li>
+<li>充分的测试：<strong>Logback</strong> 历经了几年，数不清小时数的测试。尽管<strong>Log4j</strong>也是测试过的，但是<strong>Logback</strong>的测试更加充分，跟<strong>Log4j</strong>不在同一个级别。我们认为，这正是人们选择<strong>Logback</strong>而不是<strong>Log4j</strong>的最重要的原因。谁不希望即使在恶劣的条件下，你的日志框架依然稳定而可靠呢？</li>
+</ol>
+<ul>
+<li>由三个模块组成<ul>
+<li>logback-core</li>
+<li>logback-classic</li>
+<li>logback-access</li>
+</ul>
+</li>
+</ul>
+<p><code>logback-core</code>是其它模块的基础设施，其它模块基于它构建，显然，<code>logback-core</code>提供了一些关键的通用机制。<code>logback-classic</code>的地位和作用等同于 <code>Log4J</code>，它也被认为是 <code>Log4J</code>的一个改进版，并且它实现了简单日志门面 <code>SLF4J</code>；而 <code>logback-access</code>主要作为一个与 <code>Servlet</code>容器交互的模块，比如说<code>tomcat</code>或者 <code>jetty</code>，提供一些与 <code>HTTP</code>访问相关的功能。</p>
+<h2 id="那Sl4J又是什么？"><a href="#那Sl4J又是什么？" class="headerlink" title="那Sl4J又是什么？"></a>那Sl4J又是什么？</h2><blockquote>
+<p><strong>slf4j</strong>:The Simple Logging Facade for Java 即java的简单日志门面</p>
+</blockquote>
+<p>简答的讲就是<strong>slf4j</strong>是一系列的日志接口，<strong>slf4j</strong>是作为一个日志的抽象行为存在的，但是并没有提供真正的实现。</p>
+<p><strong>slf4j</strong>为各种日志框架提供了一个统一的界面，使用户可以用统一的接口记录日志，动态地决定要使用的实现框架，比如<strong>Logback</strong>，<strong>Log4j</strong>，<strong>common-logging</strong>等框架都实现了这些接口。</p>
+<h2 id="我是如何配置日志的？"><a href="#我是如何配置日志的？" class="headerlink" title="我是如何配置日志的？"></a>我是如何配置日志的？</h2><p>路人皆知，<strong>Springboot</strong>默认使用的日志框架是<strong>Logback</strong>。顺势而为，在项目中，我们使用<strong>Logback</strong>，其实只需增加一个配置文件（自定义你的配置）即可。</p>
+<h3 id="配置文件详解"><a href="#配置文件详解" class="headerlink" title="配置文件详解"></a>配置文件详解</h3><p>配置文件精简结构如下所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration scan&#x3D;&quot;true&quot; scanPeriod&#x3D;&quot;60 seconds&quot; debug&#x3D;&quot;false&quot;&gt;  </span><br><span class="line">		 &lt;!-- 属性文件:在properties&#x2F;yml文件中找到对应的配置项 --&gt;</span><br><span class="line">    &lt;springProperty scope&#x3D;&quot;context&quot; name&#x3D;&quot;logging.path&quot; source&#x3D;&quot;logging.path&quot;&#x2F;&gt;</span><br><span class="line">    &lt;contextName&gt;程序员小明&lt;&#x2F;contextName&gt; </span><br><span class="line">    </span><br><span class="line">    &lt;appender&gt;</span><br><span class="line">        &#x2F;&#x2F;xxxx</span><br><span class="line">    &lt;&#x2F;appender&gt;   </span><br><span class="line">    </span><br><span class="line">    &lt;logger&gt;</span><br><span class="line">        &#x2F;&#x2F;xxxx</span><br><span class="line">    &lt;&#x2F;logger&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;root&gt;             </span><br><span class="line">       &#x2F;&#x2F;xxxx</span><br><span class="line">    &lt;&#x2F;root&gt;  </span><br><span class="line">&lt;&#x2F;configuration&gt;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这个文件在springboot中默认叫做<strong>logback-spring.xml</strong>，我们只要新建一个同名文件放在<strong>resources</strong>下面， 配置即可生效。</p>
+<p>每个配置的解释如下所示：</p>
+<h4 id="contextName"><a href="#contextName" class="headerlink" title="contextName"></a>contextName</h4><p>每个<code>logger</code>都关联到<code>logger</code>上下文，默认上下文名称为<code>“default”</code>。但可以使用<code>contextName</code>标签设置成其他名字，用于区分不同应用程序的记录</p>
+<h4 id="property"><a href="#property" class="headerlink" title="property"></a>property</h4><p>用来定义变量值的标签，<code>property</code>标签有两个属性，<code>name</code>和<code>value</code>；其中<code>name</code>的值是变量的名称，<code>value</code>的值时变量定义的值。通过<code>property</code>定义的值会被插入到<code>logger</code>上下文中。定义变量后，可以使“${name}”来使用变量。如上面的<code>xml</code>所示。</p>
+<h4 id="logger"><a href="#logger" class="headerlink" title="logger"></a>logger</h4><p>用来设置某一个包或者具体的某一个类的日志打印级别以及指定<code>appender</code>。</p>
+<h4 id="root"><a href="#root" class="headerlink" title="root"></a>root</h4><p>根logger，也是一种logger，且只有一个level属性</p>
+<h4 id="appender"><a href="#appender" class="headerlink" title="appender"></a>appender</h4><p>负责写日志的组件</p>
+<h5 id="appender-的种类"><a href="#appender-的种类" class="headerlink" title="appender 的种类"></a>appender 的种类</h5><ul>
+<li>ConsoleAppender：把日志添加到控制台</li>
+<li>FileAppender：把日志添加到文件</li>
+<li>RollingFileAppender：滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。它是FileAppender的子类</li>
+</ul>
+<h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h4><p>filter其实是appender里面的子元素。它作为过滤器存在，执行一个过滤器会有返回DENY，NEUTRAL，ACCEPT三个枚举值中的一个。</p>
+<ul>
+<li><p>DENY：日志将立即被抛弃不再经过其他过滤器</p>
+</li>
+<li><p>NEUTRAL：有序列表里的下个过滤器过接着处理日志</p>
+</li>
+<li><p>ACCEPT：日志会被立即处理，不再经过剩余过滤器</p>
+<p>有以下几种过滤器</p>
+<h5 id="ThresholdFilter"><a href="#ThresholdFilter" class="headerlink" title="ThresholdFilter"></a>ThresholdFilter</h5><p>临界值过滤器，过滤掉低于指定临界值的日志。当日志级别等于或高于临界值时，过滤器返回<code>NEUTRAL</code>；当日志级别低于临界值时，日志会被拒绝。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter class&#x3D;&quot;ch.qos.logback.classic.filter.ThresholdFilter&quot;&gt;</span><br><span class="line">    &lt;level&gt;INFO&lt;&#x2F;level&gt;</span><br><span class="line">&lt;&#x2F;filter&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="LevelFilter"><a href="#LevelFilter" class="headerlink" title="LevelFilter"></a>LevelFilter</h5><p>级别过滤器，根据日志级别进行过滤。如果日志级别等于配置级别，过滤器会根据<code>onMath</code>(用于配置符合过滤条件的操作) 和 <code>onMismatch</code>(用于配置不符合过滤条件的操作)接收或拒绝日志。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter class&#x3D;&quot;ch.qos.logback.classic.filter.LevelFilter&quot;&gt;   </span><br><span class="line">  &lt;level&gt;INFO&lt;&#x2F;level&gt;   </span><br><span class="line">  &lt;onMatch&gt;ACCEPT&lt;&#x2F;onMatch&gt;   </span><br><span class="line">  &lt;onMismatch&gt;DENY&lt;&#x2F;onMismatch&gt;   </span><br><span class="line">&lt;&#x2F;filter&gt; </span><br></pre></td></tr></table></figure>
+<h2 id="项目实例"><a href="#项目实例" class="headerlink" title="项目实例"></a>项目实例</h2></li>
+</ul>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>一个简单正常的Springboot项目</p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><h4 id="application-yml"><a href="#application-yml" class="headerlink" title="application.yml"></a>application.yml</h4><p>有关日志的简单配置，我们可以直接在<code>application.yml</code>中进行简单的配置，比如指明日志的打印级别和日志的输出位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">logging:</span><br><span class="line">  level:</span><br><span class="line">    root: info</span><br><span class="line">  path: .&#x2F;logs</span><br></pre></td></tr></table></figure>
+<p>也可以根据分环境配置指明使用的配置文件，缺省为<strong>logback-spring.xml</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">logging:</span><br><span class="line">  level:</span><br><span class="line">    root: info</span><br><span class="line">  path: .&#x2F;logs</span><br><span class="line">  config: classpath:&#x2F;logback-dev.xml</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="logback-spring-xml"><a href="#logback-spring-xml" class="headerlink" title="logback-spring.xml"></a>logback-spring.xml</h4><p>在<strong>resources</strong>目录下新建<strong>logback-spring.xml</strong>文件，举例一个简单的需求，如果在项目中我们如果需要指定日志的输出格式以及根据日志级别输出到不同的文件，可以配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;!-- 属性文件:在properties文件中找到对应的配置项 --&gt;</span><br><span class="line">    &lt;springProperty scope&#x3D;&quot;context&quot; name&#x3D;&quot;logging.path&quot; source&#x3D;&quot;logging.path&quot;&#x2F;&gt;</span><br><span class="line">    &lt;contextName&gt;xiaoming&lt;&#x2F;contextName&gt;</span><br><span class="line">    &lt;appender name&#x3D;&quot;consoleLog&quot; class&#x3D;&quot;ch.qos.logback.core.ConsoleAppender&quot;&gt;</span><br><span class="line">        &lt;encoder class&#x3D;&quot;ch.qos.logback.classic.encoder.PatternLayoutEncoder&quot;&gt;</span><br><span class="line">            &lt;!--格式化输出（配色）：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--&gt;</span><br><span class="line">            &lt;pattern&gt;%yellow(%d&#123;yyyy-MM-dd HH:mm:ss&#125;) %red([%thread]) %highlight(%-5level) %cyan(%logger&#123;50&#125;) - %magenta(%msg) %n</span><br><span class="line">            &lt;&#x2F;pattern&gt;</span><br><span class="line">            &lt;charset&gt;UTF-8&lt;&#x2F;charset&gt;</span><br><span class="line">        &lt;&#x2F;encoder&gt;</span><br><span class="line">    &lt;&#x2F;appender&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--根据日志级别分离日志，分别输出到不同的文件--&gt;</span><br><span class="line">    &lt;appender name&#x3D;&quot;fileInfoLog&quot; class&#x3D;&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt;</span><br><span class="line">        &lt;filter class&#x3D;&quot;ch.qos.logback.classic.filter.LevelFilter&quot;&gt;</span><br><span class="line">            &lt;level&gt;ERROR&lt;&#x2F;level&gt;</span><br><span class="line">            &lt;onMatch&gt;DENY&lt;&#x2F;onMatch&gt;</span><br><span class="line">            &lt;onMismatch&gt;ACCEPT&lt;&#x2F;onMismatch&gt;</span><br><span class="line">        &lt;&#x2F;filter&gt;</span><br><span class="line">        &lt;encoder class&#x3D;&quot;ch.qos.logback.classic.encoder.PatternLayoutEncoder&quot;&gt;</span><br><span class="line">            &lt;pattern&gt;</span><br><span class="line">                %d&#123;yyyy-MM-dd HH:mm:ss&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n</span><br><span class="line">            &lt;&#x2F;pattern&gt;</span><br><span class="line">            &lt;charset&gt;UTF-8&lt;&#x2F;charset&gt;</span><br><span class="line">        &lt;&#x2F;encoder&gt;</span><br><span class="line">        &lt;!--滚动策略--&gt;</span><br><span class="line">        &lt;rollingPolicy class&#x3D;&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;&gt;</span><br><span class="line">            &lt;!--按时间保存日志 修改格式可以按小时、按天、月来保存--&gt;</span><br><span class="line">            &lt;fileNamePattern&gt;$&#123;logging.path&#125;&#x2F;xiaoming.info.%d&#123;yyyy-MM-dd&#125;.log&lt;&#x2F;fileNamePattern&gt;</span><br><span class="line">            &lt;!--保存时长--&gt;</span><br><span class="line">            &lt;MaxHistory&gt;90&lt;&#x2F;MaxHistory&gt;</span><br><span class="line">            &lt;!--文件大小--&gt;</span><br><span class="line">            &lt;totalSizeCap&gt;1GB&lt;&#x2F;totalSizeCap&gt;</span><br><span class="line">        &lt;&#x2F;rollingPolicy&gt;</span><br><span class="line">    &lt;&#x2F;appender&gt;</span><br><span class="line"></span><br><span class="line">    &lt;appender name&#x3D;&quot;fileErrorLog&quot; class&#x3D;&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt;</span><br><span class="line">        &lt;filter class&#x3D;&quot;ch.qos.logback.classic.filter.ThresholdFilter&quot;&gt;</span><br><span class="line">            &lt;level&gt;ERROR&lt;&#x2F;level&gt;</span><br><span class="line">        &lt;&#x2F;filter&gt;</span><br><span class="line">        &lt;encoder&gt;</span><br><span class="line">            &lt;pattern&gt;</span><br><span class="line">                %d&#123;yyyy-MM-dd HH:mm:ss&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n</span><br><span class="line">            &lt;&#x2F;pattern&gt;</span><br><span class="line">        &lt;&#x2F;encoder&gt;</span><br><span class="line">        &lt;!--滚动策略--&gt;</span><br><span class="line">        &lt;rollingPolicy class&#x3D;&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;&gt;</span><br><span class="line">            &lt;!--路径--&gt;</span><br><span class="line">            &lt;fileNamePattern&gt;$&#123;logging.path&#125;&#x2F;xiaoming.error.%d&#123;yyyy-MM-dd&#125;.log&lt;&#x2F;fileNamePattern&gt;</span><br><span class="line">            &lt;MaxHistory&gt;90&lt;&#x2F;MaxHistory&gt;</span><br><span class="line">        &lt;&#x2F;rollingPolicy&gt;</span><br><span class="line">    &lt;&#x2F;appender&gt;</span><br><span class="line">    &lt;root level&#x3D;&quot;info&quot;&gt;</span><br><span class="line">        &lt;appender-ref ref&#x3D;&quot;consoleLog&quot;&#x2F;&gt;</span><br><span class="line">        &lt;appender-ref ref&#x3D;&quot;fileInfoLog&quot;&#x2F;&gt;</span><br><span class="line">        &lt;appender-ref ref&#x3D;&quot;fileErrorLog&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;root&gt;</span><br><span class="line">&lt;&#x2F;configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>再比如如果粒度再细一些，根据不同的模块，输出到不同的文件，可以如下配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--特殊功能单独appender 例如调度类的日志--&gt;</span><br><span class="line">   &lt;appender name&#x3D;&quot;CLASS-APPENDER&quot; class&#x3D;&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt;</span><br><span class="line">       &lt;filter class&#x3D;&quot;ch.qos.logback.classic.filter.ThresholdFilter&quot;&gt;</span><br><span class="line">           &lt;level&gt;INFO&lt;&#x2F;level&gt;</span><br><span class="line">       &lt;&#x2F;filter&gt;</span><br><span class="line">       &lt;encoder&gt;</span><br><span class="line">           &lt;pattern&gt;</span><br><span class="line">               %d&#123;yyyy-MM-dd HH:mm:ss&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n</span><br><span class="line">           &lt;&#x2F;pattern&gt;</span><br><span class="line">       &lt;&#x2F;encoder&gt;</span><br><span class="line">       &lt;!--滚动策略--&gt;</span><br><span class="line">       &lt;rollingPolicy class&#x3D;&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;&gt;</span><br><span class="line">           &lt;!--路径--&gt;</span><br><span class="line">           &lt;fileNamePattern&gt;$&#123;logging.path&#125;&#x2F;mkc.class.%d&#123;yyyy-MM-dd&#125;.log&lt;&#x2F;fileNamePattern&gt;</span><br><span class="line">           &lt;MaxHistory&gt;90&lt;&#x2F;MaxHistory&gt;</span><br><span class="line">       &lt;&#x2F;rollingPolicy&gt;</span><br><span class="line">   &lt;&#x2F;appender&gt;</span><br><span class="line">   &lt;!--这里的name和业务类中的getLogger中的字符串是一样的--&gt;</span><br><span class="line">   &lt;logger name&#x3D;&quot;xiaoming&quot; level&#x3D;&quot;INFO&quot; additivity&#x3D;&quot;true&quot;&gt;</span><br><span class="line">       &lt;appender-ref ref&#x3D;&quot;CLASS-APPENDER&quot; &#x2F;&gt;</span><br><span class="line">   &lt;&#x2F;logger&gt;</span><br></pre></td></tr></table></figure>
+<p>正常情况下<strong>xiaoming</strong>是指的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private Logger xiaoming &#x3D; LoggerFactory.getLogger(&quot;xiaoming&quot;);</span><br></pre></td></tr></table></figure>
+<p>如果我们使用的是<strong>lomok</strong>插件，则<strong>xiaoming</strong>指的是<strong>topic</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Slf4j(topic &#x3D; &quot;xiaoming&quot;)</span><br><span class="line">public class XiaoMingTest &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>小明目前用到的就这么多啦，更多的日志配置场景，大家可以访问：<a target="_blank" rel="noopener" href="https://juejin.im/post/5b51f85c5188251af91a7525">看完这个不会配置 logback ，请你吃瓜！</a></p>
+<p>有什么问题，欢迎大家留言～</p>
+
+        
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-more-info">
+      <div class="article-date">
+  <time datetime="2019-05-09T07:13:59.000Z" itemprop="datePublished">2019-05-09</time>
+</div>
+      
+        <div class="article-category">
+          <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+        </div>
+      
+      
+        <div class="article-tag">
+          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li></ul>
+        </div>
+      
+    </div>
+  </footer>
+
+</article>
+
+    
+  
+
+  
+    <nav class="pagination">
+        <a class="extend prev" rel="prev" href="/page/8/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/10/">Next</a>
+    </nav>
+  
+</div>
+
+                </section>
+            </section>
+
+             
+            <aside class="sidebar">
+            
+                
+
+
+<div class="widget" id="widget">
+    
+      
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Elasticsearch/">Elasticsearch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jenkins/">Jenkins</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MQ/">MQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mybatis/">Mybatis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1/">微信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">系统运维</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Freemarker/" rel="tag">Freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdn/" rel="tag">cdn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/" rel="tag">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/" rel="tag">dev</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/email/" rel="tag">email</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/homebrew/" rel="tag">homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mq/" rel="tag">mq</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/" rel="tag">swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98/" rel="tag">支付</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/p/21452.html">「Elasticsearch」SpringBoot快速集成ES</a>
+          </li>
+        
+          <li>
+            <a href="/p/35755.html">Linux服务器的晴雨表——top命令</a>
+          </li>
+        
+          <li>
+            <a href="/p/62773.html">通过shell脚本一键安装python3</a>
+          </li>
+        
+          <li>
+            <a href="/p/8425.html">如何使用Freemarker生成Word文件</a>
+          </li>
+        
+          <li>
+            <a href="/p/38722.html">解决SpringBoot jar包中的文件读取问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-archive">
+    <div class="widget-title"><span>Archive</span></div>
+    <div class="widget-inner">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">2018</a></li></ul>
+    </div>
+  </div>
+
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享 &copy; 2020<br>
+            Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
+        </div>
+    </div>
+
+</footer>
+
+
+
+
+<script src="/dist/build.js?1.13.0.js"></script>
+
+
+<script src="/dist/custom.js?1.13.0.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

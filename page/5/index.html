@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    <title>程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    
+
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1.13.0.css">
+
+
+    <script>
+        window.isPost = false
+        window.aomori = {
+            
+        }
+        window.aomori_logo_typed_animated = true
+        window.aomori_search_algolia = false
+    </script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <div id="typed-strings" style="display:none">
+                        <p>程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</p>
+                    </div>
+                    <a class="header-type-title" id="typed" href="/"></a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">Home</a>
+                
+                <a href="/archives">Archives</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">Home</a>
+                    
+                    <a href="/archives">Archives</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="index">
+  
+    
+      <article
+  id="post-hexo忽略编译某些文件"
+  class="article article-type-post"
+>
+
+  
+
+  <div class="article-inner">
+    
+      <div class="article-feature">
+          <a href="/p/d2c.html">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E"
+              data-src="/gallery/legs-434918_640.jpg"
+              alt="item.title"
+              class="lazy"
+            />
+          </a>
+      </div>
+    
+
+    <div class="article-body">
+      <header class="article-title">
+        <a href="/p/d2c.html">hexo忽略编译某些文件</a>
+      </header>
+      <div class="article-entry post-inner-html">
+        
+          <p>我们需要自己定义一些页面，比如：404.html，需要在<code>source</code>目录下填加一个<code>demo</code>目录放一些示例文件，hexo默认会编译<code>source</code>目录下的所有文件。但demo目录并不需要编译，<code>_config.yml</code>有提供一个配置项<code>skip_render</code>, 官网说明：</p>
+<blockquote>
+<p>skip_render：跳过指定文件的渲染，您可使用<a target="_blank" rel="noopener" href="https://github.com/isaacs/minimatch">glob表达式</a>来匹配路径。</p>
+</blockquote>
+<p>glob表达式链接的是<code>minimatch</code>，说明路径匹配用的应该是<code>minimatch</code>这个npm模块包来完成的。需要指出的是这里面配置的路径都是相对<code>source</code>目录的。</p>
+<ol>
+<li><p>如何需要跳过<code>source</code>目录下文件的编译:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 跳过单个文件</span><br><span class="line">skip_render: test.html</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 跳过所有的html的文件</span><br><span class="line">skip_render: &#39;*.html&#39;</span><br></pre></td></tr></table></figure></li>
+<li><p>跳过某一目录下的所有文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">skip_render: test&#x2F;*</span><br></pre></td></tr></table></figure></li>
+<li><p>需要跳过某一目录下的所有文件和子目录时：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">skip_render: test&#x2F;**</span><br></pre></td></tr></table></figure></li>
+<li><p>跳过多个目录，或者多个文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 最新版本的hexo，用这个好使</span><br><span class="line">skip_render: [&#39;*.html&#39;, demo&#x2F;**, test&#x2F;*]</span><br></pre></td></tr></table></figure>
+<p>看见有人是说是这样，反正我试不管事，可能的版本的原因：</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 我试了试，不管事啊。</span><br><span class="line">skip_render:</span><br><span class="line">    - test1&#x2F;*.html</span><br><span class="line">    - test2&#x2F;**</span><br></pre></td></tr></table></figure>
+<p>ps：</p>
+<ol>
+<li><p>如果设置<code>skip_render</code>不起作用，可以先执行<code>hexo clean</code>清除一下缓存。</p>
+</li>
+<li><p>如果跳过多个目录编译失败，请尝试更新<code>hexo</code>, 在<code>source</code>同级目录中执行<code>npm update hexo</code></p>
+</li>
+<li><p>如果需要查看是否成功跳过编译，可以在编译的时候加上<code>--debug</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate --debug</span><br></pre></td></tr></table></figure>
+<p>关注打印出来的<code>Rendering xxxx</code> 中的东西。</p>
+</li>
+</ol>
+<h3 id="欢迎关注微信公众号，获取更多资源"><a href="#欢迎关注微信公众号，获取更多资源" class="headerlink" title="欢迎关注微信公众号，获取更多资源"></a>欢迎关注微信公众号，获取更多资源</h3><p><img src="https://i.ibb.co/rMxVLpD/qrcode-for-gh-912975c21d10-344.jpg" alt="程序员小明"></p>
+
+        
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-more-info">
+      <div class="article-date">
+  <time datetime="2019-10-10T09:03:48.000Z" itemprop="datePublished">2019-10-10</time>
+</div>
+      
+        <div class="article-category">
+          <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+        </div>
+      
+      
+        <div class="article-tag">
+          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+        </div>
+      
+    </div>
+  </footer>
+
+</article>
+
+    
+  
+    
+      <article
+  id="post-linux常用命令"
+  class="article article-type-post"
+>
+
+  
+
+  <div class="article-inner">
+    
+
+    <div class="article-body">
+      <header class="article-title">
+        <a href="/p/c01e.html">linux常用命令（持续更新）</a>
+      </header>
+      <div class="article-entry post-inner-html">
+        
+          <h2 id="查看系统磁盘空间"><a href="#查看系统磁盘空间" class="headerlink" title="查看系统磁盘空间"></a>查看系统磁盘空间</h2><h3 id="推荐使用"><a href="#推荐使用" class="headerlink" title="推荐使用"></a>推荐使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h </span><br></pre></td></tr></table></figure>
+<h3 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">udev            7.9G     0  7.9G   0% &#x2F;dev</span><br><span class="line">tmpfs           1.6G  3.6M  1.6G   1% &#x2F;run</span><br><span class="line">&#x2F;dev&#x2F;vda1        99G   61G   33G  65% &#x2F;</span><br><span class="line">tmpfs           7.9G  2.6G  5.3G  33% &#x2F;dev&#x2F;shm</span><br><span class="line">tmpfs           5.0M     0  5.0M   0% &#x2F;run&#x2F;lock</span><br><span class="line">tmpfs           7.9G     0  7.9G   0% &#x2F;sys&#x2F;fs&#x2F;cgroup</span><br><span class="line">&#x2F;dev&#x2F;vdb1       493G   57G  411G  13% &#x2F;media</span><br><span class="line">tmpfs           1.6G     0  1.6G   0% &#x2F;run&#x2F;user&#x2F;1000</span><br></pre></td></tr></table></figure>
+<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><table>
+<thead>
+<tr>
+<th>Filesystem</th>
+<th>Size</th>
+<th>Used</th>
+<th>Avail</th>
+<th>use</th>
+<th>Mounted on</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>文件系统</td>
+<td>分区大小</td>
+<td>已使用容量</td>
+<td>还可以使用容量</td>
+<td>已用百分比</td>
+<td>挂载点</td>
+</tr>
+</tbody></table>
+<h3 id="命令解释"><a href="#命令解释" class="headerlink" title="命令解释"></a>命令解释</h3><p>*<em>“df”**可以理解为：</em>disk filesystem*，意为”磁盘文件系统”，我们就是为了查看磁盘占用情况；</p>
+<p>**”-h”**我们通过<code>df --help</code>会发现，这个参数表示查询磁盘占用空间会以K，M，G为单位，提高信息的可读性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-h, --human-readable  print sizes in powers of 1024 (e.g., 1023M)</span><br></pre></td></tr></table></figure>
+<h2 id="查看文件夹大小"><a href="#查看文件夹大小" class="headerlink" title="查看文件夹大小"></a>查看文件夹大小</h2><h3 id="推荐使用-1"><a href="#推荐使用-1" class="headerlink" title="推荐使用"></a>推荐使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sh</span><br></pre></td></tr></table></figure>
+<p>进入到你想查看的文件夹下，运行即可</p>
+<h3 id="运行结果-1"><a href="#运行结果-1" class="headerlink" title="运行结果"></a>运行结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">28M	.</span><br></pre></td></tr></table></figure>
+<h3 id="命令解释-1"><a href="#命令解释-1" class="headerlink" title="命令解释"></a>命令解释</h3><p><strong>du</strong> 的英文原义为 <strong>disk usage</strong>，含义为显示磁盘空间的使用情况，用于查看当前目录的总大小。</p>
+<p>运行<strong>du –help</strong> 查看解释</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-s, --summarize       display only a total for each argument</span><br><span class="line">-h, --human-readable  print sizes in human readable format (e.g., 1K 234M 2G)</span><br></pre></td></tr></table></figure>
+<p><strong>-s</strong>表示展示总数</p>
+<p><strong>-h</strong>同样是提高信息的可读性</p>
+<h3 id="未完，待续……"><a href="#未完，待续……" class="headerlink" title="未完，待续……"></a>未完，待续……</h3><h3 id="欢迎关注微信公众号，获取更多资源"><a href="#欢迎关注微信公众号，获取更多资源" class="headerlink" title="欢迎关注微信公众号，获取更多资源"></a>欢迎关注微信公众号，获取更多资源</h3><p><img src="https://i.ibb.co/rMxVLpD/qrcode-for-gh-912975c21d10-344.jpg" alt="程序员小明"></p>
+
+        
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-more-info">
+      <div class="article-date">
+  <time datetime="2019-09-19T07:02:39.000Z" itemprop="datePublished">2019-09-19</time>
+</div>
+      
+        <div class="article-category">
+          <a class="article-category-link" href="/categories/Linux/">Linux</a>
+        </div>
+      
+      
+        <div class="article-tag">
+          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
+        </div>
+      
+    </div>
+  </footer>
+
+</article>
+
+    
+  
+    
+      <article
+  id="post-springboot发送邮件"
+  class="article article-type-post"
+>
+
+  
+
+  <div class="article-inner">
+    
+      <div class="article-feature">
+          <a href="/p/3735.html">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E"
+              data-src="/gallery/dog.jpg"
+              alt="item.title"
+              class="lazy"
+            />
+          </a>
+      </div>
+    
+
+    <div class="article-body">
+      <header class="article-title">
+        <a href="/p/3735.html">springboot发送邮件</a>
+      </header>
+      <div class="article-entry post-inner-html">
+        
+          <blockquote>
+<p>在小明经历的多个项目开发中，总会遇到<strong>消息通知</strong>的场景，比如某个广告主提交一个表单，我们要通知提醒运营人员及时查看。</p>
+</blockquote>
+<p>消息通知的形式也有很多，比如：短信、邮件、app推送等，本文主要给大家描述一下<strong>邮件</strong>通知的形式，因为邮件相比较其他通知渠道更方便实用（免费），除了简单文本邮件（已经满足大多数情形），本文还会重点说一下集成<strong>Thymeleaf</strong>模版引擎，使用<strong>HTML</strong>的形式发送邮件，尽管<strong>HTML</strong>内容不是标准化的消息格式，但是许多邮件客户端至少支持标记语言的子集，这种方式相比较纯文本展现形式更加友好。 </p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>一个普通再也普通不了的SpringBoot项目</p>
+<h2 id="简单文本发送"><a href="#简单文本发送" class="headerlink" title="简单文本发送"></a>简单文本发送</h2><p>还是那句老话，在SpringBoot看来一切都是这么便捷。它已经集成邮件发送所必需的库模块，我们只需将以下依赖添加到<code>pom.xml</code>即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- https:&#x2F;&#x2F;mvnrepository.com&#x2F;artifact&#x2F;org.springframework.boot&#x2F;spring-boot-starter-mail --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-mail&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="邮箱服务结构"><a href="#邮箱服务结构" class="headerlink" title="邮箱服务结构"></a><strong>邮箱服务结构</strong></h3><p>Spring框架中用于Java邮件支持的接口和类组织如下：</p>
+<ol>
+<li><p><strong>MailSender interface</strong>：发送简单基础电子邮件的顶级接口；</p>
+</li>
+<li><p><strong>JavaMailSender interface</strong>：是<code>MailSender</code>的子接口。它支持MIME消息，并且主要与<code>MimeMessageHelper</code>类一起用于创建<code>MimeMessage</code>。建议在此接口实现类<code>JavaMailSenderImpl</code>中使用<code>MimeMessagePreparator</code>机制；</p>
+</li>
+<li><p><strong>JavaMailSenderImpl class</strong>：实现了<code>JavaMailSender</code> 的接口，它支持<code>MimeMessage</code>和<code>SimpleMailMessage</code>；</p>
+</li>
+<li><p> <strong>SimpleMailMessage class</strong>：用于创建简单的邮件消息，包括from，to，cc，subject和text字段；</p>
+</li>
+<li><p><strong>MimeMessagePreparator interface</strong>：提供一个回调接口，用于编写MIME消息；</p>
+</li>
+<li><p><strong>MimeMessageHelper class</strong>：用于创建MIME消息的帮助类。它为HTML布局中的图像，典型邮件附件和文本内容提供支持。</p>
+</li>
+</ol>
+<p>在以下部分中，我将向大家展示如何使用这些接口和类：</p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>下面举例163邮箱（最常用的）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  mail:</span><br><span class="line">    host: smtp.163.com # 发件服务器</span><br><span class="line">    username: coderxm@163.com # 账号</span><br><span class="line">    password: xxxx # 密码（163需要授权第三方登录密码，请查看设置-客户端授权码密码开通）</span><br><span class="line">    port: 465</span><br><span class="line">    protocol: smtp</span><br><span class="line">    default-encoding: utf-8</span><br><span class="line">    # 下面这些配置大家不用深究，主要用于配置ssl</span><br><span class="line">    properties:</span><br><span class="line">      mail:</span><br><span class="line">        imap:</span><br><span class="line">          ssl:</span><br><span class="line">            socketFactory:</span><br><span class="line">              fallback: false</span><br><span class="line">        smtp:</span><br><span class="line">          auth: true</span><br><span class="line">          ssl:</span><br><span class="line">            enable: true</span><br><span class="line">            socketFactory:</span><br><span class="line">              class: com.fintech.modules.base.util.mail.MailSSLSocketFactory</span><br><span class="line">          starttls:</span><br><span class="line">            enable: true</span><br><span class="line">            required: true</span><br><span class="line">      test-connection: false</span><br></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h4 id="service层"><a href="#service层" class="headerlink" title="service层"></a>service层</h4><p>按照常见的代码结构，我们先定义一个发送邮件的<strong>接口</strong>，负责创建和发送新的邮件消息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public interface EmailService &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 发送简单文本内容</span><br><span class="line">     * @param to 发件人</span><br><span class="line">     * @param subject 主题</span><br><span class="line">     * @param text 内容</span><br><span class="line">     *&#x2F;</span><br><span class="line">    void sendSimpleMessage(String to,</span><br><span class="line">                           String subject,</span><br><span class="line">                           String text);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以将一些常用的配置添加到yml配置文件当中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 邮件配置</span><br><span class="line">xiaoming:</span><br><span class="line">  email:</span><br><span class="line">    subject: &quot;程序员小明&quot;</span><br><span class="line">    from: &quot;coderxm@163.com&quot;</span><br><span class="line">    to: &quot;xiaohong@163.com&quot;</span><br><span class="line">    # 抄送人：类型定义为数组，可以配置多个</span><br><span class="line">    cc:</span><br><span class="line">      - &quot;xiaogang@163.com&quot;</span><br></pre></td></tr></table></figure>
+<p>然后再通过注解注入到一个实体类中，这样很优雅，随用随取：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;xiaoming.email&quot;)</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmailConfig</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String subject;</span><br><span class="line">    <span class="keyword">private</span> String from;</span><br><span class="line">    <span class="keyword">private</span> String to;</span><br><span class="line">    <span class="keyword">private</span> String[] cc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们再定义一个类去实现这个接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmailServiceImpl</span> <span class="keyword">implements</span> <span class="title">EmailService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">public</span> JavaMailSender emailSender;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> EmailConfig emailConfig;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendSimpleMessage</span><span class="params">(String to, String subject, String text)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            SimpleMailMessage message = <span class="keyword">new</span> SimpleMailMessage();</span><br><span class="line">            message.setTo(to);</span><br><span class="line">            message.setFrom(<span class="string">&quot;coderxm@163.com&quot;</span>);</span><br><span class="line">            message.setSubject(subject);</span><br><span class="line">            message.setText(text);</span><br><span class="line">            emailSender.send(message);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (MailException exception) &#123;</span><br><span class="line">            log.error(ExceptionUtil.stacktraceToString(exception));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>我们做一个简单的测试：简单的邮件是否能够发送成功。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmailTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> EmailService emailService;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSimple</span><span class="params">()</span></span>&#123;</span><br><span class="line">        emailService.sendSimpleMessage(<span class="string">&quot;ligang@163.com&quot;</span>,<span class="string">&quot;XX篮球&quot;</span>,<span class="string">&quot;你好，我想让周琦代言！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用html作为模版发送邮件"><a href="#使用html作为模版发送邮件" class="headerlink" title="使用html作为模版发送邮件"></a>使用html作为模版发送邮件</h3><p>正在洋洋得意（准备划水）的时候，我们的产品突然对我说，“用简单的文本发送邮件也太简陋了吧，显示不出来我们的产品档次”，然后给我了一个样式，让我以这种形式发送，好啊，什么都难不倒小明。我连忙找到我们的前端，（假装低三下四地）让她帮忙排一个页面给我（这个工作我实在不想做，一是懒，二是人家前端肯定比我专业啊），为了保密，我简化一下，大概是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot; xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;1999&#x2F;xhtml&quot; xmlns:th&#x3D;&quot;http:&#x2F;&#x2F;www.thymeleaf.org&quot;&gt;</span><br><span class="line">&lt;head&gt;&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    姓 名：&lt;span th:text&#x3D;&quot;$&#123;userName&#125;&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">    性 别：&lt;span th:text&#x3D;&quot;$&#123;gender&#125;&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<p>其实样式很好看的，但是这都不是重点，我们就以此作为模版举个例子，语法使用的都是thymeleaf，在此处就不再赘述，如果有想了解的可以去官网找。</p>
+<h4 id="增加Thymeleaf-dependency"><a href="#增加Thymeleaf-dependency" class="headerlink" title="增加Thymeleaf dependency"></a>增加Thymeleaf dependency</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="service层-1"><a href="#service层-1" class="headerlink" title="service层"></a>service层</h4><p>创建另一个服务类，它主要通过读取html模版封装数据准备邮件内容，在我们之前的示例中，这是一个简单的文本消息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class MailContentBuilder &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private TemplateEngine templateEngine;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    public MailContentBuilder(TemplateEngine templateEngine) &#123;</span><br><span class="line">        this.templateEngine &#x3D; templateEngine;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String build(Map&lt;String, Object&gt; message) &#123;</span><br><span class="line">        Context context &#x3D; new Context();</span><br><span class="line">        context.setVariables(message);</span><br><span class="line">        return templateEngine.process(&quot;email&quot;, context);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>EmailService</code>增加接口:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public interface EmailService &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 发送简单文本内容</span><br><span class="line">     * @param to 发件人</span><br><span class="line">     * @param subject 主题</span><br><span class="line">     * @param text 内容</span><br><span class="line">     *&#x2F;</span><br><span class="line">    void sendSimpleMessage(String to,</span><br><span class="line">                           String subject,</span><br><span class="line">                           String text);</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 传递多个变量，用于动态更换页面模版内容</span><br><span class="line">     * @param emailInfoMap</span><br><span class="line">     *&#x2F;</span><br><span class="line">    void prepareAndSend(Map&lt;String,Object&gt; emailInfoMap);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>EmailServiceImpl</code>增加发送html形式邮件的实现方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void prepareAndSend(Map&lt;String,Object&gt; emailInfoMap) &#123;</span><br><span class="line">    MimeMessagePreparator messagePreparator &#x3D; mimeMessage -&gt; &#123;</span><br><span class="line">        MimeMessageHelper messageHelper &#x3D; new MimeMessageHelper(mimeMessage);</span><br><span class="line">        messageHelper.setFrom(emailConfig.getFrom());</span><br><span class="line">        messageHelper.setTo(emailConfig.getTo());</span><br><span class="line">        messageHelper.setCc(emailConfig.getCc());</span><br><span class="line">        messageHelper.setSubject(emailConfig.getSubject());</span><br><span class="line">&#x2F;&#x2F;            messageHelper.setText(message);</span><br><span class="line">        String content &#x3D; mailContentBuilder.build(info);</span><br><span class="line">        messageHelper.setText(content,true);</span><br><span class="line">    &#125;;</span><br><span class="line">    try &#123;</span><br><span class="line">        emailSender.send(messagePreparator);</span><br><span class="line">    &#125; catch (MailException e) &#123;</span><br><span class="line">        &#x2F;&#x2F; runtime exception; compiler will not force you to handle it</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class EmailTest &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private EmailService emailService;</span><br><span class="line">  </span><br><span class="line">    @Test</span><br><span class="line">    public void testHtml()&#123;</span><br><span class="line">        HashMap&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();</span><br><span class="line">        map.put(&quot;userName&quot;,&quot;程序员小明&quot;);</span><br><span class="line">        map.put(&quot;gender&quot;,&quot;男&quot;);</span><br><span class="line">        emailService.prepareAndSend(map);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>整个Springboot发送邮件的场景已经复盘结束，大家如果有用到的速速体验吧！</p>
+<h3 id="欢迎关注微信公众号，获取更多资源"><a href="#欢迎关注微信公众号，获取更多资源" class="headerlink" title="欢迎关注微信公众号，获取更多资源"></a>欢迎关注微信公众号，获取更多资源</h3><p><img src="https://i.ibb.co/rMxVLpD/qrcode-for-gh-912975c21d10-344.jpg" alt="程序员小明"></p>
+
+        
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-more-info">
+      <div class="article-date">
+  <time datetime="2019-09-14T04:35:50.000Z" itemprop="datePublished">2019-09-14</time>
+</div>
+      
+        <div class="article-category">
+          <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+        </div>
+      
+      
+        <div class="article-tag">
+          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/email/" rel="tag">email</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li></ul>
+        </div>
+      
+    </div>
+  </footer>
+
+</article>
+
+    
+  
+    
+      <article
+  id="post-bug"
+  class="article article-type-post"
+>
+
+  
+
+  <div class="article-inner">
+    
+      <div class="article-feature">
+          <a href="/p/b1fe.html">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E"
+              data-src="/gallery/thumbnail.jpeg"
+              alt="item.title"
+              class="lazy"
+            />
+          </a>
+      </div>
+    
+
+    <div class="article-body">
+      <header class="article-title">
+        <a href="/p/b1fe.html">常见的bug总结，快来看一下你有没有遇到</a>
+      </header>
+      <div class="article-entry post-inner-html">
+        
+          <h2 id="接口请求-Status-blocked-other"><a href="#接口请求-Status-blocked-other" class="headerlink" title="接口请求:Status(blocked:other)"></a>接口请求:Status(blocked:other)</h2><p>有一次在前端请求后台提供的接口时，突然发现自己的浏览器不能请求</p>
+<p><img src="http://img.mynamecoder.com/FrHqA_C7J80ifxtGHoPjlF1emCU3"></p>
+<p>倒腾了很久，才发现是被浏览器插件（如我使用的是AdBlock插件）当作广告拦截了，当你在一个广告业务的公司工作，尤其要注意一哈。</p>
+<h3 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h3><ol>
+<li>停用你的广告拦截器</li>
+<li>在当前网站停用广告拦截插件（比如AdBlock）</li>
+</ol>
+<h3 id="欢迎关注微信公众号，获取更多资源"><a href="#欢迎关注微信公众号，获取更多资源" class="headerlink" title="欢迎关注微信公众号，获取更多资源"></a>欢迎关注微信公众号，获取更多资源</h3><p><img src="https://i.ibb.co/rMxVLpD/qrcode-for-gh-912975c21d10-344.jpg" alt="程序员小明"></p>
+
+        
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-more-info">
+      <div class="article-date">
+  <time datetime="2019-07-24T06:25:26.000Z" itemprop="datePublished">2019-07-24</time>
+</div>
+      
+        <div class="article-category">
+          <a class="article-category-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+        </div>
+      
+      
+    </div>
+  </footer>
+
+</article>
+
+    
+  
+    
+      <article
+  id="post-JDK8-Consumer详解"
+  class="article article-type-post"
+>
+
+  
+
+  <div class="article-inner">
+    
+
+    <div class="article-body">
+      <header class="article-title">
+        <a href="/p/9bfd.html">JDK8日常开发系列：Consumer详解</a>
+      </header>
+      <div class="article-entry post-inner-html">
+        
+          <p>java.util.function中 <strong>Function</strong>, <strong>Supplier</strong>, <strong>Consumer</strong>, <strong>Predicate</strong>和其他函数式接口广泛用在支持lambda表达式的API中。这些接口有一个抽象方法，会被lambda表达式的定义所覆盖。</p>
+        
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-more-info">
+      <div class="article-date">
+  <time datetime="2019-07-13T10:22:42.000Z" itemprop="datePublished">2019-07-13</time>
+</div>
+      
+        <div class="article-category">
+          <a class="article-category-link" href="/categories/Java/">Java</a>
+        </div>
+      
+      
+        <div class="article-tag">
+          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+        </div>
+      
+    </div>
+  </footer>
+
+</article>
+
+    
+  
+
+  
+    <nav class="pagination">
+        <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/6/">Next</a>
+    </nav>
+  
+</div>
+
+                </section>
+            </section>
+
+             
+            <aside class="sidebar">
+            
+                
+
+
+<div class="widget" id="widget">
+    
+      
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Elasticsearch/">Elasticsearch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jenkins/">Jenkins</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MQ/">MQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mybatis/">Mybatis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1/">微信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">系统运维</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Freemarker/" rel="tag">Freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdn/" rel="tag">cdn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/" rel="tag">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/" rel="tag">dev</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/email/" rel="tag">email</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/homebrew/" rel="tag">homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mq/" rel="tag">mq</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/" rel="tag">swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98/" rel="tag">支付</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/p/21452.html">「Elasticsearch」SpringBoot快速集成ES</a>
+          </li>
+        
+          <li>
+            <a href="/p/35755.html">Linux服务器的晴雨表——top命令</a>
+          </li>
+        
+          <li>
+            <a href="/p/62773.html">通过shell脚本一键安装python3</a>
+          </li>
+        
+          <li>
+            <a href="/p/8425.html">如何使用Freemarker生成Word文件</a>
+          </li>
+        
+          <li>
+            <a href="/p/38722.html">解决SpringBoot jar包中的文件读取问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-archive">
+    <div class="widget-title"><span>Archive</span></div>
+    <div class="widget-inner">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">2018</a></li></ul>
+    </div>
+  </div>
+
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享 &copy; 2020<br>
+            Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
+        </div>
+    </div>
+
+</footer>
+
+
+
+
+<script src="/dist/build.js?1.13.0.js"></script>
+
+
+<script src="/dist/custom.js?1.13.0.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    <title>如何使用Freemarker生成Word文件 | 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    
+
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1.13.0.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+        }
+        window.aomori_logo_typed_animated = true
+        window.aomori_search_algolia = false
+    </script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <div id="typed-strings" style="display:none">
+                        <p>程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</p>
+                    </div>
+                    <a class="header-type-title" id="typed" href="/"></a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">Home</a>
+                
+                <a href="/archives">Archives</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">Home</a>
+                    
+                    <a href="/archives">Archives</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="tweet">
+    <article id="tweet-ckj329qm5003v2qp473dr48ez" class="article article-type-tweet" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+        
+        
+        
+
+        
+
+        <div class="article-more-info article-more-info-tweet hairline">
+
+            <div class="article-date">
+  <time datetime="2020-09-14T05:37:10.000Z" itemprop="datePublished">2020-09-14</time>
+</div>
+
+            
+            <div class="article-category">
+                <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+            </div>
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Freemarker/" rel="tag">Freemarker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
+            </div>
+            
+
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>一天，产品经理递给我了一份word报告，我定睛一看</p>
+<p>这个文档有大大小小的标题层级，还有排版好的段落、各种一目了然的饼图、走势图，当然还少不了颜色循环交替的报表。精致程度不亚于小明同学的学习报告。</p>
+<a id="more"></a>
+
+<p><img src="https://img.mynamecoder.com/webp.png"></p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><blockquote>
+<p>鲁迅：身为一名Java程序员，任何时候都不要忘记站在巨人的肩膀上。</p>
+</blockquote>
+<p><img src="https://img.mynamecoder.com/20200907151347.png"><br>通过某歌搜索关键词：<strong>java+word+导出</strong>，我立马得出了很多成熟的方案，通过横向、纵向比较，再结合本次报告样式比较多、用户可灵活选择不同模块导出的特点，最终，我决定使用<strong>Freemarker</strong> 动态替换模版数据来导出word文档。至于导出文档的最终格式，有两种选择：<br><img src="https://img.mynamecoder.com/20200903160210.png"></p>
+<p>那到底使用<strong>doc</strong>还是<strong>docx</strong>格式的文档？<br>每当人生当中每次面临选择我都很慎重。最终我选择使用<strong>docx</strong>格式（原因文末会讲），但是为了让大家有更多的选择，满足更多的业务场景，借此机会，小明会给大家分别介绍使用<strong>freemarker</strong>导出两种格式的word文档方式。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><blockquote>
+<p> FreeMarker是一个基于Java的模板引擎，最初专注于使用MVC软件架构生成动态网页。但是，它是一个通用的模板引擎，不依赖于servlets或HTTP或HTML，因此它通常还用于生成源代码，配置文件或电子邮件。</p>
+</blockquote>
+<p>此时，我们用它动态生成xml文件，进而导出word文档。<br><img src="https://img.mynamecoder.com/20200903154144.png"><br>整体流程如下：<br><img src="https://img.mynamecoder.com/20200903152139.png"></p>
+<h2 id="准备-1"><a href="#准备-1" class="headerlink" title="准备"></a>准备</h2><ul>
+<li>WPS<blockquote>
+<p> 由金山软件股份有限公司发布，用于办公软件最常用的文字编辑、表格、演示稿等功能。</p>
+</blockquote>
+</li>
+</ul>
+<p>对，就是这个国产的办公软件。我也是第一次发现在导出文档这件事上，它如多年好友般友好。（word解析后的xml文件阅读性很强，一般人我不告诉他）</p>
+<ul>
+<li>开发工具（IDEA、Visual Studio Code等）<br>你喜欢的，顺手的，就是最好的。<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="集成Freemarker模版引擎"><a href="#集成Freemarker模版引擎" class="headerlink" title="集成Freemarker模版引擎"></a>集成Freemarker模版引擎</h3>本次项目使用的框架依旧是Springboot，这个框架在集成各个组件表现都很便捷，不再赘述，这次集成Freemarker也不例外。</li>
+<li>首先我们在项目中增添依赖<code>spring-boot-starter-freemarker</code><br>pom.xml文件如下所示：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-freemarker<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>按照默认约定，我们可以在resources下创建一个templates文件夹（查看FreeMarkerProperties源码可以发现默认目录就是这个），用于存放模版文档。<br><img src="https://img.mynamecoder.com/20200903164916.png"></li>
+<li>application.yml增加配置<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">freemarker:</span></span><br><span class="line">    <span class="attr">template-loader-path:</span> <span class="string">classpath:/templates</span></span><br><span class="line">    <span class="attr">cache:</span> <span class="literal">false</span> <span class="comment"># 开发环境缓存关闭</span></span><br><span class="line">    <span class="attr">suffix:</span> <span class="string">xml</span></span><br><span class="line">    <span class="attr">charset:</span> <span class="string">UTF-8</span></span><br></pre></td></tr></table></figure>
+<h3 id="生成doc格式的文档"><a href="#生成doc格式的文档" class="headerlink" title="生成doc格式的文档"></a>生成doc格式的文档</h3>这里先拿使用freemarker导出doc格式的word文档举例。</li>
+<li>首先将docxTemplate.docx（调整好样式的模版文档）另存为WORD 2003 XML文档(*.xml)<br><img src="https://img.mynamecoder.com/20200903162724.png"><br>此处命名为docTemplete.xml，使用编辑工具首次打开时，会发现这个文档里面是压缩的xml，因此我们首先需要格式化一下。<blockquote>
+<p> 注意：如果你使用的是<strong>Visual Studio Code</strong>开发工具，一定要检查你所使用的xml格式化插件，是否会优化你的xml标签 。比如：<code>&lt;w:rPr&gt;</code>会变成<code>&lt;rPr&gt;</code>。使用<strong>Visual Studio Code</strong>的同学，oh my god ! 小明在这里推荐大家使用这个插件：XML Language Support by Red Hat</p>
+</blockquote>
+</li>
+<li>现在，我们就使用freemarker语法编辑docTemplete.xml，比如使用占位符<code>$&#123;&#125;</code>替换当前文档中的文本，以达到动态生成文本的目的，直接上代码。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public static Configuration getConfiguration()&#123;</span><br><span class="line">        &#x2F;&#x2F;创建配置实例</span><br><span class="line">        Configuration configuration &#x3D; new Configuration(Configuration.VERSION_2_3_28);</span><br><span class="line">        &#x2F;&#x2F;设置编码</span><br><span class="line">        configuration.setDefaultEncoding(&quot;utf-8&quot;);</span><br><span class="line">        configuration.setClassForTemplateLoading(WordUtil.class, &quot;&#x2F;templates&quot;);</span><br><span class="line">        return configuration;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 生成doc文件</span><br><span class="line">     *</span><br><span class="line">     * @param ftlFileName 模板ftl文件的名称</span><br><span class="line">     * @param params      动态传入的数据参数</span><br><span class="line">     * @param outFilePath 生成的最终doc文件的保存完整路径</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void ftlToDoc(String ftlFileName, Map params, String outFilePath) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            &#x2F;** 加载模板文件 **&#x2F;</span><br><span class="line">            Template template &#x3D; configuration.getTemplate(ftlFileName);</span><br><span class="line">            &#x2F;** 指定输出word文件的路径 **&#x2F;</span><br><span class="line">            File docFile &#x3D; new File(outFilePath);</span><br><span class="line">            FileOutputStream fos &#x3D; new FileOutputStream(docFile);</span><br><span class="line">            Writer bufferedWriter &#x3D; new BufferedWriter(new OutputStreamWriter(fos, &quot;utf-8&quot;), 10240);</span><br><span class="line">            template.process(params, bufferedWriter);</span><br><span class="line">            if (bufferedWriter !&#x3D; null) &#123;</span><br><span class="line">                bufferedWriter.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (TemplateException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="生成docx格式的文档"><a href="#生成docx格式的文档" class="headerlink" title="生成docx格式的文档"></a>生成docx格式的文档</h3></li>
+<li>*高能预警！** 在成功使用Freemarker动态导出doc格式的文档之后，相信大家和我的心情一样非常激动。但以上操作只是一个小铺垫，接下来我们来看看如何实现docx格式的文档导出，小明相信一定会让各位看官大跌眼镜！不，大开眼界！<br>首先，告诉大家一个秘密：<strong>docx格式的文档其实是一个ZIP格式的压缩文件哦！</strong> 什么？你不信？验证如下：</li>
+<li>windows的小伙伴<br>将docx文档修改为ZIP格式（修改.docx后缀名为.zip），然后通过解压工具解压。</li>
+<li>MacOS的小伙伴<br>直接使用<code>unzip</code>命令解压word文档，解压过后我们会发现该文档其实还有自己的<strong>目录结构</strong>！<br><img src="https://img.mynamecoder.com/20200907100322.png" alt="震惊！"><br><img src="https://img.mynamecoder.com/20200907101744.png"><br>当然，这么多文件我们不必一一知悉，只需关注小明红线标注的文件和目录即可：</li>
+<li>document.xml文件用于存放核心数据，文字，表格，图片引用等</li>
+<li>media目录用于存放所有文档的图片</li>
+<li>_rels目录下的document.xml.rels里存放的是配置信息，比如图片引用关系，即在document.xml中引用id对应media中的哪个图片。</li>
+<li>获取zip里的document.xml文档以及_rels文件夹下的document.xml.rels文档</li>
+<li>显而易见，如果我们要想根据数据动态导出不同的word文档，只需要：通过freemarker将本次数据填充到document.xml中，并将图片配置信息填充至document.xml.rels文档里，再用文件流把本次图片写入到media目录下替换已经存在的图片，最后把填充过内容的document.xml、document.xml.rels以及media用流的方式写入zip即可输出docx文档！上代码。<blockquote>
+<p> 好吧，限于篇幅，代码见文末 Github地址</p>
+</blockquote>
+<h2 id="问题及解决方案"><a href="#问题及解决方案" class="headerlink" title="问题及解决方案"></a>问题及解决方案</h2>当然，大家在第一次尝试去干某一件事时，都不一定是一蹴而就的。就比如在导出word时，就可能会遇到以下问题。​</li>
+</ul>
+<h3 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h3><p><strong>问题</strong>：有些文本数据中难免含有特殊字符，如：<code>&lt; &gt; @ ! $ &amp;</code> 等等。</p>
+<p><strong>解决方案</strong>：这些特殊字符如果不进行转义，就会引起word打不开的现象，比如表格中的超链接的<code>&amp;</code>符号，就需要替换为<code>&amp;amp;</code>，如果你的文档用office打开时提示文件损坏，九成是因为特殊符号引起的，我们可以打开documet.xml定位报错位置；当然还有终极方案，我们可以利用Freemarker的语法直接在模板中使用<code>&lt;![CDATA[  ]]&gt; </code> 处理。比如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;w:t&gt;&lt;![CDATA[ $&#123;article.title&#125; ]]&gt;&lt;&#x2F;w:t&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="图片变形"><a href="#图片变形" class="headerlink" title="图片变形"></a>图片变形</h3><p><strong>问题</strong>：因为echarts生成的图表是响应式的，不同的屏幕大小、分辨率，会造成每次前端传过来的图片宽高比例不一致，如果还直接将图片按照之前的比例放进文档，会造成生成后文档中的图片变形。</p>
+<p><strong>思路</strong>：首先将文档中的图片设置为原图，然后锁定宽高比，将图片调整到合适大小，解压文档从<code>document.xml</code>，得到此时word中该图片宽高对应的值，如下所示：<br><img src="https://img.mynamecoder.com/20200913163808.png"></p>
+<p>要想保证不同像素比例的宽高在文档中不变形，我们需要固定<code>cy</code>的值，然后根据固定比例动态求得当前像素比例图片在word中代表的宽<code>cx</code>的值。计算方法如下所示：<br>公式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a&#x2F;b &#x3D; x&#x2F;y</span><br></pre></td></tr></table></figure>
+<p>其中，a表示图片在word中宽的数值，b代表图片在word中高的数值，x表示前端传过来图片的宽（单位：像素），y表示前端传过来图片的高（单位：像素）。因此，已知b、x、y,根据公式，我们即可求出a；</p>
+<h2 id="我就是文末"><a href="#我就是文末" class="headerlink" title="我就是文末"></a>我就是文末</h2><p>当然，还有用一些其他注意事项：</p>
+<ul>
+<li>如果word中的模块比较多的话，使用Freemarker语法要仔细一点；</li>
+<li>为什么小明最终选择导出docx格式的文档呢？（还不是因为产品经理的需求嘛）因为doc格式的文档，小明尝试导出后，发现该文档并不是一个合法的doc文档，体现在：不能在手机上（微信、钉钉）正常预览，office提示以xml形式打开等。因此在导出doc文档时，通过Freemaker填充document.xml后得到的并不是一个合法的word文档，查了相关资料，还需要借助第三方工具进行签名，而签名还需要在windows系统下才能完成，但是我们平时用的生产环境都是Linux……因此，考虑再三，再三权衡，最终选择导出docx格式的文档。这种方式再适合不过，而且还能保证在当前主流APP上都能正常预览。</li>
+<li>敲黑板！导出docx文档最重要的一个思想是将本次数据写入覆盖模版文件（在商业中，相当于借壳上市），重新输出一个zip格式压缩的文件，这个文件就是我们最终想要的文档。</li>
+</ul>
+<p>以上，就是小明word导出的前前后后，如果你也曾经遇到过或者现在正好遇到word文档导出开发的问题，欢迎一起讨论交流。</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p>我上传了工具类，包含doc、docx 的导出，以及导出word文档时特殊符号转义，还有图片Base64转换成文件输出的方法。<br>GitHub地址：<a target="_blank" rel="noopener" href="https://github.com/WhenCoding/coder-xiaoming/blob/master/src/main/java/com/xm/coder/util/WordUtil.java">https://github.com/WhenCoding/coder-xiaoming/blob/master/src/main/java/com/xm/coder/util/WordUtil.java</a></p>
+
+        </div>
+
+    </div>
+
+    
+
+    
+<nav class="article-nav">
+  
+    <a href="/p/62773.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-caption">下一篇</div>
+      <div class="article-nav-title">
+        
+          通过shell脚本一键安装python3
+        
+      </div>
+    </a>
+  
+  
+    <a href="/p/38722.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">解决SpringBoot jar包中的文件读取问题</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=如何使用Freemarker生成Word文件 - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&url=https://mynamecoder.com/p/8425.html">
+            <box-icon type='logo' name='twitter'></box-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=如何使用Freemarker生成Word文件 - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&u=https://mynamecoder.com/p/8425.html">
+            <box-icon name='facebook-square' type='logo' ></box-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=如何使用Freemarker生成Word文件 - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&url=https://mynamecoder.com/p/8425.html&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+
+
+
+</div>
+                </section>
+            </section>
+
+             
+            <aside class="sidebar">
+            
+                
+
+
+<div class="widget" id="widget">
+    
+      
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Elasticsearch/">Elasticsearch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jenkins/">Jenkins</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MQ/">MQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mybatis/">Mybatis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1/">微信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">系统运维</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Freemarker/" rel="tag">Freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdn/" rel="tag">cdn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/" rel="tag">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/" rel="tag">dev</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/email/" rel="tag">email</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/homebrew/" rel="tag">homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mq/" rel="tag">mq</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/" rel="tag">swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98/" rel="tag">支付</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/p/21452.html">「Elasticsearch」SpringBoot快速集成ES</a>
+          </li>
+        
+          <li>
+            <a href="/p/35755.html">Linux服务器的晴雨表——top命令</a>
+          </li>
+        
+          <li>
+            <a href="/p/62773.html">通过shell脚本一键安装python3</a>
+          </li>
+        
+          <li>
+            <a href="/p/8425.html">如何使用Freemarker生成Word文件</a>
+          </li>
+        
+          <li>
+            <a href="/p/38722.html">解决SpringBoot jar包中的文件读取问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-archive">
+    <div class="widget-title"><span>Archive</span></div>
+    <div class="widget-inner">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">2018</a></li></ul>
+    </div>
+  </div>
+
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享 &copy; 2020<br>
+            Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
+        </div>
+    </div>
+
+</footer>
+
+
+
+
+<script src="/dist/build.js?1.13.0.js"></script>
+
+
+<script src="/dist/custom.js?1.13.0.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

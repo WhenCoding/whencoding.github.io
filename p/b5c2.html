@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    <title>ThreadLocal解决了什么问题？ | 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    
+
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1.13.0.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+        }
+        window.aomori_logo_typed_animated = true
+        window.aomori_search_algolia = false
+    </script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <div id="typed-strings" style="display:none">
+                        <p>程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</p>
+                    </div>
+                    <a class="header-type-title" id="typed" href="/"></a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">Home</a>
+                
+                <a href="/archives">Archives</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">Home</a>
+                    
+                    <a href="/archives">Archives</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="post">
+    <article id="post-ckj329qnd007u2qp4349w4x18" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      ThreadLocal解决了什么问题？
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2019-12-15T02:14:44.000Z" itemprop="datePublished">2019-12-15</time>
+</div>
+
+            
+            <div class="article-category">
+                <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+            </div>
+            
+
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <blockquote>
+<p>小明所在的项目组（迭代组：一直在迭代的路上），经常会在已有接口的基础上开发一些小功能，并且前提是在保证现有用户的不受影响基础上迭代。功能迭代，在代码层面小明有1w种实现方法（吹牛的），一起来看看这次小明如何使用<strong>ThreadLocal</strong>优雅地完成本次迭代吧！</p>
+</blockquote>
+<p>由于 ThreadLocal 支持范型，如 ThreadLocal&lt; StringBuilder &gt;，为表述方便，后文用 <strong>变量</strong> 代表 ThreadLocal 本身，而用 <strong>实例</strong> 代表具体类型（如 StringBuidler ）的实例。</p>
+<a id="more"></a>
+<h2 id="理解误区"><a href="#理解误区" class="headerlink" title="理解误区"></a>理解误区</h2><p>写这篇文章之前，小明就在网上看了很多博客关于 ThreadLocal 的适用场景以及解决的问题，描述的都并不是很清楚，甚至误人子弟的。比如下面是常见对于 ThreadLocal的介绍（<strong>wrong</strong>）</p>
+<blockquote>
+<p>ThreadLocal为解决多线程程序的并发问题提供了一种新的思路；<br>ThreadLocal的目的是为了解决多线程访问资源时的共享问题。</p>
+</blockquote>
+<p>在小明大量阅读和动手实验后得出结论：ThreadLocal 并不是像上面所说为了解决多线程 <strong>共享</strong>变量的问题。</p>
+<h2 id="正确理解"><a href="#正确理解" class="headerlink" title="正确理解"></a>正确理解</h2><p>ThreadLoal 变量，它的基本原理是，同一个 ThreadLocal 所包含的对象（对ThreadLocal&lt; StringBuilder &gt;而言即为 StringBuilder 类型变量），在不同的 Thread 中有不同的副本（实际上是不同的实例）:</p>
+<ul>
+<li>因为每个 Thread 内有自己的实例副本，且该副本只能由当前 Thread 使用；</li>
+<li>既然其它 Thread 不可访问，那就不存在多线程间共享的问题。</li>
+</ul>
+<p>官方文档是这样描述的：</p>
+<p><img src="https://img.mynamecoder.com/blogimage_20191213135422.png" alt="localthreadofjdk"></p>
+<p>我看完之后，得出这样的结论</p>
+<blockquote>
+<p>ThreadLocal 提供了线程本地的实例。它与普通变量的区别在于，每个使用该变量的线程都会初始化一个完全独立的实例副本。ThreadLocal 变量通常被<code>private static</code>修饰。当一个线程结束时，它所使用的所有 ThreadLocal 相对的实例副本都会被回收。</p>
+</blockquote>
+<p>因此<strong>ThreadLocal 非常适用于这样的场景：每个线程需要自己独立的实例且该实例需要在多个方法中使用</strong>。当然，使用其它方式也可以实现同样的效果，但是看完这篇文章，你会发现 ThreadLocal 会让实现更简洁、更优雅！</p>
+<h1 id="ThreadLocal用法"><a href="#ThreadLocal用法" class="headerlink" title="ThreadLocal用法"></a>ThreadLocal用法</h1><h2 id="实例代码"><a href="#实例代码" class="headerlink" title="实例代码"></a>实例代码</h2><p>我们通过下面的代码，先做个示例，然后分析一下现象，得出一个结论：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">public class ThreadLocalDemo &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws InterruptedException &#123;</span><br><span class="line">        int threadNum &#x3D; 3;</span><br><span class="line">        CountDownLatch countDownLatch &#x3D; new CountDownLatch(threadNum);</span><br><span class="line">        for (int i &#x3D; 1; i &lt;&#x3D; threadNum; i++) &#123;</span><br><span class="line">            new Thread(() -&gt; &#123;</span><br><span class="line">                for (int j &#x3D; 0; j &lt;&#x3D; 2; j++) &#123;</span><br><span class="line">                    MyUtil.add(String.valueOf(j));</span><br><span class="line">                    MyUtil.print();</span><br><span class="line">                &#125;</span><br><span class="line">                MyUtil.set(&quot;hello world&quot;);</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;, &quot;thread - &quot; + i).start();</span><br><span class="line">        &#125;</span><br><span class="line">        countDownLatch.await();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static class MyUtil &#123;</span><br><span class="line"></span><br><span class="line">        public static void add(String newStr) &#123;</span><br><span class="line">            StringBuilder str &#x3D; StringBuilderUtil.stringBuilderThreadLocal.get();</span><br><span class="line">            StringBuilderUtil.stringBuilderThreadLocal.set(str.append(newStr));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public static void print() &#123;</span><br><span class="line">            System.out.printf(&quot;Thread name:%s , ThreadLocal hashcode:%s, Instance hashcode:%s, Value:%s\n&quot;,</span><br><span class="line">                    Thread.currentThread().getName(),</span><br><span class="line">                    StringBuilderUtil.stringBuilderThreadLocal.hashCode(),</span><br><span class="line">                    StringBuilderUtil.stringBuilderThreadLocal.get().hashCode(),</span><br><span class="line">                    StringBuilderUtil.stringBuilderThreadLocal.get().toString());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public static void set(String words) &#123;</span><br><span class="line">            StringBuilderUtil.stringBuilderThreadLocal.set(new StringBuilder(words));</span><br><span class="line">            System.out.printf(&quot;Set, Thread name:%s , ThreadLocal hashcode:%s,  Instance hashcode:%s, Value:%s\n&quot;,</span><br><span class="line">                    Thread.currentThread().getName(),</span><br><span class="line">                    StringBuilderUtil.stringBuilderThreadLocal.hashCode(),</span><br><span class="line">                    StringBuilderUtil.stringBuilderThreadLocal.get().hashCode(),</span><br><span class="line">                    StringBuilderUtil.stringBuilderThreadLocal.get().toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static class StringBuilderUtil &#123;</span><br><span class="line">        &#x2F;&#x2F; ThreadLocal 变量通常被 private static 修饰</span><br><span class="line">        private static ThreadLocal&lt;StringBuilder&gt; stringBuilderThreadLocal &#x3D; ThreadLocal.withInitial(() -&gt; new StringBuilder());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实例分析"><a href="#实例分析" class="headerlink" title="实例分析"></a>实例分析</h2><p>ThreadLocal本身支持范型，比如该例使用了 StringBuilder 类型的 ThreadLocal 变量。可通过 ThreadLocal 的 get() 方法读取 StringBuidler 实例，也可通过 set(T t) 方法设置 StringBuilder。</p>
+<blockquote>
+<p>tips:CountDownLatch类位于java.util.concurrent包下，利用它可以实现类似计数器的功能。比如有一个场景：任务A，它要等待其他4个任务执行完毕之后才能执行，此时就可以利用CountDownLatch来实现这种功能了。下次，我们可以单独聊聊这一个功能。</p>
+</blockquote>
+<p>点击运行，控制台输出结果</p>
+<p><img src="https://img.mynamecoder.com/blogimage_20191213102939.png" alt="123"></p>
+<p>我们可以发现：</p>
+<ul>
+<li>每个线程访问的是同一个 ThreadLocal 变量，而通过 ThreadLocal 的 get() 方法拿到的是不同的 StringBuilder 实例；</li>
+<li>虽然从代码上都是对 StringBuilderUtil 类的静态 stringBuilderThreadLocal 字段进行 get() 得到 StringBuilder 实例并追加字符串，但是这并不会将所有线程追加的字符串都放进同一个 StringBuilder 中，而是每个线程将字符串追加进各自的 StringBuidler 实例内</li>
+<li>使用 set(T t) 方法后，ThreadLocal 变量所指向的 StringBuilder 实例被替换</li>
+</ul>
+<h1 id="ThreadLocal原理"><a href="#ThreadLocal原理" class="headerlink" title="ThreadLocal原理"></a>ThreadLocal原理</h1><h2 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h2><p>我们大胆猜想一下，既然每个访问 ThreadLocal 变量的线程都有自己的一个“本地”实例副本。一个可能的方案是 ThreadLocal 维护一个 Map，Key 是当前线程，Value是ThreadLocal在当前线程内的实例。这样，线程通过该 ThreadLocal 的 get() 方案获取实例时，只需要以线程为键，从 Map 中找出对应的实例即可。该方案如下图所示</p>
+<p><img src="https://img.mynamecoder.com/blogVarMap_20191213134650.png" alt="VarMap"></p>
+<p>这个方案可以满足上文提到的每个线程内部都有一个ThreadLocal 实例备份的要求。每个新线程访问该 ThreadLocal 时，都会向 Map 中添加一个新的映射，而当每个线程结束时再清除该线程对应的映射。But，这样就存在两个问题：</p>
+<ul>
+<li>开启线程与结束线程时我们都需要及时更新 Map，因此必需保证 Map 的线程安全。</li>
+<li>当线程结束时，需要保证它所访问的所有 ThreadLocal 中对应的映射均删除，否则可能会引起内存泄漏。</li>
+</ul>
+<p>线程安全问题是JDK 未采用该方案的一个主要原因。</p>
+<h2 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h2><p>上面这个方案，存在多线程访问同一个 Map时可能会出现的同步问题。如果该 Map 由 Thread 维护，从而使得每个 Thread 只访问自己的 Map，就不存在这个问题。该方案如下图所示。</p>
+<p><img src="https://img.mynamecoder.com/blogThreadMap_20191213134650.png" alt="ThreadMap"></p>
+<p>该方案虽然没有锁的问题，但是由于每个线程在访问ThreadLocal 变量后，都会在自己的 Map 内维护该 ThreadLocal 变量与具体实例的映射，如果不删除这些引用（映射），就有可能会造成内存泄漏的问题。我们一起来看一下Jdk8是如何解决这个问题的。</p>
+<h2 id="ThreadLocal-在-JDK-8-中的实现"><a href="#ThreadLocal-在-JDK-8-中的实现" class="headerlink" title="ThreadLocal 在 JDK 8 中的实现"></a>ThreadLocal 在 JDK 8 中的实现</h2><h3 id="ThreadLocalMap与内存泄漏"><a href="#ThreadLocalMap与内存泄漏" class="headerlink" title="ThreadLocalMap与内存泄漏"></a>ThreadLocalMap与内存泄漏</h3><p>在该方案中，Map 由 ThreadLocal 类的静态内部类 ThreadLocalMap 提供。该类的实例维护某个 ThreadLocal 与具体实例的映射。与 HashMap 不同的是，ThreadLocalMap 的每个 <strong>Entry</strong> 都是一个对 <strong>Key</strong> 的弱引用，这一点我们可以从<code>super(k)</code>可看出。另外，每个 Entry 中都包含了一个对 <strong>Value</strong> 的强引用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">static class Entry extends WeakReference&lt;ThreadLocal&lt;?&gt;&gt; &#123;</span><br><span class="line">  &#x2F;** The value associated with this ThreadLocal. *&#x2F;</span><br><span class="line">  Object value;</span><br><span class="line"></span><br><span class="line">  Entry(ThreadLocal&lt;?&gt; k, Object v) &#123;</span><br><span class="line">    super(k);</span><br><span class="line">    value &#x3D; v;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>之所以使用弱引用，是因为当没有强引用指向 ThreadLocal 变量时，这个变量就可以被回收，就避免ThreadLocal 因为不能被回收而造成的内存泄漏的问题。</p>
+<p>但是，这里又可能出现另外一种内存泄漏的问题。ThreadLocalMap 维护 ThreadLocal 变量与具体实例的映射，当 ThreadLocal 变量被回收后，该映射的键变为 null，该 Entry 无法被移除。从而使得实例被该 Entry 引用而无法被回收造成内存泄漏。</p>
+<p><strong>注意：</strong>Entry是对 ThreadLocal 类型的弱引用，并不是具体实例的弱引用，因此还存在具体实例相关的内存泄漏的问题。</p>
+<h3 id="读取实例"><a href="#读取实例" class="headerlink" title="读取实例"></a>读取实例</h3><p>我们来看一下ThreadLocal获取实例的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public T get() &#123;</span><br><span class="line">  Thread t &#x3D; Thread.currentThread();</span><br><span class="line">  ThreadLocalMap map &#x3D; getMap(t);</span><br><span class="line">  if (map !&#x3D; null) &#123;</span><br><span class="line">    ThreadLocalMap.Entry e &#x3D; map.getEntry(this);</span><br><span class="line">    if (e !&#x3D; null) &#123;</span><br><span class="line">      @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">      T result &#x3D; (T)e.value;</span><br><span class="line">      return result;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return setInitialValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当线程获取实例时，首先会通过<code>getMap(t)</code>方法获取自身的 ThreadLocalMap。从如下该方法的定义可见，该 ThreadLocalMap 的实例是 Thread 类的一个字段，即由 Thread 维护 ThreadLocal 对象与具体实例的映射，这一点与上文分析一致。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ThreadLocalMap getMap(Thread t) &#123;</span><br><span class="line">  return t.threadLocals;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获取到 ThreadLocalMap 后，通过<code>map.getEntry(this)</code>方法获取该 ThreadLocal 在当前线程的 ThreadLocalMap 中对应的 Entry。该方法中的 this 即当前访问的 ThreadLocal 对象。</p>
+<p>如果获取到的 Entry 不为 null，从 Entry 中取出值即为所需访问的本线程对应的实例。如果获取到的 Entry 为 null，则通过<code>setInitialValue()</code>方法设置该 ThreadLocal 变量在该线程中对应的具体实例的初始值。</p>
+<h3 id="设置初始值"><a href="#设置初始值" class="headerlink" title="设置初始值"></a>设置初始值</h3><p>设置初始值方法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private T setInitialValue() &#123;</span><br><span class="line">  T value &#x3D; initialValue();</span><br><span class="line">  Thread t &#x3D; Thread.currentThread();</span><br><span class="line">  ThreadLocalMap map &#x3D; getMap(t);</span><br><span class="line">  if (map !&#x3D; null)</span><br><span class="line">    map.set(this, value);</span><br><span class="line">  else</span><br><span class="line">    createMap(t, value);</span><br><span class="line">  return value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>该方法为 private 方法，无法被重载。</p>
+<p>首先，通过<code>initialValue()</code>方法获取初始值。该方法为 public 方法，且默认返回 null。所以典型用法中常常重载该方法。上例中即在内部匿名类中将其重载。</p>
+<p>然后拿到该线程对应的 ThreadLocalMap 对象，若该对象不为 null，则直接将该 ThreadLocal 对象与对应实例初始值的映射添加进该线程的 ThreadLocalMap中。若为 null，则先创建该 ThreadLocalMap 对象再将映射添加其中。</p>
+<p>这里并不需要考虑 ThreadLocalMap 的线程安全问题。因为每个线程有且只有一个 ThreadLocalMap 对象，并且只有该线程自己可以访问它，其它线程不会访问该 ThreadLocalMap，也即该对象不会在多个线程中共享，也就不存在线程安全的问题。</p>
+<h3 id="设置实例"><a href="#设置实例" class="headerlink" title="设置实例"></a>设置实例</h3><p>除了通过<code>initialValue()</code>方法设置实例的初始值，还可通过 set 方法设置线程内实例的值，如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public void set(T value) &#123;</span><br><span class="line">  Thread t &#x3D; Thread.currentThread();</span><br><span class="line">  ThreadLocalMap map &#x3D; getMap(t);</span><br><span class="line">  if (map !&#x3D; null)</span><br><span class="line">    map.set(this, value);</span><br><span class="line">  else</span><br><span class="line">    createMap(t, value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该方法先获取该线程的 ThreadLocalMap 对象，然后直接将 ThreadLocal 对象（即代码中的 this）与目标实例的映射添加进 ThreadLocalMap 中。当然，如果映射已经存在，就直接覆盖。另外，如果获取到的 ThreadLocalMap 为 null，则先创建该 ThreadLocalMap 对象。</p>
+<h3 id="防止内存泄漏"><a href="#防止内存泄漏" class="headerlink" title="防止内存泄漏"></a>防止内存泄漏</h3><p>对于已经不再被使用且已被回收的 ThreadLocal 对象，它在每个线程内对应的实例由于被线程的 ThreadLocalMap 的 Entry 强引用，无法被回收，可能会造成内存泄漏。</p>
+<p>针对该问题，ThreadLocalMap 的 set 方法中，通过 replaceStaleEntry 方法将所有键为 null 的 Entry 的值设置为 null，从而使得该值可被回收。另外，会在 rehash 方法中通过 expungeStaleEntry 方法将键和值为 null 的 Entry 设置为 null 从而使得该 Entry 可被回收。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">private void set(ThreadLocal&lt;?&gt; key, Object value) &#123;</span><br><span class="line">  Entry[] tab &#x3D; table;</span><br><span class="line">  int len &#x3D; tab.length;</span><br><span class="line">  int i &#x3D; key.threadLocalHashCode &amp; (len-1);</span><br><span class="line"></span><br><span class="line">  for (Entry e &#x3D; tab[i]; e !&#x3D; null; e &#x3D; tab[i &#x3D; nextIndex(i, len)]) &#123;</span><br><span class="line">    ThreadLocal&lt;?&gt; k &#x3D; e.get();</span><br><span class="line">    if (k &#x3D;&#x3D; key) &#123;</span><br><span class="line">      e.value &#x3D; value;</span><br><span class="line">      return;</span><br><span class="line">    &#125;</span><br><span class="line">    if (k &#x3D;&#x3D; null) &#123;</span><br><span class="line">      replaceStaleEntry(key, value, i);</span><br><span class="line">      return;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  tab[i] &#x3D; new Entry(key, value);</span><br><span class="line">  int sz &#x3D; ++size;</span><br><span class="line">  if (!cleanSomeSlots(i, sz) &amp;&amp; sz &gt;&#x3D; threshold)</span><br><span class="line">    rehash();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><p>对于 Java Web 应用而言，Session 保存了很多信息。很多时候需要通过 Session 获取信息，有些时候又需要修改 Session 的信息。一方面，需要保证每个线程有自己单独的 Session 实例。另一方面，由于很多地方都需要操作 Session，存在多方法共享 Session 的需求。如果不使用 ThreadLocal，可以在每个线程内构建一个 Session实例，并将该实例在多个方法间传递，如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">public class SessionHandler &#123;</span><br><span class="line"></span><br><span class="line">  @Data</span><br><span class="line">  public static class Session &#123;</span><br><span class="line">    private String id;</span><br><span class="line">    private String user;</span><br><span class="line">    private String status;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public Session createSession() &#123;</span><br><span class="line">    return new Session();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public String getUser(Session session) &#123;</span><br><span class="line">    return session.getUser();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public String getStatus(Session session) &#123;</span><br><span class="line">    return session.getStatus();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public void setStatus(Session session, String status) &#123;</span><br><span class="line">    session.setStatus(status);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public static void main(String[] args) &#123;</span><br><span class="line">    new Thread(() -&gt; &#123;</span><br><span class="line">      SessionHandler handler &#x3D; new SessionHandler();</span><br><span class="line">      Session session &#x3D; handler.createSession();</span><br><span class="line">      handler.getStatus(session);</span><br><span class="line">      handler.getUser(session);</span><br><span class="line">      handler.setStatus(session, &quot;close&quot;);</span><br><span class="line">      handler.getStatus(session);</span><br><span class="line">    &#125;).start();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该方法是可以实现需求的。但是每个需要使用 Session 的地方，都需要显式传递 Session 对象，方法间耦合度较高，给人的感觉并不优雅。</p>
+<p>这里使用 ThreadLocal 重新实现该功能如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public class SessionHandler &#123;</span><br><span class="line"></span><br><span class="line">  public static ThreadLocal&lt;Session&gt; session &#x3D; ThreadLocal.&lt;Session&gt;withInitial(() -&gt; new Session());</span><br><span class="line"></span><br><span class="line">  @Data</span><br><span class="line">  public static class Session &#123;</span><br><span class="line">    private String id;</span><br><span class="line">    private String user;</span><br><span class="line">    private String status;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public String getUser() &#123;</span><br><span class="line">    return session.get().getUser();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public String getStatus() &#123;</span><br><span class="line">    return session.get().getStatus();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public void setStatus(String status) &#123;</span><br><span class="line">    session.get().setStatus(status);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public static void main(String[] args) &#123;</span><br><span class="line">    new Thread(() -&gt; &#123;</span><br><span class="line">      SessionHandler handler &#x3D; new SessionHandler();</span><br><span class="line">      handler.getStatus();</span><br><span class="line">      handler.getUser();</span><br><span class="line">      handler.setStatus(&quot;close&quot;);</span><br><span class="line">      handler.getStatus();</span><br><span class="line">    &#125;).start();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，改造过后的代码，不再需要在各个方法间来回传递 Session 对象，并且不费吹灰之力保证了每个线程都能够拥有自己独立的实例。虽然单看其中某一点，备选方案还很多。比如还可以通过在线程内创建局部变量保证每个线程有自己的实例，通过静态变量可实现变量在方法间的共享。但如果还需要同时满足变量在线程间的隔离与方法间的共享，ThreadLocal再合适不过。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>ThreadLocal 并不解决线程间共享数据的问题</li>
+<li>ThreadLocal 通过隐式的在不同线程内创建独立实例副本避免了实例线程安全的问题</li>
+<li>每个线程持有一个 Map 并维护了 ThreadLocal 对象与具体实例的映射，该 Map 由于只被持有它的线程访问，故不存在线程安全以及锁的问题</li>
+<li>ThreadLocalMap 的 Entry 对 ThreadLocal 的引用为弱引用，避免了 ThreadLocal 对象无法被回收的问题</li>
+<li>ThreadLocalMap 的 set 方法通过调用 replaceStaleEntry 方法回收键为 null 的 Entry 对象的值（即为具体实例）以及 Entry 对象本身从而防止内存泄漏</li>
+<li>ThreadLocal 适用于变量在线程间隔离且在方法间共享的场景</li>
+</ul>
+<h3 id="欢迎关注微信公众号，获取更多资源"><a href="#欢迎关注微信公众号，获取更多资源" class="headerlink" title="欢迎关注微信公众号，获取更多资源"></a>欢迎关注微信公众号，获取更多资源</h3><p><img src="https://i.ibb.co/rMxVLpD/qrcode-for-gh-912975c21d10-344.jpg" alt="程序员小明"></p>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+<div class="article-copyright hairline">
+  <p>
+    本作品采用 <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a> 进行许可。
+  </p>
+</div>
+
+
+    
+
+    
+<nav class="article-nav">
+  
+    <a href="/p/6cce.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-caption">下一篇</div>
+      <div class="article-nav-title">
+        
+          「Elasticsearch」查询并删除匹配文档之_delete_by_query
+        
+      </div>
+    </a>
+  
+  
+    <a href="/p/4298.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">Mac使用iTerm2 一键免密登录</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=ThreadLocal解决了什么问题？ - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&url=https://mynamecoder.com/p/b5c2.html">
+            <box-icon type='logo' name='twitter'></box-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=ThreadLocal解决了什么问题？ - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&u=https://mynamecoder.com/p/b5c2.html">
+            <box-icon name='facebook-square' type='logo' ></box-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=ThreadLocal解决了什么问题？ - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&url=https://mynamecoder.com/p/b5c2.html&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+
+
+
+</div>
+                </section>
+            </section>
+
+             
+            <aside class="sidebar">
+            
+                
+
+
+<div class="widget" id="widget">
+    
+      
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Elasticsearch/">Elasticsearch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jenkins/">Jenkins</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MQ/">MQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mybatis/">Mybatis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1/">微信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">系统运维</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Freemarker/" rel="tag">Freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdn/" rel="tag">cdn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/" rel="tag">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/" rel="tag">dev</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/email/" rel="tag">email</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/homebrew/" rel="tag">homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mq/" rel="tag">mq</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/" rel="tag">swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98/" rel="tag">支付</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/p/21452.html">「Elasticsearch」SpringBoot快速集成ES</a>
+          </li>
+        
+          <li>
+            <a href="/p/35755.html">Linux服务器的晴雨表——top命令</a>
+          </li>
+        
+          <li>
+            <a href="/p/62773.html">通过shell脚本一键安装python3</a>
+          </li>
+        
+          <li>
+            <a href="/p/8425.html">如何使用Freemarker生成Word文件</a>
+          </li>
+        
+          <li>
+            <a href="/p/38722.html">解决SpringBoot jar包中的文件读取问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-archive">
+    <div class="widget-title"><span>Archive</span></div>
+    <div class="widget-inner">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">2018</a></li></ul>
+    </div>
+  </div>
+
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享 &copy; 2020<br>
+            Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
+        </div>
+    </div>
+
+</footer>
+
+
+
+
+<script src="/dist/build.js?1.13.0.js"></script>
+
+
+<script src="/dist/custom.js?1.13.0.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

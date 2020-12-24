@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    <title>「规范」如何优雅地代码分层？ | 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    
+
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1.13.0.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+        }
+        window.aomori_logo_typed_animated = true
+        window.aomori_search_algolia = false
+    </script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <div id="typed-strings" style="display:none">
+                        <p>程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</p>
+                    </div>
+                    <a class="header-type-title" id="typed" href="/"></a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">Home</a>
+                
+                <a href="/archives">Archives</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">Home</a>
+                    
+                    <a href="/archives">Archives</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="post">
+    <article id="post-ckj329qm0003i2qp4gq4j7r6j" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      「规范」如何优雅地代码分层？
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2020-04-12T03:47:46.000Z" itemprop="datePublished">2020-04-12</time>
+</div>
+
+            
+            <div class="article-category">
+                <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+            </div>
+            
+
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <h2 id="1、背景"><a href="#1、背景" class="headerlink" title="1、背景"></a><strong>1、背景</strong></h2><p>说起应用分层，大部分人都会认为这个不是很简单嘛 就controller，service, mapper三层。看起来简单，很多人其实并没有把他们职责划分开，在很多代码中，controller做的逻辑比service还多,service往往当成透传了，这其实是很多人开发代码都没有注意到的地方，反正功能也能用，至于放哪无所谓呗。这样往往造成后面代码无法复用，层级关系混乱，对后续代码的维护非常麻烦。</p>
+<a id="more"></a>
+<p>的确在这些人眼中分层只是一个形式，前辈们的代码这么写的，其他项目代码这么写的，那么我也这么跟着写。</p>
+<p>但是在真正的团队开发中每个人的习惯都不同，写出来的代码必然带着自己的标签，有的人习惯controller写大量的业务逻辑，有的人习惯在service中之间调用远程服务，这样就导致了每个人的开发代码风格完全不同，后续其他人修改的时候，一看，我靠这个人写的代码和我平常的习惯完全不同，修改的时候到底是按着自己以前的习惯改，还是跟着前辈们走，这又是个艰难的选择，选择一旦有偏差，你的后辈又维护你的代码的时候，恐怕就要骂人了。</p>
+<p>所以一个好的应用分层需要具备以下几点:</p>
+<ul>
+<li>方便后续代码进行维护扩展；</li>
+<li>分层的效果需要让整个团队都接受；</li>
+<li>各个层职责边界清晰。</li>
+</ul>
+<h2 id="2、应用分层模型"><a href="#2、应用分层模型" class="headerlink" title="2、应用分层模型"></a>2、应用分层模型</h2><p>在项目开发中，一个良好的工程架构是必须的。工程架构就像一个骨架，写代码就是在这个骨架上增添血肉，这个骨架会影响到整体的模块划分，功能划分，即会影响到代码的解耦和聚合，将会很大程度上决定一个项目写得好不好。</p>
+<p>这里要分享的是我个人在开发时所采取的工程架构，以及相关的思想。不同的人对于工程架构的理解会不同，实际上也很难分出哪种好，哪种坏，只要符合自己的设计思想，并且能够有效的进行开发，那就是好的一种架构方式。</p>
+<h3 id="2-1、分层"><a href="#2-1、分层" class="headerlink" title="2.1、分层"></a>2.1、分层</h3><p>我整体上的思想为《阿里巴巴 Java 开发手册》中所描述的分层模型。如下：</p>
+<p><img src="https://img.mynamecoder.com/20200411234541.png">应用分层图</p>
+<blockquote>
+<p>在这里插一嘴哈，在这里我使用的流程图工具是<strong>ProcessOn</strong>，是一款在线画图工具，非常适合画各种示意图，体验极佳，如果大家想尝试一下，可以使用我的<a target="_blank" rel="noopener" href="https://www.processon.com/i/5a967fdce4b01965e7301910">邀请链接</a>注册使用～</p>
+</blockquote>
+<p>接下来将自底向上的讲解我对各层的理解和设计，还有我自己所增加的层。</p>
+<h3 id="2-2、通用工具层"><a href="#2-2、通用工具层" class="headerlink" title="2.2、通用工具层"></a>2.2、通用工具层</h3><p>通用工具层其实为对业务无关的，通用的工具类，例如日期处理的工作累，一些数据格式的序列化与反序列化工具。类似于 apache commons 包和 guava 包。</p>
+<h3 id="2-3、分层领域模型"><a href="#2-3、分层领域模型" class="headerlink" title="2.3、分层领域模型"></a>2.3、分层领域模型</h3><p>领域模型，也就是我们之前常见的各种数据实体，用 DDD 的术语来说，这种在分层模型中的领域模型称为贫血领域模型。<br>贫血领域模型只作为数据载体，只有 getter/setter 方法，而不包含业务方法。</p>
+<p>对于分层领域模型，会进一步进行划分规约，主要也是参考自《阿里巴巴 Java 开发手册》具体如下：</p>
+<ul>
+<li><strong>DO(Data Object)</strong> : 数据对象，对数据源数据的映射，如数据库表，ElasticSearch 索引的数据结构。所在包一般命名为 data 。</li>
+<li><strong>DTO(Data Transfer Object)</strong> : 数据传输对象，业务层向外传输的对象。如果在某个业务中需要多次查询获取不同的数据对象，最后将会把这多个数据对象组合成一个 DTO 并对外传输。所在包命名为 dto 。</li>
+<li><strong>BO(Business Object)</strong> : 业务对象，由 Service 层输出的封装业务逻辑的对象。即对象除了数据外，还会包含一定的业务逻辑，也可以说是充血领域模型。但是我一般不会使用。</li>
+<li><strong>AO(Application Object)</strong> : 应用对象，在 Web 层与 Service 层之间抽象的复用对象模型，极为贴近展示层，复用度不高。比较少用。</li>
+<li><strong>VO(View Object)</strong> : 显示层对象，通常是 Web 向模板渲染引擎层传输的对象。现在的项目多数为前后端分离，后端只需要返回 JSON ，那么可以理解为 JSON 即是需要渲染成的“模板”。我一般会将这类对象命名为 xxxResponse ，所在包命名为 response 。</li>
+<li><strong>Query</strong> : 数据查询对象，数据查询对象，各层接收上层的查询请求。其实一般用于 Controller 接受传过来的参数，可以将其都命名为 xxxQuery ，而我个人习惯将放在 request body 的参数（即 @RequestBody）包装为 xxxRequest ，而如果使用表单传输过来的参数（即 @RequestParam）包装为 xxxForm ，并分别放在包 request 和包 form 下。</li>
+</ul>
+<p>其实贫血领域模型只是作为数据的载体，在一开始我觉得没必要进行具体的分类，基本上都是往一个包内丢，但是当项目规模上来后，各种各样的数据实体开始增加，慢慢的变得混乱。对数据对象的分类是为了更好的定义每个数据的作用以及在后续能够快速的定位到对应的数据对象。</p>
+<h3 id="2-4、Helper"><a href="#2-4、Helper" class="headerlink" title="2.4、Helper"></a>2.4、Helper</h3><p>开发中会遇到一些很基础的，通用的业务逻辑，例如我们可能会根据每个用户的信息生成一个唯一的 account id 。又或者说有一个用户排名的需求，我们将从用户的相关信息中计算出一个分数，从而根据这个分数进行排名。那么这时候我们可能会将这些逻辑写在 User 数据对象或是其他相应对应的数据对象下。<br>而我个人来说，不希望数据对象包含业务逻辑，所以我会将这些通用的业务逻辑都抽出来，放到 Manager 中进行统一管理。如会将生成 account id 的逻辑放在 AccountIdGenerator 中，将计算排名分数的逻辑放在 RankCalculator 中。<br>我将这些类都归为 Helper ，用于提供底层的业务计算逻辑。而为什么不放在通用工具层中呢？因为这些 Helper 其实都是依赖于特定的领域，即特定的业务。而通用工具类则是业务无关的，任何系统，只要有需要都可以引用。</p>
+<h3 id="2-5、DAO"><a href="#2-5、DAO" class="headerlink" title="2.5、DAO"></a>2.5、DAO</h3><p>DAO 就不用过多解释了，数据访问对象，用于对数据库的访问。但是我个人不会将 DAO 只局限于数据库，对于不同的数据源的交互，如 HBase ，ElasticSearch ，本地缓存甚至 Redis 我都会定义相对应的 DAO 进行访问。<br>这样的定义，其实是想将数据 CURD 的逻辑和业务逻辑进行分离，将获 CRUD 封装在 DAO 中，业务逻辑即放在业务层中。</p>
+<p>之前接手了一个项目，项目将 Redis 视为中间件，将相关的逻辑都封装在 xxxRedisService 中，包括 CRUD 和一些业务逻辑。随着项目的发展，一些其实可以归类到一起的业务，变得有些放在了 RedisService 中，一些放在了业务层的 Service 中，可想而知十分混乱，还导致了一些 BUG 的出现。</p>
+<h3 id="2-6、Service-和-Manager"><a href="#2-6、Service-和-Manager" class="headerlink" title="2.6、Service 和 Manager"></a>2.6、Service 和 Manager</h3><p>Service 的作用不用多说明，为具体业务逻辑的封装层。</p>
+<p>具体要说明的是 Manager ，《阿里巴巴 Java 开发手册》中定义如下:</p>
+<ol>
+<li>对第三方平台封装的层，预处理返回结果及转化异常信息</li>
+<li>对 Service 层通用能力的下沉，如缓存方案、中间件通用处理</li>
+<li>与 DAO 层交互，对多个 DAO 的组合复用</li>
+</ol>
+<p>可以将 Manager 理解为对通用逻辑的封装，避免 Service 与 Service 进行相互调用，以及对通用逻辑的管理。</p>
+<p>在开发中，我们经常会遇到 AService 中的某个业务可以提供给 BService 调用，从而让 BService 调用 AService 的方法，认为是 Service 之间具有共同的业务。其实 Service 之间没有共同的业务，而是<strong>具备通用的逻辑</strong>，这时应该将其抽离出来放在 Manager 中。无论何种工程架构都好，我都不赞同 Service 与 Service 之间的相互调用。</p>
+<p>在实际开发中，我会对 Manager 进行更细一点的划分。大致将其分为用于项务类，所封装的是由 Service 下沉的通用业务。<br>而另一种则是一些偏向于工具、计算的类，例如某个业务使用了策略模式，所编写的策略类则属于这一类。<br>我会将业务类的用 @Service 注释，而偏工具类的则用 @Component 注释。这样做的原因还是避免业务之间的相互调用，相互耦合。</p>
+<p>这里可能会想，为什么不将 Helper 的逻辑也放在 Manager 层中？原因在于 Helper 的逻辑比 Manager 更加基础，有可能在 DAO 中都会调用 Helper 的相关逻辑，如果放在 Manager 中，就会出现底层依赖上层的问题。</p>
+<h3 id="2-7、接口层"><a href="#2-7、接口层" class="headerlink" title="2.7、接口层"></a>2.7、接口层</h3><p>最后的一层，则是暴露给外部调用的层。可以是 Spring 体系中的 Controller ，也可以是 gRPC 。<br>这一层将组织、调用我们所定义的 Service ，进行业务处理。</p>
+<h2 id="3、分层模型的优点以及缺点"><a href="#3、分层模型的优点以及缺点" class="headerlink" title="3、分层模型的优点以及缺点"></a>3、分层模型的优点以及缺点</h2><p>无论什么工程架构，都会有其优点以及缺点，在选择工程架构时，其实就是对优点缺点的衡量。</p>
+<h3 id="3-1、优点"><a href="#3-1、优点" class="headerlink" title="3.1、优点"></a>3.1、优点</h3><p>其实无论什么架构，特别是对业务工程来说，最希望架构带来的是解耦以及内聚。<br>通过分层，在一定程度上对项目内的各个模块进行了解耦内聚，依赖关系十分明确，再怎么写，只要符合规约，总是上层依赖于下层。而且分层的规约十分简单，在多人协作的情况下大部分情况都可以很好的遵守规约。</p>
+<h3 id="3-2、缺点"><a href="#3-2、缺点" class="headerlink" title="3.2、缺点"></a>3.2、缺点</h3><p>简单是一个优点，也是一个缺点。分层虽然在一定程度上进行了解耦，但是粒度十分粗，只要不出现下层依赖上层的情况，都可以认为是符合规约的，在这种情况下，很容易导致代码的分散、功能的碎片化，明明是同一类业务功能的代码，却分散在多个类，多个层次之间。在项目不断迭代时变得巨大时，慢慢就会变得混乱，然后就是一轮重构。<br>归根到底就是太松懈了，导致开发人员很容易就是在项目中随便找个地方写，还很容易导致由大量的复制粘贴所产生重复代码。</p>
+<p>在学校开设的软件工程课中，设计一个系统，首先是组织架构的了解，然后从中抽出数据流，然后再在数据流中抽出业务流，进行根据业务流进行开发。而采用分层模型的化，往往在数据流中就可以开始开发，采用分层模型的话，每个业务其实可以简单的抽象成数据在各层之间的流动。<br>这可以说是一个优点，简化了业务的理解，实现快速的开发，我在比较紧的排期下也由这么做过，扫一眼业务，构思好数据流的流动后就动手了。但这也是一个很严重的缺点，我见过不少功能性 BUG ，就是由于对业务的不充分理解所导致的，而且由于没有对业务流程充分理解后就开发，后续的扩展和修复，看起来就是不断的修修补补。</p>
+<p>上面，我除了《阿里巴巴 Java 开发手册》所写的内容外，还添加了不少细节，其实所想要做的就是尽量减少这种功能碎片化的问题。</p>
+<h2 id="4、与充血领域模型的对比"><a href="#4、与充血领域模型的对比" class="headerlink" title="4、与充血领域模型的对比"></a>4、与充血领域模型的对比</h2><p>既然是说工程架构，就不得不提 DDD 这一个概念。</p>
+<p>为什么我说的是“与充血领域模型的对比”而不是“与 DDD 的对比”呢？是因为 DDD 是比分层模型更加高层的一种概念，它是一个产品服务，整个团队开发的一种指导思想，而不是一种工程代码上的规约。</p>
+<p>DDD 可以分为两大方向，一个是战略层面上的，即之前提到的是一种开发的指导思想，定义、划分服务的领域，规定统一语言提高沟通效率等，这也是可以用于使用分层领域模型的项目开发中的。如果要与分层模型对比的话，其实是 DDD 的战术层面，即充血领域模型。</p>
+<p>充血领域模型其实是回归于面向对象的思想。在目前的分层模型中，哪怕是用 Java 这种面向对象的语言去写，其实总体上还是一种过程式的编程，在 DDD 中称为事务脚本。</p>
+<p>充血领域模型是重领域，轻 Service 的。以之前生成 account id 以及排名的例子，在充血领域模型中，User 类将会有 generateAccountId 方法和 ranking 方法来完成这一逻辑。<br>完全的面向对象，就可以充分的发挥面向对象的特性。面向对象的特性在书上为：<em>继承、多态，封装</em>。前两者能够实现归一化，使模块泛化通用，封装即会使模块划分明确，能够很好的实现解耦和内聚。比起分层模型，使用充血领域模型可以很好的解决上面提到的代码分散，碎片化的问题。</p>
+<p>充血领域模型的优点是面向对象的优点，但是面向对象的缺点也成为这种模型的缺点。首先，万物皆可抽象在我看来就是伪命题，因为现实世界中总有事务是难以进行抽象的，或者抽象起来不优雅，总是有一种硬是抽象的感觉。<br>在知乎中有一个很好的回答，描述了面向对象的弊端</p>
+<p>相信很多人在初接触 DDD 时，都会去搜索充血领域模型实践的例子。其实在学校学习 Java Web 开发时，书本中写道的 MVC 结构其实在一定程度上也是充血领域模型，Model 除了是数据的载体外，还包含业务逻辑，通过 Controller 对 Model 的选择以及调用完成业务。假如用这种结构开发，当项目庞大后，我觉得首先遇到的问题应该就是依赖问题，复杂的业务必然牵扯到各方各面，自然也就有复杂的依赖关系产生，甚至会有为了完成业务而产生很“脏”的实现，这是难以避免的。</p>
+<p>我个人觉得充血领域模型目前还是只适合于个人，很小的团队中使用，例如 2 到 3 个人的团队，因为抽象本身就是一个非常复杂的过程，随着需求迭代，之前的抽象还不一定正确，如果在较为多人的多人协作中，各种奇奇怪怪的写法都会出现，必然也会有随便找个“地”写的情况出现，这种情况比在分层模型中更为致命。</p>
+<h2 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h2><p>还是那句话，工程架构无分好坏，只有适合与不适合，问题的来与在于业务的复杂，计算机始终在某些方面难以映射到现实世界。所以我个人建议好好的理解好自己目前所用到的工程架构，尽量做到扬长避短。</p>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+<div class="article-copyright hairline">
+  <p>
+    本作品采用 <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a> 进行许可。
+  </p>
+</div>
+
+
+    
+
+    
+<nav class="article-nav">
+  
+    <a href="/p/44518.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-caption">下一篇</div>
+      <div class="article-nav-title">
+        
+          Java中的try，如何开启新姿势？
+        
+      </div>
+    </a>
+  
+  
+    <a href="/p/63677.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">「SpringBoot」如何优雅地管理SpringBoot项目</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=「规范」如何优雅地代码分层？ - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&url=https://mynamecoder.com/p/46081.html">
+            <box-icon type='logo' name='twitter'></box-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=「规范」如何优雅地代码分层？ - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&u=https://mynamecoder.com/p/46081.html">
+            <box-icon name='facebook-square' type='logo' ></box-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=「规范」如何优雅地代码分层？ - 程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享&url=https://mynamecoder.com/p/46081.html&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+
+
+
+</div>
+                </section>
+            </section>
+
+             
+            <aside class="sidebar">
+            
+                
+
+
+<div class="widget" id="widget">
+    
+      
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Elasticsearch/">Elasticsearch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jenkins/">Jenkins</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MQ/">MQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mybatis/">Mybatis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1/">微信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">系统运维</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Freemarker/" rel="tag">Freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdn/" rel="tag">cdn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/" rel="tag">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/" rel="tag">dev</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/email/" rel="tag">email</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/homebrew/" rel="tag">homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mq/" rel="tag">mq</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/" rel="tag">swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98/" rel="tag">支付</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/p/21452.html">「Elasticsearch」SpringBoot快速集成ES</a>
+          </li>
+        
+          <li>
+            <a href="/p/35755.html">Linux服务器的晴雨表——top命令</a>
+          </li>
+        
+          <li>
+            <a href="/p/62773.html">通过shell脚本一键安装python3</a>
+          </li>
+        
+          <li>
+            <a href="/p/8425.html">如何使用Freemarker生成Word文件</a>
+          </li>
+        
+          <li>
+            <a href="/p/38722.html">解决SpringBoot jar包中的文件读取问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-archive">
+    <div class="widget-title"><span>Archive</span></div>
+    <div class="widget-inner">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">2018</a></li></ul>
+    </div>
+  </div>
+
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享 &copy; 2020<br>
+            Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
+        </div>
+    </div>
+
+</footer>
+
+
+
+
+<script src="/dist/build.js?1.13.0.js"></script>
+
+
+<script src="/dist/custom.js?1.13.0.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
