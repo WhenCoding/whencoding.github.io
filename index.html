@@ -1,504 +1,385 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
-    
-    <title>程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
     
-
+    <title>
+        
+        Keep
+    </title>
+    <link rel="shortcut icon" href="/images/logo.svg">
     
+<link rel="stylesheet" href="/css/style.css">
 
-    
-
-    
-
-    
-<link rel="stylesheet" href="/dist/build.css?v=1.13.0.css">
-
-
-    <script>
-        window.isPost = false
-        window.aomori = {
-            
-        }
-        window.aomori_logo_typed_animated = true
-        window.aomori_search_algolia = false
-    </script>
-
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"mynamecoder.com","root":"/"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":true,"expand_all":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","img_position":"left","left_side_width":"260px","content_max_width":"900px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."}},"local_search":{"enable":false,"trigger":"auto","unescape":false,"preload":false},"version":"3.0.4"};
+    KEEP.language = {"search":"搜索...","prev":"上一页","next":"下一页","prev_posts":"上一篇","next_posts":"下一篇","page":"第 %d 页","recent_posts":"最新文章","share":"分享","powered_by":"由 %s 驱动","theme":"主题","rss_feed":"RSS Feed","category":"分类","categories":"分类","tag":"标签","tags":"标签","tagcloud":"标签云","comment":"评论","home":"首页","archive":"归档","archives":"归档","about":"关于","site_uv":"访问人数","site_pv":"总访问量","links":"友链","link":"友链","top":"顶置","read_more":"阅读全文","wordcount":"字","min2read":"分钟","changelog":"更新日志","copyright":{"title":"本文标题","author":"本文作者","link":"本文链接","create_time":"创建时间","license_title":"版权声明","license_content":"本博客所有文章除特别声明外，均采用 %s 许可协议。转载请注明出处！"},"ago":{"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"}};
+  </script>
 <meta name="generator" content="Hexo 5.3.0"></head>
 
+
 <body>
+<div class="page-container">
 
-    <div class="container">
-    <header class="header">
-        <div class="header-type">
-            
-            <div class="header-type-inner">
-                
-                    <div id="typed-strings" style="display:none">
-                        <p>程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</p>
-                    </div>
-                    <a class="header-type-title" id="typed" href="/"></a>
-                
     
-                
-            </div>
+        <div class="first-screen-container flex-center">
+    <div class="content flex-center">
+        <div class="description">
+            Keep writing and Keep loving.
         </div>
-        <div class="header-menu">
-            <div class="header-menu-inner">
-                
-                <a href="/">Home</a>
-                
-                <a href="/archives">Archives</a>
-                
-            </div>
-            <div class="header-menu-social">
-                
-            </div>
-        </div>
+        
+    </div>
+</div>
 
-        <div class="header-menu-mobile">
-            <div class="header-menu-mobile-inner" id="mobile-menu-open">
-                <i class="icon icon-menu"></i>
-            </div>
-        </div>
+    
+
+    <header class="page-header">
+        <div class="header-progress"></div>
     </header>
 
-    <div class="header-menu-mobile-menu">
-        <div class="header-menu-mobile-menu-bg"></div>
-        <div class="header-menu-mobile-menu-wrap">
-            <div class="header-menu-mobile-menu-inner">
-                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
-                    <i class="icon icon-cross"></i>
-                </div>
-                <div class="header-menu-mobile-menu-list">
-                    
-                    <a href="/">Home</a>
-                    
-                    <a href="/archives">Archives</a>
-                    
-                </div>
-            </div>
+    <main class="page-main">
+
+        <div class="page-main-content">
+
+            <div class="page-main-content-top">
+                <header class="header-wrapper">
+
+    <div class="header-content">
+        <a class="logo-title" href="/">
+            Keep
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class="active"
+                       href="/"
+                    >
+                        首页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
         </div>
     </div>
 
-</div>
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="active"
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+        </ul>
+    </div>
 
-    <div class="container">
-        <div class="main">
-            <section class="inner">
-                <section class="inner-main">
-                    <div class="index">
-  
-    
-      <article
-  id="post-「Elasticsearch」SpringBoot快速集成ES"
-  class="article article-type-post"
->
+    <div class="window-mask"></div>
 
-  
+</header>
 
-  <div class="article-inner">
-    
-      <div class="article-feature">
-          <a href="/p/21452.html">
-            <img
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E"
-              data-src="https://img.mynamecoder.com/seo-896175_640.png"
-              alt="item.title"
-              class="lazy"
-            />
-          </a>
-      </div>
-    
 
-    <div class="article-body">
-      <header class="article-title">
-        <a href="/p/21452.html">「Elasticsearch」SpringBoot快速集成ES</a>
-      </header>
-      <div class="article-entry post-inner-html">
+            </div>
+
+            <div class="page-main-content-middle">
+
+                <main class="main-content normal-code-theme">
+
+                    
+                        <div class="home-content-container fade-in-down-animation">
+    <ul class="home-article-list">
         
-          <blockquote>
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/p/21452.html">
+                        「Elasticsearch」SpringBoot快速集成ES
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <blockquote>
 <p>Elastic Search 的底层是开源库 Lucene。但是Lucene的使用门槛比较高，必须自己写代码去调用它的接口。而Elastic Search的出现正是为了解决了这个问题，它是 Lucene 的封装，提供了 REST API 的操作接口，我们可以开箱即用。</p>
 </blockquote>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-edit"></i> <span class="home-article-date" data-date="Mon Dec 07 2020 14:48:14 GMT+0800">2020-12-07</span></span>
         
-      </div>
+        
     </div>
 
-    
-
-  </div>
-
-  <footer class="article-footer">
-    <div class="article-more-info">
-      <div class="article-date">
-  <time datetime="2020-12-07T06:48:14.000Z" itemprop="datePublished">2020-12-07</time>
+    <a href="/p/21452.html">阅读全文 <i class="fas fa-angle-right"></i></a>
 </div>
-      
-        <div class="article-category">
-          <a class="article-category-link" href="/categories/Elasticsearch/">Elasticsearch</a>
-        </div>
-      
-      
-        <div class="article-tag">
-          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li></ul>
-        </div>
-      
-    </div>
-  </footer>
 
-</article>
-
-    
-  
-    
-      <article
-  id="post-Linux服务器的晴雨表——top命令"
-  class="article article-type-post"
->
-
-  
-
-  <div class="article-inner">
-    
-      <div class="article-feature">
-          <a href="/p/35755.html">
-            <img
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E"
-              data-src="https://img.mynamecoder.com/20200807152926.png"
-              alt="item.title"
-              class="lazy"
-            />
-          </a>
-      </div>
-    
-
-    <div class="article-body">
-      <header class="article-title">
-        <a href="/p/35755.html">Linux服务器的晴雨表——top命令</a>
-      </header>
-      <div class="article-entry post-inner-html">
+            </li>
         
-          <blockquote>
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/p/35755.html">
+                        Linux服务器的晴雨表——top命令
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <blockquote>
 <p> 虽然之前一直在使用top命令，但是并没有像今天这样认真细致总结每条数据代表的含义。</p>
 </blockquote>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-edit"></i> <span class="home-article-date" data-date="Sun Oct 11 2020 10:34:33 GMT+0800">2020-10-11</span></span>
         
-      </div>
+        
     </div>
 
-    
-
-  </div>
-
-  <footer class="article-footer">
-    <div class="article-more-info">
-      <div class="article-date">
-  <time datetime="2020-10-11T02:34:33.000Z" itemprop="datePublished">2020-10-11</time>
+    <a href="/p/35755.html">阅读全文 <i class="fas fa-angle-right"></i></a>
 </div>
-      
-        <div class="article-category">
-          <a class="article-category-link" href="/categories/Linux/">Linux</a>
-        </div>
-      
-      
-        <div class="article-tag">
-          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
-        </div>
-      
-    </div>
-  </footer>
 
-</article>
-
-    
-  
-    
-      <article
-  id="post-通过shell脚本一键安装python3"
-  class="article article-type-post"
->
-
-  
-
-  <div class="article-inner">
-    
-      <div class="article-feature">
-          <a href="/p/62773.html">
-            <img
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E"
-              data-src="https://img.mynamecoder.com/hacking-1685092_640.jpg"
-              alt="item.title"
-              class="lazy"
-            />
-          </a>
-      </div>
-    
-
-    <div class="article-body">
-      <header class="article-title">
-        <a href="/p/62773.html">通过shell脚本一键安装python3</a>
-      </header>
-      <div class="article-entry post-inner-html">
+            </li>
         
-          <blockquote>
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/p/62773.html">
+                        通过shell脚本一键安装python3
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <blockquote>
 <p> 本文主要介绍python3的安装，通过python3.6.4源码安装，并且兼容python2， 实现python2与python3共存。文中包括python3的安装介绍以及安装脚本。</p>
 </blockquote>
 <h2 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h2><p>因为红帽系列默认没有安装python3，而debian早就已经自带了python3。在centos服务器上安装python3，因此写了一个一键安装脚本供大家参考。</p>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-edit"></i> <span class="home-article-date" data-date="Sat Oct 10 2020 10:02:57 GMT+0800">2020-10-10</span></span>
         
-      </div>
-    </div>
-
-    
-
-  </div>
-
-  <footer class="article-footer">
-    <div class="article-more-info">
-      <div class="article-date">
-  <time datetime="2020-10-10T02:02:57.000Z" itemprop="datePublished">2020-10-10</time>
-</div>
-      
-        <div class="article-category">
-          <a class="article-category-link" href="/categories/Python/">Python</a>
-        </div>
-      
-      
-        <div class="article-tag">
-          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li></ul>
-        </div>
-      
-    </div>
-  </footer>
-
-</article>
-
-    
-  
-    
-      <article
-  id="tweet-如何使用freemarker生成Word文件"
-  class="article article-type-tweet"
->
-
-    <div class="article-tweet article-type-tweet-inner">
-
-    <box-icon class="article-tweet-quote" type='solid' name='quote-left' color="#CCC"></box-icon>
-
-    <div class="article-tweet-content post-inner-html">
-        
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>一天，产品经理递给我了一份word报告，我定睛一看</p>
-<p>这个文档有大大小小的标题层级，还有排版好的段落、各种一目了然的饼图、走势图，当然还少不了颜色循环交替的报表。精致程度不亚于小明同学的学习报告。</p>
         
     </div>
 
-    <footer class="article-footer">
-        <a class="article-footer-common" href="/p/8425.html">评论</a>
-        <div class="article-more-info">
-        <div class="article-date">
-  <time datetime="2020-09-14T05:37:10.000Z" itemprop="datePublished">2020-09-14</time>
-</div>
-        
-            <div class="article-category">
-            <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
-            </div>
-        
-        
-            <div class="article-tag">
-            <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Freemarker/" rel="tag">Freemarker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
-            </div>
-        
-        </div>
-    </footer>
-
-    </div>
-
-    
-
-</article>
-
-    
-  
-    
-      <article
-  id="post-解决SpringBoot-jar包中的文件读取问题"
-  class="article article-type-post"
->
-
-  
-
-  <div class="article-inner">
-    
-      <div class="article-feature">
-          <a href="/p/38722.html">
-            <img
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E"
-              data-src="https://img.mynamecoder.com/writing-828911_640.jpg"
-              alt="item.title"
-              class="lazy"
-            />
-          </a>
-      </div>
-    
-
-    <div class="article-body">
-      <header class="article-title">
-        <a href="/p/38722.html">解决SpringBoot jar包中的文件读取问题</a>
-      </header>
-      <div class="article-entry post-inner-html">
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>SpringBoot微服务已成为业界主流，从开发到部署都非常省时省力，但是最近小明开发时遇到一个问题：在代码中读取资源文件(比如word文档、导出模版等)，本地开发时可以正常读取 ，但是，当我们打成jar包发布到服务器后，再次执行程序时就会抛出找不到文件的异常。</p>
-        
-      </div>
-    </div>
-
-    
-
-  </div>
-
-  <footer class="article-footer">
-    <div class="article-more-info">
-      <div class="article-date">
-  <time datetime="2020-09-14T05:30:54.000Z" itemprop="datePublished">2020-09-14</time>
-</div>
-      
-        <div class="article-category">
-          <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
-        </div>
-      
-      
-        <div class="article-tag">
-          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul>
-        </div>
-      
-    </div>
-  </footer>
-
-</article>
-
-    
-  
-
-  
-    <nav class="pagination">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/">Next</a>
-    </nav>
-  
+    <a href="/p/62773.html">阅读全文 <i class="fas fa-angle-right"></i></a>
 </div>
 
-                </section>
-            </section>
+            </li>
+        
+            <li class="home-article-item">
 
-             
-            <aside class="sidebar">
-            
                 
 
+                <h3 class="home-article-title">
+                    <a href="/p/8425.html">
+                        如何使用Freemarker生成Word文件
+                    </a>
+                </h3>
 
-<div class="widget" id="widget">
-    
-      
-    
-      
-  <div class="widget-wrap widget-cate">
-    <div class="widget-title"><span>Categories</span></div>
-    <div class="widget-inner">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Elasticsearch/">Elasticsearch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jenkins/">Jenkins</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MQ/">MQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mybatis/">Mybatis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1/">微信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">系统运维</a></li></ul>
+                <div class="home-article-content markdown-body">
+                    
+                        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>一天，产品经理递给我了一份word报告，我定睛一看</p>
+<p>这个文档有大大小小的标题层级，还有排版好的段落、各种一目了然的饼图、走势图，当然还少不了颜色循环交替的报表。精致程度不亚于小明同学的学习报告。</p>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-edit"></i> <span class="home-article-date" data-date="Mon Sep 14 2020 13:37:10 GMT+0800">2020-09-14</span></span>
+        
+        
     </div>
-  </div>
 
+    <a href="/p/8425.html">阅读全文 <i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/p/38722.html">
+                        解决SpringBoot jar包中的文件读取问题
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>SpringBoot微服务已成为业界主流，从开发到部署都非常省时省力，但是最近小明开发时遇到一个问题：在代码中读取资源文件(比如word文档、导出模版等)，本地开发时可以正常读取 ，但是，当我们打成jar包发布到服务器后，再次执行程序时就会抛出找不到文件的异常。</p>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-edit"></i> <span class="home-article-date" data-date="Mon Sep 14 2020 13:30:54 GMT+0800">2020-09-14</span></span>
+        
+        
+    </div>
+
+    <a href="/p/38722.html">阅读全文 <i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator">
+        <div class="paginator">
+    
 
     
-      
-  <div class="widget-wrap widget-tags">
-    <div class="widget-title"><span>Tags</span></div>
-    <div class="widget-inner">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Freemarker/" rel="tag">Freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdn/" rel="tag">cdn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/" rel="tag">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/" rel="tag">dev</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/email/" rel="tag">email</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/homebrew/" rel="tag">homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mq/" rel="tag">mq</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/" rel="tag">swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98/" rel="tag">支付</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-    </div>
-  </div>
-
-
-    
-      
-  <div class="widget-wrap widget-recent-posts">
-    <div class="widget-title"><span>Recent Posts</span></div>
-    <div class="widget-inner">
-      <ul>
-        
-          <li>
-            <a href="/p/21452.html">「Elasticsearch」SpringBoot快速集成ES</a>
-          </li>
-        
-          <li>
-            <a href="/p/35755.html">Linux服务器的晴雨表——top命令</a>
-          </li>
-        
-          <li>
-            <a href="/p/62773.html">通过shell脚本一键安装python3</a>
-          </li>
-        
-          <li>
-            <a href="/p/8425.html">如何使用Freemarker生成Word文件</a>
-          </li>
-        
-          <li>
-            <a href="/p/38722.html">解决SpringBoot jar包中的文件读取问题</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-    
-      
-  <div class="widget-wrap widget-archive">
-    <div class="widget-title"><span>Archive</span></div>
-    <div class="widget-inner">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">2018</a></li></ul>
-    </div>
-  </div>
-
-
+        <a class="next btn"
+           href="/page/2/"
+        >下一页</a>
     
 </div>
 
-<div id="backtop"><i class="icon icon-arrow-up"></i></div>
-            </aside>
+    </div>
+</div>
+
+
+                    
+                </main>
+
+            </div>
+
+            <div class="page-main-content-bottom">
+                <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span> -
+            
+            2020 <i class="fas fa-heart icon-animate"></i> <a href="/">Keep team</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a class="theme-version" target="_blank"></a>
         </div>
     </div>
-
-    <footer class="footer">
-    <div class="footer-wave">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
-    </div>
-
-    <div class="footer-wrap">
-        <div class="footer-inner"> 
-            程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享 &copy; 2020<br>
-            Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
-        </div>
-    </div>
-
 </footer>
 
+            </div>
+        </div>
+    </main>
+
+    <div class="sidebar-tools">
+        <div class="tools-container">
+    <ul class="tools-list">
+        
+
+        
+
+        <!-- TOC aside toggle -->
+        
+
+    </ul>
+</div>
+
+    </div>
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-top flex-center">
+            <i class="fas fa-arrow-up"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="tools-ul-1">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+    </ul>
+</div>
+
+    </div>
+
+    <!-- page aside -->
+    <aside class="page-aside">
+        
+    </aside>
+
+    <!-- image viewer -->
+    <div class="image-viewer-container">
+    <div class="img-box">
+        <img src="">
+    </div>
+</div>
+
+
+</div>
 
 
 
-<script src="/dist/build.js?1.13.0.js"></script>
 
-
-<script src="/dist/custom.js?1.13.0.js"></script>
-
-
-
-
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/dark-light-toggle.js"></script>
 
 
 
 
 
 </body>
-
 </html>

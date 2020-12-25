@@ -1,976 +1,385 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
-    
-    <title>程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
     
-
+    <title>
+        
+        Keep
+    </title>
+    <link rel="shortcut icon" href="/images/logo.svg">
     
+<link rel="stylesheet" href="/css/style.css">
 
-    
-
-    
-
-    
-<link rel="stylesheet" href="/dist/build.css?v=1.13.0.css">
-
-
-    <script>
-        window.isPost = false
-        window.aomori = {
-            
-        }
-        window.aomori_logo_typed_animated = true
-        window.aomori_search_algolia = false
-    </script>
-
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"mynamecoder.com","root":"/"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":true,"expand_all":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","img_position":"left","left_side_width":"260px","content_max_width":"900px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."}},"local_search":{"enable":false,"trigger":"auto","unescape":false,"preload":false},"version":"3.0.4"};
+    KEEP.language = {"search":"搜索...","prev":"上一页","next":"下一页","prev_posts":"上一篇","next_posts":"下一篇","page":"第 %d 页","recent_posts":"最新文章","share":"分享","powered_by":"由 %s 驱动","theme":"主题","rss_feed":"RSS Feed","category":"分类","categories":"分类","tag":"标签","tags":"标签","tagcloud":"标签云","comment":"评论","home":"首页","archive":"归档","archives":"归档","about":"关于","site_uv":"访问人数","site_pv":"总访问量","links":"友链","link":"友链","top":"顶置","read_more":"阅读全文","wordcount":"字","min2read":"分钟","changelog":"更新日志","copyright":{"title":"本文标题","author":"本文作者","link":"本文链接","create_time":"创建时间","license_title":"版权声明","license_content":"本博客所有文章除特别声明外，均采用 %s 许可协议。转载请注明出处！"},"ago":{"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"}};
+  </script>
 <meta name="generator" content="Hexo 5.3.0"></head>
 
+
 <body>
+<div class="page-container">
 
-    <div class="container">
-    <header class="header">
-        <div class="header-type">
-            
-            <div class="header-type-inner">
-                
-                    <div id="typed-strings" style="display:none">
-                        <p>程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享</p>
-                    </div>
-                    <a class="header-type-title" id="typed" href="/"></a>
-                
     
-                
-            </div>
-        </div>
-        <div class="header-menu">
-            <div class="header-menu-inner">
-                
-                <a href="/">Home</a>
-                
-                <a href="/archives">Archives</a>
-                
-            </div>
-            <div class="header-menu-social">
-                
-            </div>
-        </div>
 
-        <div class="header-menu-mobile">
-            <div class="header-menu-mobile-inner" id="mobile-menu-open">
-                <i class="icon icon-menu"></i>
-            </div>
-        </div>
+    <header class="page-header">
+        <div class="header-progress"></div>
     </header>
 
-    <div class="header-menu-mobile-menu">
-        <div class="header-menu-mobile-menu-bg"></div>
-        <div class="header-menu-mobile-menu-wrap">
-            <div class="header-menu-mobile-menu-inner">
-                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
-                    <i class="icon icon-cross"></i>
-                </div>
-                <div class="header-menu-mobile-menu-list">
-                    
-                    <a href="/">Home</a>
-                    
-                    <a href="/archives">Archives</a>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
+    <main class="page-main">
 
-</div>
+        <div class="page-main-content">
 
-    <div class="container">
-        <div class="main">
-            <section class="inner">
-                <section class="inner-main">
-                    <div class="index">
-  
-    
-      <article
-  id="post-redis/Mac安装Homebrew并配置Redis"
-  class="article article-type-post"
->
+            <div class="page-main-content-top">
+                <header class="header-wrapper">
 
-  
+    <div class="header-content">
+        <a class="logo-title" href="/">
+            Keep
+        </a>
 
-  <div class="article-inner">
-    
-
-    <div class="article-body">
-      <header class="article-title">
-        <a href="/p/707c.html">Mac安装Homebrew并配置Redis</a>
-      </header>
-      <div class="article-entry post-inner-html">
-        
-          <h2 id="安装Homebrew"><a href="#安装Homebrew" class="headerlink" title="安装Homebrew"></a>安装Homebrew</h2><p>如果已经安装可以忽略，没有安装的请查看小明之前写好的文章 <a href="/p/75a0.html" title="Mac安装Homebrew的那些事儿">Mac安装Homebrew的那些事儿</a></p>
-<h2 id="使用Homebrew安装Redis"><a href="#使用Homebrew安装Redis" class="headerlink" title="使用Homebrew安装Redis"></a>使用Homebrew安装Redis</h2><h5 id="1-安装命令"><a href="#1-安装命令" class="headerlink" title="(1) 安装命令"></a>(1) 安装命令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install redis</span><br></pre></td></tr></table></figure>
-<h5 id="2-查看软件安装及配置文件位置"><a href="#2-查看软件安装及配置文件位置" class="headerlink" title="(2) 查看软件安装及配置文件位置"></a>(2) 查看软件安装及配置文件位置</h5><p>Homebrew安装的软件会默认在<code>/usr/local/Cellar/</code>路径下；</p>
-<p>redis的配置文件<code>redis.conf</code>存放在<code>/usr/local/etc</code>路径下。</p>
-<h5 id="3-启动redis服务"><a href="#3-启动redis服务" class="headerlink" title="(3) 启动redis服务"></a>(3) 启动redis服务</h5><h6 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h6><p>brew除了可以帮助我们安装软件以外，还可以帮助我们启动软件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services start redis</span><br></pre></td></tr></table></figure>
-<h6 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server &#x2F;usr&#x2F;local&#x2F;etc&#x2F;redis.conf</span><br></pre></td></tr></table></figure>
-<h5 id="4-查看redis服务进程"><a href="#4-查看redis服务进程" class="headerlink" title="(4) 查看redis服务进程"></a>(4) 查看redis服务进程</h5><p>我们可以通过下面命令查看redis是否正在运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps axu | grep redis</span><br></pre></td></tr></table></figure>
-<h5 id="5-redis-cli连接redis服务"><a href="#5-redis-cli连接redis服务" class="headerlink" title="(5) redis-cli连接redis服务"></a>(5) redis-cli连接redis服务</h5><p>redis默认端口号<strong>6379</strong>，默认<strong>auth</strong>为空，输入以下命令即可连接</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h 127.0.0.1 -p 6379</span><br></pre></td></tr></table></figure>
-<h5 id="6-关闭redis服务"><a href="#6-关闭redis服务" class="headerlink" title="(6) 关闭redis服务"></a>(6) 关闭redis服务</h5><p>优雅的关闭<code>redis-cli shutdown</code>或者杀死<code>sudo pkill redis-server</code></p>
-<h5 id="7-redis-conf配置文件说明"><a href="#7-redis-conf配置文件说明" class="headerlink" title="(7) redis.conf配置文件说明"></a>(7) redis.conf配置文件说明</h5><p>redis默认是前台启动，如果我们想以守护进程的方式运行（后台运行），可以在<strong>redis.conf</strong>中将<code>daemonize no</code>,修改成<code>yes</code>即可。</p>
-
-        
-      </div>
-    </div>
-
-    
-
-  </div>
-
-  <footer class="article-footer">
-    <div class="article-more-info">
-      <div class="article-date">
-  <time datetime="2019-11-21T07:12:06.000Z" itemprop="datePublished">2019-11-21</time>
-</div>
-      
-      
-    </div>
-  </footer>
-
-</article>
-
-    
-  
-    
-      <article
-  id="post-开发日常分享"
-  class="article article-type-post"
->
-
-  
-
-  <div class="article-inner">
-    
-
-    <div class="article-body">
-      <header class="article-title">
-        <a href="/p/7e8c.html">开发日常分享</a>
-      </header>
-      <div class="article-entry post-inner-html">
-        
-          <h2 id="数据库连接工具"><a href="#数据库连接工具" class="headerlink" title="数据库连接工具"></a>数据库连接工具</h2><h4 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a><strong>Mac</strong></h4><p>Sequel Pro/Navicat</p>
-<h4 id="win"><a href="#win" class="headerlink" title="win"></a><strong>win</strong></h4><p> HeidiSQL</p>
-<h2 id="hosts文件所在目录"><a href="#hosts文件所在目录" class="headerlink" title="hosts文件所在目录"></a>hosts文件所在目录</h2><h4 id="Mac-1"><a href="#Mac-1" class="headerlink" title="Mac"></a><strong>Mac</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;etc&#x2F;hosts</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="win-1"><a href="#win-1" class="headerlink" title="win"></a>win</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c:\Windows\System32\divers\etc\hosts</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Tomcat存放目录"><a href="#Tomcat存放目录" class="headerlink" title="Tomcat存放目录"></a>Tomcat存放目录</h2><h4 id="Mac-2"><a href="#Mac-2" class="headerlink" title="Mac"></a>Mac</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;Library</span><br></pre></td></tr></table></figure>
-<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>自定义</p>
-<h2 id="redis查看工具Redis-client"><a href="#redis查看工具Redis-client" class="headerlink" title="redis查看工具Redis client"></a>redis查看工具Redis client</h2><h4 id="Mac-3"><a href="#Mac-3" class="headerlink" title="Mac"></a>Mac</h4><p>Redis Desktop Manager</p>
-<h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT IGNORE 忽略导致错误的行，如果有则不插入也不报错，并将其余行插入到表中。</span><br></pre></td></tr></table></figure>
-<h3 id="redis-cli"><a href="#redis-cli" class="headerlink" title="redis-cli"></a>redis-cli</h3><h4 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h 域名&#x2F;ip</span><br></pre></td></tr></table></figure>
-<h4 id="list"><a href="#list" class="headerlink" title="list"></a>list</h4><p>获取列表长度</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LLen key</span><br></pre></td></tr></table></figure>
-<p>获取前10个</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LRANGE key 0 10</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h2><h3 id="Spring-Boot-启动加载数据-CommandLineRunner"><a href="#Spring-Boot-启动加载数据-CommandLineRunner" class="headerlink" title="Spring Boot 启动加载数据 CommandLineRunner"></a>Spring Boot 启动加载数据 CommandLineRunner</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/catoop/article/details/50501710">https://blog.csdn.net/catoop/article/details/50501710</a></p>
-<h3 id="springboot中-scheduled开关机制"><a href="#springboot中-scheduled开关机制" class="headerlink" title="springboot中@scheduled开关机制"></a>springboot中@scheduled开关机制</h3><h4 id="配置类"><a href="#配置类" class="headerlink" title="配置类"></a>配置类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableScheduling</span><br><span class="line">@ConditionalOnProperty(prefix &#x3D; &quot;scheduling&quot;, name &#x3D; &quot;enabled&quot;, havingValue &#x3D; &quot;true&quot;)</span><br><span class="line">public class SchedulingConfig &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scheduling.enabled&#x3D;true</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="idea-打开cpu监控如何关闭"><a href="#idea-打开cpu监控如何关闭" class="headerlink" title="idea 打开cpu监控如何关闭"></a>idea 打开cpu监控如何关闭</h2><p>view-&gt;tool windows-&gt;coverage-&gt;关闭application</p>
-<h2 id="mac查看图片如何来回切换"><a href="#mac查看图片如何来回切换" class="headerlink" title="mac查看图片如何来回切换"></a>mac查看图片如何来回切换</h2><p>按住空格，通过方向键切换</p>
-<h2 id="tail命令"><a href="#tail命令" class="headerlink" title="tail命令"></a>tail命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f .&#x2F;catalina.out | grep &#39;舆情秘书&#39; -A 10</span><br></pre></td></tr></table></figure>
-<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">① grep -E &quot;word1|word2|word3&quot; file.txt</span><br><span class="line">满足任意条件（word1、word2和word3之一）将匹配。</span><br><span class="line">② grep word1 file.txt | grep word2 |grep word3</span><br><span class="line">必须同时满足三个条件（word1、word2和word3）才匹配。</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="idea自动导入包"><a href="#idea自动导入包" class="headerlink" title="idea自动导入包"></a>idea自动导入包</h2><p>Preference（快捷键：command+,）-&gt;maven-&gt;import maven projects automaticallly</p>
-<h2 id="idea忽略-iml"><a href="#idea忽略-iml" class="headerlink" title="idea忽略*.iml"></a>idea忽略*.iml</h2><ol>
-<li><code>Editor-&gt;File Types=&gt;Ignore files and folders增加*.iml;</code></li>
-<li><code>在lgnore files and folesrs中输入.idea;注意要&quot;;&quot;结尾。你就可以隐藏.idea文件夹了</code></li>
-</ol>
-<h2 id="idea查看properties中文变成unicode码如何解决"><a href="#idea查看properties中文变成unicode码如何解决" class="headerlink" title="idea查看properties中文变成unicode码如何解决"></a>idea查看properties中文变成unicode码如何解决</h2><p>Preference（快捷键：command+,）-&gt;搜索File Encoding-&gt;Transparent native-to-ascii conversion勾选框，勾选之后点击确认。</p>
-<h2 id="idea-好用的插件"><a href="#idea-好用的插件" class="headerlink" title="idea 好用的插件"></a>idea 好用的插件</h2><h3 id="Free-Mybatis-plugin"><a href="#Free-Mybatis-plugin" class="headerlink" title="Free Mybatis plugin"></a>Free Mybatis plugin</h3><p>A idea plugin for mybatis free-idea-mybatis is an enchange plugin for idea to supoort mybatis</p>
-<h2 id="清除ios输入法预测的记录"><a href="#清除ios输入法预测的记录" class="headerlink" title="清除ios输入法预测的记录"></a>清除ios输入法预测的记录</h2><p>设置》通用》还原》还原键盘词典。</p>
-<h2 id="redis-查看当前发布订阅命令"><a href="#redis-查看当前发布订阅命令" class="headerlink" title="redis 查看当前发布订阅命令"></a>redis 查看当前发布订阅命令</h2><p>pubsub channels</p>
-<h2 id="imovie"><a href="#imovie" class="headerlink" title="imovie"></a>imovie</h2><h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><p>文件-&gt;分享-&gt;文件-&gt;选择视频或者音频</p>
-<h2 id="Mac-4"><a href="#Mac-4" class="headerlink" title="Mac"></a>Mac</h2><h3 id="移动（剪切）"><a href="#移动（剪切）" class="headerlink" title="移动（剪切）"></a>移动（剪切）</h3><ul>
-<li>command+c</li>
-<li>command+option+v</li>
-</ul>
-<h3 id="Visual-Studio-Code-Dock没有图标"><a href="#Visual-Studio-Code-Dock没有图标" class="headerlink" title="Visual Studio Code Dock没有图标"></a>Visual Studio Code Dock没有图标</h3><p>最近发现使用Visual Studio Code在Dock上居然找不到图标（bug）。<br>打开<code>terminal</code>命令行工具，输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall Dock</span><br></pre></td></tr></table></figure>
-<p>回车，这样Dock就可以自动重启，vs code的图标在Dock中也恢复正常显示。</p>
-<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>统计log中关键词出现的次数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat localhost_access_log.txt | grep &#39;192.168.185.112&#39; | wc | awk &#39;&#123;print $1&#125;&#39;</span><br></pre></td></tr></table></figure>
-<h3 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -d &quot;userid&#x3D;69129&amp;KK_TYPE&#x3D;01&quot; http:&#x2F;&#x2F;192.168.185.63:8080&#x2F;SubjectTree&#x2F;getTree.do</span><br></pre></td></tr></table></figure>
-<h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat localhost_access_log.txt | grep &#39;192.168.185.112&#39; | wc -l</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat localhost_access_log.txt | grep &#39;192.168.185.112&#39; | wc | awk &#39;&#123;print $1&#125;&#39;</span><br></pre></td></tr></table></figure>
-<h3 id="关机命令"><a href="#关机命令" class="headerlink" title="关机命令"></a>关机命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init 0</span><br></pre></td></tr></table></figure>
-<h3 id="用户组控制目录权限"><a href="#用户组控制目录权限" class="headerlink" title="用户组控制目录权限"></a>用户组控制目录权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown tomcat:tomcat yqms_error.log</span><br></pre></td></tr></table></figure>
-<h3 id="SSH下用vim打开文件，文件显示不全"><a href="#SSH下用vim打开文件，文件显示不全" class="headerlink" title="SSH下用vim打开文件，文件显示不全"></a>SSH下用vim打开文件，文件显示不全</h3><p>执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stty rows 200 columns 250</span><br></pre></td></tr></table></figure>
-<h3 id="vim显示行号"><a href="#vim显示行号" class="headerlink" title="vim显示行号"></a>vim显示行号</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set number</span><br></pre></td></tr></table></figure>
-<h3 id="配置ssh免登录"><a href="#配置ssh免登录" class="headerlink" title="配置ssh免登录"></a>配置ssh免登录</h3><p>首先确认当前用户本地是否存在公钥私钥对：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;.ssh</span><br></pre></td></tr></table></figure>
-<p>如果存在跳过这一步，如果不存在使用<code>ssh-keygen</code>即可生成公钥私钥对（一直回车，我们不需要使用密码保护私钥对）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
-<p>我们发现当前用户目录下生成以下文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">authorized_keys</span><br><span class="line">id_rsa</span><br><span class="line">id_rsa.pub</span><br><span class="line">known_hosts</span><br></pre></td></tr></table></figure>
-<p>至此，我们使用<code>ssh-copy-id</code>将公钥复制到远程机器中，即可通过ssh免密访问服务器、scp免密上传文件，类似的应用场景还有github代码管理也有用到，确实非常方便。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -p 端口号 -i ~&#x2F;.ssh&#x2F;id_rsa.pub 用户名@ip地址</span><br></pre></td></tr></table></figure>
-<h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><h4 id="根据关键词筛选日志"><a href="#根据关键词筛选日志" class="headerlink" title="根据关键词筛选日志"></a>根据关键词筛选日志</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f -n 100 log | grep 关键词</span><br></pre></td></tr></table></figure>
-<h3 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h3><p>查看端口号占用情况</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -tunlp</span><br></pre></td></tr></table></figure>
-<p>查看端口被哪个进程使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp|grep 8080</span><br></pre></td></tr></table></figure>
-<p>在一次启动jar包的服务中，通过以上方法如果找不到端口号占用情况，通过删除nohup文件解决</p>
-<h3 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h3><h4 id="根据“java”执行命令的查看进程"><a href="#根据“java”执行命令的查看进程" class="headerlink" title="根据“java”执行命令的查看进程"></a>根据“java”执行命令的查看进程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps ax | grep java</span><br></pre></td></tr></table></figure>
-<h4 id="杀死同名全部进程方法"><a href="#杀死同名全部进程方法" class="headerlink" title="杀死同名全部进程方法"></a>杀死同名全部进程方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep phantomjs |grep -v grep|awk &#39;&#123;print $2&#125;&#39;|xargs kill -9</span><br></pre></td></tr></table></figure>
-<h4 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h4><p>统计当前目录文档数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls | wc -l</span><br></pre></td></tr></table></figure>
-<h4 id="df"><a href="#df" class="headerlink" title="df"></a>df</h4><p>统计磁盘使用情况</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="jenkins"><a href="#jenkins" class="headerlink" title="jenkins"></a>jenkins</h2><ul>
-<li><p>jenkins SSH插件如果不指定目录位置，默认目录是<code>/root</code>下，需要注意，目前推荐使用默认，方便统一管理。</p>
-</li>
-<li><p>当配置SSH插件脚本时，需要注意在目标服务器上执行脚本（ssh exec command）时，使用以下命令才能正常使用脚本，启动应用</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source &#x2F;etc&#x2F;profile</span><br></pre></td></tr></table></figure>
-
-        
-      </div>
-    </div>
-
-    
-
-  </div>
-
-  <footer class="article-footer">
-    <div class="article-more-info">
-      <div class="article-date">
-  <time datetime="2019-11-19T07:21:53.000Z" itemprop="datePublished">2019-11-19</time>
-</div>
-      
-        <div class="article-category">
-          <a class="article-category-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
-        </div>
-      
-      
-        <div class="article-tag">
-          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dev/" rel="tag">dev</a></li></ul>
-        </div>
-      
-    </div>
-  </footer>
-
-</article>
-
-    
-  
-    
-      <article
-  id="post-订单超时取消"
-  class="article article-type-post"
->
-
-  
-
-  <div class="article-inner">
-    
-      <div class="article-feature">
-          <a href="/p/268.html">
-            <img
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E"
-              data-src="/gallery/order_cancle.jpg"
-              alt="item.title"
-              class="lazy"
-            />
-          </a>
-      </div>
-    
-
-    <div class="article-body">
-      <header class="article-title">
-        <a href="/p/268.html">订单超时取消的解决方案</a>
-      </header>
-      <div class="article-entry post-inner-html">
-        
-          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ol>
-<li><p>为什么需要使用延迟队列？适用于什么场景？<br>   场景一：订单下单之后30分钟后，如果用户没有付钱，则系统自动取消订单。<br>   这样类似的需求是我们经常会遇见的问题。最常用的方法是定期轮训数据库，设置状态。在数据量小的时候并没有什么大的问题，但是数据量一大轮训数据库的方式就会变得特别耗资源。当面对千万级、上亿级数据量时，本身写入的IO就比较高，导致长时间查询或者根本就查不出来。通过使用延迟队列来解决这种问题</p>
-</li>
-<li><p>使用RabbitMQ来实现延迟任务必须先了解RabbitMQ的两个概念：消息的Time To Live(TTL)和Dead Letter Exchanges（DLX），利用两者的组合来实现延迟队列<br>简述一下：A.消息的TTL就是消息的存活时间，B.DLX是死信路由<br>实现原理：先发送一个消息到队列中，设置存活时间，超时后会转发到死信路由中，客户端消费死信路由中的消息，消息中包装好需要转发的队列名，再根据此队列名发送消息，这样间接中转的方式实现了延迟队列。</p>
-</li>
-</ol>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h4 id="新建SpringBoot项目，添加-amqp-引用"><a href="#新建SpringBoot项目，添加-amqp-引用" class="headerlink" title="新建SpringBoot项目，添加 amqp 引用"></a>新建SpringBoot项目，添加 amqp 引用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-amqp&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;fastjson&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.2.47&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="在配置文件application-properties中配置好mq的连接地址"><a href="#在配置文件application-properties中配置好mq的连接地址" class="headerlink" title="在配置文件application.properties中配置好mq的连接地址"></a>在配置文件application.properties中配置好mq的连接地址</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#rabbitmq</span><br><span class="line">spring.rabbitmq.host&#x3D;127.0.0.1   </span><br><span class="line">spring.rabbitmq.port&#x3D;5672  </span><br><span class="line">spring.rabbitmq.username&#x3D;root</span><br><span class="line">spring.rabbitmq.password&#x3D;root</span><br><span class="line">spring.rabbitmq.virtual-host&#x3D;ykh_vhosts</span><br></pre></td></tr></table></figure>
-<h4 id="创建配置类，使用配置文件中的连接"><a href="#创建配置类，使用配置文件中的连接" class="headerlink" title="创建配置类，使用配置文件中的连接"></a>创建配置类，使用配置文件中的连接</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 读取application.properties中的连接配置</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Configuration</span><br><span class="line">public class RabbitMQConfiguration &#123;</span><br><span class="line"></span><br><span class="line">    private static Logger logger &#x3D; Logger.getLogger(&quot;RabbitMQConfiguration&quot;);</span><br><span class="line"></span><br><span class="line">    @Value(&quot;$&#123;spring.rabbitmq.host&#125;&quot;)</span><br><span class="line">    public String host;</span><br><span class="line"></span><br><span class="line">    @Value(&quot;$&#123;spring.rabbitmq.port&#125;&quot;)</span><br><span class="line">    public int port;</span><br><span class="line"></span><br><span class="line">    @Value(&quot;$&#123;spring.rabbitmq.username&#125;&quot;)</span><br><span class="line">    public String username;</span><br><span class="line"></span><br><span class="line">    @Value(&quot;$&#123;spring.rabbitmq.password&#125;&quot;)</span><br><span class="line">    public String password;</span><br><span class="line"></span><br><span class="line">    @Value(&quot;$&#123;spring.rabbitmq.virtual-host&#125;&quot;)</span><br><span class="line">    public String virtualHost;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public ConnectionFactory connectionFactory() &#123;</span><br><span class="line">        CachingConnectionFactory connectionFactory &#x3D; new CachingConnectionFactory(host, port);</span><br><span class="line">        connectionFactory.setUsername(username);</span><br><span class="line">        connectionFactory.setPassword(password);</span><br><span class="line">        connectionFactory.setVirtualHost(virtualHost);</span><br><span class="line">        connectionFactory.setPublisherConfirms(true);</span><br><span class="line">        logger.info(&quot;Create ConnectionFactory bean ..&quot;);</span><br><span class="line">        return connectionFactory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)</span><br><span class="line">    public RabbitTemplate rabbitTemplate() &#123;</span><br><span class="line">        RabbitTemplate template &#x3D; new RabbitTemplate(connectionFactory());</span><br><span class="line">        return template;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="创建一个常量类，定义队列名称"><a href="#创建一个常量类，定义队列名称" class="headerlink" title="创建一个常量类，定义队列名称"></a>创建一个常量类，定义队列名称</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * Rabbit消息队列相关常量</span><br><span class="line"> *&#x2F;</span><br><span class="line">public final class MQConstant &#123;</span><br><span class="line"></span><br><span class="line">    private MQConstant()&#123;&#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;exchange name</span><br><span class="line">    public static final String DEFAULT_EXCHANGE &#x3D; &quot;ZyChange&quot;;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;TTL QUEUE</span><br><span class="line">    public static final String DEFAULT_DEAD_LETTER_QUEUE_NAME &#x3D; &quot;zy.dead.letter.queue&quot;;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;DLX repeat QUEUE 死信转发队列</span><br><span class="line">    public static final String DEFAULT_REPEAT_TRADE_QUEUE_NAME &#x3D; &quot;zy.repeat.trade.queue&quot;;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;Hello 测试消息队列名称</span><br><span class="line">    public static final String HELLO_QUEUE_NAME &#x3D; &quot;HELLO&quot;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="创建一个队列配置类，作用是信道配置，队列配置，队列绑定"><a href="#创建一个队列配置类，作用是信道配置，队列配置，队列绑定" class="headerlink" title="创建一个队列配置类，作用是信道配置，队列配置，队列绑定"></a>创建一个队列配置类，作用是信道配置，队列配置，队列绑定</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 队列配置，所有配置@Bean的队列名称，由系统启动时创建队列，并绑定到Exchane上</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Configuration</span><br><span class="line">public class QueueConfiguration &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;信道配置</span><br><span class="line">    @Bean</span><br><span class="line">    public DirectExchange defaultExchange() &#123;</span><br><span class="line">        return new DirectExchange(MQConstant.DEFAULT_EXCHANGE, true, false);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;*********************    业务队列定义与绑定 hello 测试    *****************&#x2F;</span><br><span class="line">    @Bean</span><br><span class="line">    public Queue queue() &#123;</span><br><span class="line">        Queue queue &#x3D; new Queue(MQConstant.HELLO_QUEUE_NAME,true);</span><br><span class="line">        return queue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public Binding binding() &#123;</span><br><span class="line">        &#x2F;&#x2F;队列绑定到exchange上，再绑定好路由键</span><br><span class="line">        return BindingBuilder.bind(queue()).to(defaultExchange()).with(MQConstant.HELLO_QUEUE_NAME);</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;*********************    业务队列定义与绑定 hello 测试    *****************&#x2F;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;下面是延迟队列的配置</span><br><span class="line">    &#x2F;&#x2F;转发队列</span><br><span class="line">    @Bean</span><br><span class="line">    public Queue repeatTradeQueue() &#123;</span><br><span class="line">        Queue queue &#x3D; new Queue(MQConstant.DEFAULT_REPEAT_TRADE_QUEUE_NAME,true,false,false);</span><br><span class="line">        return queue;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;绑定转发队列</span><br><span class="line">    @Bean</span><br><span class="line">    public Binding  drepeatTradeBinding() &#123;</span><br><span class="line">        return BindingBuilder.bind(repeatTradeQueue()).to(defaultExchange()).with(MQConstant.DEFAULT_REPEAT_TRADE_QUEUE_NAME);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;死信队列  -- 消息在死信队列上堆积，消息超时时，会把消息转发到转发队列，转发队列根据消息内容再把转发到指定的队列上</span><br><span class="line">    @Bean</span><br><span class="line">    public Queue deadLetterQueue() &#123;</span><br><span class="line">        Map&lt;String, Object&gt; arguments &#x3D; new HashMap&lt;&gt;();</span><br><span class="line">        arguments.put(&quot;x-dead-letter-exchange&quot;, MQConstant.DEFAULT_EXCHANGE);</span><br><span class="line">        arguments.put(&quot;x-dead-letter-routing-key&quot;, MQConstant.DEFAULT_REPEAT_TRADE_QUEUE_NAME);</span><br><span class="line">        Queue queue &#x3D; new Queue(MQConstant.DEFAULT_DEAD_LETTER_QUEUE_NAME,true,false,false,arguments);</span><br><span class="line">        return queue;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;绑定死信队列</span><br><span class="line">    @Bean</span><br><span class="line">    public Binding  deadLetterBinding() &#123;</span><br><span class="line">        return BindingBuilder.bind(deadLetterQueue()).to(defaultExchange()).with(MQConstant.DEFAULT_DEAD_LETTER_QUEUE_NAME);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="创建消息生成接口和实现"><a href="#创建消息生成接口和实现" class="headerlink" title="创建消息生成接口和实现"></a>创建消息生成接口和实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">public interface IMessageService &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 发送消息到队列</span><br><span class="line">     * @param queueName 队列名称</span><br><span class="line">     * @param message 消息内容</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void send(String queueName,String message);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 延迟发送消息到队列</span><br><span class="line">     * @param queueName 队列名称</span><br><span class="line">     * @param message 消息内容</span><br><span class="line">     * @param times 延迟时间 单位毫秒</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void send(String queueName,String message,long times);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 消息队列服务接口实现</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Service(&quot;messageService&quot;)</span><br><span class="line">public class MessageService implements IMessageService &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private RabbitTemplate rabbitTemplate;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 发送消息到队列</span><br><span class="line">     * @param queueName 队列名称</span><br><span class="line">     * @param message 消息内容</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Override</span><br><span class="line">    public void send(String queueName, String message) &#123;</span><br><span class="line">        rabbitTemplate.convertAndSend(MQConstant.DEFAULT_EXCHANGE,queueName, message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 延迟发送消息到队列</span><br><span class="line">     * @param queueName 队列名称</span><br><span class="line">     * @param message 消息内容</span><br><span class="line">     * @param times 延迟时间 单位毫秒</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Override</span><br><span class="line">    public void send(String queueName, String message, long times) &#123;</span><br><span class="line">        &#x2F;&#x2F;消息发送到死信队列上，当消息超时时，会发生到转发队列上，转发队列根据下面封装的queueName，把消息转发的指定队列上</span><br><span class="line">        &#x2F;&#x2F;发送前，把消息进行封装，转发时应转发到指定 queueName 队列上</span><br><span class="line">        DLXMessage dlxMessage &#x3D; new DLXMessage(MQConstant.DEFAULT_EXCHANGE,queueName,message,times);</span><br><span class="line">        MessagePostProcessor processor &#x3D; new MessagePostProcessor()&#123;</span><br><span class="line">            @Override</span><br><span class="line">            public Message postProcessMessage(Message message) throws AmqpException &#123;</span><br><span class="line">                message.getMessageProperties().setExpiration(times + &quot;&quot;);</span><br><span class="line">                return message;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        rabbitTemplate.convertAndSend(MQConstant.DEFAULT_EXCHANGE,MQConstant.DEFAULT_DEAD_LETTER_QUEUE_NAME, JSON.toJSONString(dlxMessage), processor);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="死信消息载体"><a href="#死信消息载体" class="headerlink" title="死信消息载体"></a>死信消息载体</h4><p>DLXMessage是一个消息封装对象，很关键，发送延迟队列时，先把消息存在此对象中，在加上目的地队列名称，然后再发到死信队列中，当消息超时时，转发到转发队列，添加对转发队列的监听，消费转发队列，获取需要延迟发送的信息，该信息就是DLXMessage对象，这样就拿到了目的地队列名称，然后再发送一次消息，就完成了延迟队列的发送。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * rabbit 死信消息载体</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class DLXMessage implements Serializable &#123;</span><br><span class="line"></span><br><span class="line">    private static final long serialVersionUID &#x3D; 9956432152000L;</span><br><span class="line">    private String exchange;</span><br><span class="line">    private String queueName;</span><br><span class="line">    private String content;</span><br><span class="line">    private long times;</span><br><span class="line"></span><br><span class="line">    public DLXMessage() &#123;</span><br><span class="line">        super();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public DLXMessage(String queueName, String content, long times) &#123;</span><br><span class="line">        super();</span><br><span class="line">        this.queueName &#x3D; queueName;</span><br><span class="line">        this.content &#x3D; content;</span><br><span class="line">        this.times &#x3D; times;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public DLXMessage(String exchange, String queueName, String content, long times) &#123;</span><br><span class="line">        super();</span><br><span class="line">        this.exchange &#x3D; exchange;</span><br><span class="line">        this.queueName &#x3D; queueName;</span><br><span class="line">        this.content &#x3D; content;</span><br><span class="line">        this.times &#x3D; times;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static long getSerialVersionUID() &#123;</span><br><span class="line">        return serialVersionUID;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getExchange() &#123;</span><br><span class="line">        return exchange;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setExchange(String exchange) &#123;</span><br><span class="line">        this.exchange &#x3D; exchange;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getQueueName() &#123;</span><br><span class="line">        return queueName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setQueueName(String queueName) &#123;</span><br><span class="line">        this.queueName &#x3D; queueName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getContent() &#123;</span><br><span class="line">        return content;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setContent(String content) &#123;</span><br><span class="line">        this.content &#x3D; content;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public long getTimes() &#123;</span><br><span class="line">        return times;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setTimes(long times) &#123;</span><br><span class="line">        this.times &#x3D; times;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="添加消息消费者监听，当有消息时进行消费"><a href="#添加消息消费者监听，当有消息时进行消费" class="headerlink" title="添加消息消费者监听，当有消息时进行消费"></a>添加消息消费者监听，当有消息时进行消费</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;监听hello队列，有消息时进行消费</span><br><span class="line">@Component</span><br><span class="line">@RabbitListener(queues &#x3D; MQConstant.HELLO_QUEUE_NAME)</span><br><span class="line">public class ReceiverMessage &#123;</span><br><span class="line"></span><br><span class="line">    @RabbitHandler</span><br><span class="line">    public void process(String content) &#123;</span><br><span class="line">        System.out.println(&quot;接受时间:&quot;+ System.currentTimeMillis());</span><br><span class="line">        System.out.println(&quot;接受消息:&quot; + content);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;监听转发队列，有消息时，把消息转发到目标队列</span><br><span class="line">@Component</span><br><span class="line">@RabbitListener(queues &#x3D; MQConstant.DEFAULT_REPEAT_TRADE_QUEUE_NAME)</span><br><span class="line">public class ReceiverDelayMessage &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private IMessageService messageService;</span><br><span class="line"></span><br><span class="line">    @RabbitHandler</span><br><span class="line">    public void process(String content) &#123;</span><br><span class="line">        &#x2F;&#x2F;此时，才把消息发送到指定队列，而实现延迟功能</span><br><span class="line">        DLXMessage message &#x3D; JSON.parseObject(content, DLXMessage.class);</span><br><span class="line">        messageService.send(message.getQueueName(), message.getContent());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="测试-启动项目，会执行发送消息代码"><a href="#测试-启动项目，会执行发送消息代码" class="headerlink" title="测试,启动项目，会执行发送消息代码"></a>测试,启动项目，会执行发送消息代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 启动启动时执行</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Component</span><br><span class="line">public class SysInitLoad implements ApplicationRunner &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private IMessageService messageService;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void run(ApplicationArguments args) throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;发送时间:&quot;+ System.currentTimeMillis());</span><br><span class="line">        String message &#x3D; &quot;测试延迟消息&quot;;</span><br><span class="line">        messageService.send(MQConstant.HELLO_QUEUE_NAME,message,6000);</span><br><span class="line"></span><br><span class="line">        message &#x3D; &quot;测试普通消息&quot;;</span><br><span class="line">        messageService.send(MQConstant.HELLO_QUEUE_NAME,message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>普通消息马上就接收到了，延迟消息6s后收到。</p>
-<p>以上就是订单超时未处理的解决方案，希望能够给予大家帮助。</p>
-<h3 id="欢迎关注微信公众号，获取更多资源"><a href="#欢迎关注微信公众号，获取更多资源" class="headerlink" title="欢迎关注微信公众号，获取更多资源"></a>欢迎关注微信公众号，获取更多资源</h3><p><img src="https://i.ibb.co/rMxVLpD/qrcode-for-gh-912975c21d10-344.jpg" alt="程序员小明"></p>
-
-        
-      </div>
-    </div>
-
-    
-
-  </div>
-
-  <footer class="article-footer">
-    <div class="article-more-info">
-      <div class="article-date">
-  <time datetime="2019-10-30T10:25:22.000Z" itemprop="datePublished">2019-10-30</time>
-</div>
-      
-        <div class="article-category">
-          <a class="article-category-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
-        </div>
-      
-      
-        <div class="article-tag">
-          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mq/" rel="tag">mq</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li></ul>
-        </div>
-      
-    </div>
-  </footer>
-
-</article>
-
-    
-  
-    
-      <article
-  id="post-hexo用自己的服务器搭建博客"
-  class="article article-type-post"
->
-
-  
-
-  <div class="article-inner">
-    
-      <div class="article-feature">
-          <a href="/p/35e7.html">
-            <img
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E"
-              data-src="/gallery/photographer-407068_640.jpg"
-              alt="item.title"
-              class="lazy"
-            />
-          </a>
-      </div>
-    
-
-    <div class="article-body">
-      <header class="article-title">
-        <a href="/p/35e7.html">hexo用自己的服务器搭建博客</a>
-      </header>
-      <div class="article-entry post-inner-html">
-        
-          <blockquote>
-<p>最近小明介绍过自己用hexo+git搭建个人博客之后，大家好像更关心的是域名<strong>mynamecoder.com</strong>，不是应该关注技术嘛，让小明哭笑不得😂，今天继续给大家讲一下如果觉得这两个代码托管平台打开加载太慢，我们可以考虑部署到自己的ECS服务器（小明在腾讯云搞活动够买的99元一年的服务器，邀请链接在文末）。</p>
-</blockquote>
-<h3 id="开场白"><a href="#开场白" class="headerlink" title="开场白"></a>开场白</h3><p>Hexo(<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">https://hexo.io/zh-cn/</a>) 是一个快速，简单和强大的博客框架，基于 Node.js。</p>
-<h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><ul>
-<li>在一台 CentOS 7.2 的 ECS 云服务器上快速部署基于 Hexo 的博客站点</li>
-<li>可以在本地简洁快速发布一篇博文到个人云服务器上, 用于个人站点展示</li>
-</ul>
-<h3 id="技术点"><a href="#技术点" class="headerlink" title="技术点"></a>技术点</h3><ul>
-<li>hexo环境搭建</li>
-<li>git钩子自动部署</li>
-</ul>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
-<li>你能操作的个人电脑PC * 1台</li>
-<li>自己能控制的服务器Sever * 1台</li>
-</ul>
-<h3 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h3><blockquote>
-<p>默认 ROOT 权限登录</p>
-</blockquote>
-<ul>
-<li><p><strong>安装 Git Nginx</strong><br>升级 CentOS 所有包，包括系统版本内核升级</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y update</span><br><span class="line">yum install -y git nginx</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>Nginx 配置</strong><br>创建文件目录, 用于博客站点文件存放, 并更改目录读写权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;data&#x2F;www&#x2F;hexo</span><br><span class="line">chmod -R 755 &#x2F;data&#x2F;www&#x2F;hexo</span><br></pre></td></tr></table></figure>
-<p>添加 index.html 用于检测配置 Nginx 是否成功</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;data&#x2F;www&#x2F;hexo&#x2F;index.html</span><br></pre></td></tr></table></figure>
-<p>添加如下代码:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;p&gt;Nginx running&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-<p>配置 Nginx 服务器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br><span class="line"></span><br><span class="line"># vim 查找: &#x2F;listen 80</span><br></pre></td></tr></table></figure>
-<p>通过 vim 查找功能找到如下代码, 并修改</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">......</span><br><span class="line">server &#123;</span><br><span class="line">      listen       80 default_server;</span><br><span class="line">      listen       [::]:80 default_server;</span><br><span class="line">      server_name  www.mynamcoder.com; # 填写个人域名</span><br><span class="line">      root         &#x2F;data&#x2F;www&#x2F;hexo;</span><br><span class="line">  &#125;</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-<p>访问服务器 IP 或者域名显示</p>
-<blockquote>
-<p>Nginx running</p>
-</blockquote>
-<p>Nginx 配置成功</p>
-<ul>
-<li><strong>Git 配置</strong><br>创建文件目录, 用于私人 Git 仓库搭建, 并更改目录读写权限</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. mkdir &#x2F;data&#x2F;GitLibrary</span><br><span class="line">2. chmod -R 755 &#x2F;data&#x2F;GitLibrary</span><br></pre></td></tr></table></figure>
-<p>Git 初始化裸库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;data&#x2F;GitLibrary</span><br><span class="line">git init --bare hexo.git</span><br></pre></td></tr></table></figure>
-<p>创建 Git 钩子(hook)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;data&#x2F;GitLibrary&#x2F;hexo.git&#x2F;hooks&#x2F;post-receive</span><br></pre></td></tr></table></figure>
-<p>用于指定 Git 的源代码 和 Git 配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">git --work-tree&#x3D;&#x2F;data&#x2F;www&#x2F;hexo --git-dir&#x3D;&#x2F;data&#x2F;GitLibrary&#x2F;hexo.git checkout -f</span><br></pre></td></tr></table></figure>
-<p>保存并退出后, 给该文件添加可执行权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x &#x2F;data&#x2F;GitLibrary&#x2F;hexo.git&#x2F;hooks&#x2F;post-receive</span><br></pre></td></tr></table></figure>
-<h3 id="本地配置"><a href="#本地配置" class="headerlink" title="本地配置"></a>本地配置</h3><p>小明使用的是mac，下面主要讲一下在 MacOS 上安装 node.js、 Git、 Hexo</p>
-<blockquote>
-<p>Windows &amp; Linux 搜索对应平台软件安装即可</p>
-</blockquote>
-<ul>
-<li><p><strong>安装 Git</strong><br>在 Terminal.app(终端) 中输入:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
-<p>按照提示完成安装, 最后在 Terminal 中输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git -v</span><br></pre></td></tr></table></figure>
-<p>如下显示, 表示 Git 安装成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git version 2.11.0 (Apple Git-81)</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>安装 Node.js 和 Npm</strong><br>Node.js 安装在 MacOS 中需要用到 Homebrew 进行安装管理</p>
-<blockquote>
-<p>Homebrew 在 MacOS 里类似于 CentOS 的 yum</p>
-</blockquote>
-<p>在 Terminal 输入:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;bin&#x2F;ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install)&quot;</span><br></pre></td></tr></table></figure>
-<p>使用 Homebrew 安装 Node.js</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure>
-<p>  在 Terminal 中键入类似的命令, 如下显示, 表示 Node 和 Npm 安装成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">v7.10.0</span><br><span class="line">npm -v</span><br><span class="line">4.2.0</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p><strong>安装 Hexo 及相关插件</strong><br>全局安装 hexo-cli 和 hexo-server</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli hexo-server hexo-deployer-git -g</span><br></pre></td></tr></table></figure>
-<p>安装完成后, 在本地初始化博客站点搭建</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init ~&#x2F;myBlog</span><br><span class="line"></span><br><span class="line"># ~&#x2F;myBlog 即本地存放路径</span><br></pre></td></tr></table></figure>
-<p>完成安装, 便可以在本地路径查看项目</p>
-</li>
-<li><p><strong>本地 Hexo 配置</strong><br>进入~/myBlog 目录, 修改 Hexo 博客站点配置文件 <em>_config.yml</em>，如下修改:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">title: 程序员小明     &#x2F;&#x2F;页面标题</span><br><span class="line">subtitle: 一个不加班的程序员     &#x2F;&#x2F;小标题</span><br><span class="line">description: 不忘初心，牢记使命     &#x2F;&#x2F;描述</span><br><span class="line">author: 小明       &#x2F;&#x2F;作者</span><br><span class="line">language: zh-CN     &#x2F;&#x2F;语言</span><br><span class="line">timezone:       &#x2F;&#x2F;时区，可以为空</span><br><span class="line"></span><br><span class="line"># URL</span><br><span class="line">### If your site is put in a subdirectory, set url as &#39;http:&#x2F;&#x2F;yoursite.com&#x2F;child&#39; and root as &#39;&#x2F;child&#x2F;&#39;</span><br><span class="line">url: http:&#x2F;&#x2F;www.mynamecoder.com      &#x2F;&#x2F;个人域名</span><br><span class="line"></span><br><span class="line">......</span><br><span class="line"># 一个是服务器</span><br><span class="line">deploy:</span><br><span class="line">  - type: git</span><br><span class="line">    repo: root@94.191.25.157:&#x2F;root&#x2F;hexo.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
-<h3 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h3></li>
-</ul>
-<p>将本地部署到服务器</p>
-<ul>
-<li><p>清除缓存</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure></li>
-<li><p>生成静态页面:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure></li>
-<li><p>将本地静态页面目录部署到云服务器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-<p>完成 Hexo 个人博客网站搭建, 通过服务器 IP 或者域名即可访问</p>
-</li>
-</ul>
-<h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p>以上就是我个人采用Hexo+云服务器搭建个人博客的全部流程，较为完整地介绍了 Hexo 博客的安装及简单配置，服务端如何配置通过 Git 部署 Nginx 及 Linux 简单应用。<br>在云服务器上创建私有 Git 仓库, 通过 Git 钩子，将 Hexo 生成的博客静态页面文件，推送到 Nginx 服务的托管目录, 完成部署。</p>
-<p>如有疑问, 可留言或者搜索引擎解决哈。</p>
-<h3 id="购买服务器邀请链接"><a href="#购买服务器邀请链接" class="headerlink" title="购买服务器邀请链接"></a>购买服务器邀请链接</h3><p>【新用户限量秒杀】热门云产品限量秒杀，云服务器1核1G 首年99元<br><a target="_blank" rel="noopener" href="http://1t.click/a75v">http://1t.click/a75v</a></p>
-<h3 id="欢迎关注微信公众号，获取更多资源"><a href="#欢迎关注微信公众号，获取更多资源" class="headerlink" title="欢迎关注微信公众号，获取更多资源"></a>欢迎关注微信公众号，获取更多资源</h3><p><img src="https://i.ibb.co/rMxVLpD/qrcode-for-gh-912975c21d10-344.jpg" alt="程序员小明"></p>
-
-        
-      </div>
-    </div>
-
-    
-
-  </div>
-
-  <footer class="article-footer">
-    <div class="article-more-info">
-      <div class="article-date">
-  <time datetime="2019-10-12T07:45:12.000Z" itemprop="datePublished">2019-10-12</time>
-</div>
-      
-        <div class="article-category">
-          <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
-        </div>
-      
-      
-        <div class="article-tag">
-          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
-        </div>
-      
-    </div>
-  </footer>
-
-</article>
-
-    
-  
-    
-      <article
-  id="post-hexo搭建自己的博客"
-  class="article article-type-post"
->
-
-  
-
-  <div class="article-inner">
-    
-      <div class="article-feature">
-          <a href="/p/2969.html">
-            <img
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E"
-              data-src="/gallery/path-4518094_640.jpg"
-              alt="item.title"
-              class="lazy"
-            />
-          </a>
-      </div>
-    
-
-    <div class="article-body">
-      <header class="article-title">
-        <a href="/p/2969.html">hexo+git搭建自己的博客</a>
-      </header>
-      <div class="article-entry post-inner-html">
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>喜欢写 Blog 的人，会经历三个阶段。</p>
-<p>第一阶段，刚接触 Blog，觉得很新鲜，试着选择一个免费空间来写。<br>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。<br>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
-</blockquote>
-<p>这是阮一峰在博客中写到的关于 Blog 的想法，而这里的第三阶段的实现就是利用 GitHub Pages 搭建博客。</p>
-<p>使用 GitHub Pages 功能搭建博客的好处有：</p>
-<ul>
-<li>免费，GitHub 提供无限流量。</li>
-<li>都是静态文件，世界各地都有理想的访问速度。(访问速度可以进一步优化)</li>
-<li>拥有绝对的管理权，又享受 Git 的版本管理功能，不用担心文章遗失。</li>
-</ul>
-<p>Hexo 是基于 Node.js 的一款静态博客框架，如果想要搭建博客，不想自己写页面的话可以考虑用 Hexo，其中有很多的简洁主题可供选择，同时 Hexo 支持 Markdown 语法，编辑文章更加方便，快捷。</p>
-<p><strong>注：此篇分享还以 Mac 为例哈</strong></p>
-<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo 文档</a>有对 Hexo 安装及使用的详细介绍，推荐阅读。这里我主要写自己安装的步骤、踩过的坑以及一些优化的方法。</p>
-<p>在正式安装 Hexo 之前，我们需要确认电脑中是否已安装下列应用程序:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://nodejs.org/en/">Node.js</a></li>
-<li><a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a></li>
-</ul>
-<p>当然，我们还需要 GitHub 账号，如果没有请<a target="_blank" rel="noopener" href="https://github.com/">注册</a>。<br>注册之后记得一定要前往邮箱确认注册，否则无法使用 GitHub Pages。</p>
-<h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。终端输入如下命令:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>输入管理员密码( Mac 登录密码)即开始安装。</p>
-<blockquote>
-<p>这里有个小坑：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo 官网</a>上的安装命令是<code>npm install -g hexo-cli</code>，安装时不要忘记前面加上<code>sudo</code>，否则会因为权限问题报错。</p>
-</blockquote>
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>使用终端<code>cd</code>到一个您指定的目录，执行以下命令(命令中的<code>blog</code>是您将要建立的文件夹的名称)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
-<p>使用终端<code>cd</code>到<code>blog</code>文件夹下，执行以下命令，安装npm：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>好了，现在可以试试看是否已经初始化成功，执行如下命令，开启本地 Hexo 服务器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>此时，浏览器中打开网址(默认是4000端口) <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> ，能看到如下页面：</p>
-<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/1f1940bfde096eddda51c3856fde79e2ba5068be/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30352f353964356337386634616161652e706e67"><img src="https://camo.githubusercontent.com/1f1940bfde096eddda51c3856fde79e2ba5068be/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30352f353964356337386634616161652e706e67" alt="Hexo 本地"></a></p>
-<p>这里我踩了个不算坑的坑，终端输入<code>hexo s</code>后没有成功，我也在网上搜到了很多解决办法，但是都没有奏效，后来我尝试改了下端口就成功了，也就是说默认的4000端口无法连接。如果您的情况跟我一样，尝试了网上的很多解决办法之后依然无效，那您也许可以尝试输入命令<code>hexo s -p 5000</code>改一下端口试试看。</p>
-<h2 id="关联-GitHub"><a href="#关联-GitHub" class="headerlink" title="关联 GitHub"></a>关联 GitHub</h2><h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><ol>
-<li>登录您的 GitHub 账号，新建名称为<code>您的用户名.github.io</code>的仓库。假设我的 GitHub 账号的用户名是 <code>luxun</code>，那么我就应该新建名称为<code>luxun.github.io</code>的仓库。</li>
-<li><code>Description</code>可写可不写，随意。</li>
-<li>勾上<code>Initialize this repository with a README</code>。</li>
-<li>点击<code>Create Repository</code>完成创建。</li>
-</ol>
-<h3 id="开启-GitHub-Pages"><a href="#开启-GitHub-Pages" class="headerlink" title="开启 GitHub Pages"></a>开启 GitHub Pages</h3><p>点击<code>Settings</code>，你将会打开这个库的 Settings 页面，向下拖动，直到看见 GitHub Pages，如图：</p>
-<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/bf5629a7167f6a0f931edd10a231e1520793e202/68747470733a2f2f6f6f6f2e306f302e6f6f6f2f323031372f31302f30362f353964366531306239636235662e706e67"><img src="https://camo.githubusercontent.com/bf5629a7167f6a0f931edd10a231e1520793e202/68747470733a2f2f6f6f6f2e306f302e6f6f6f2f323031372f31302f30362f353964366531306239636235662e706e67" alt="gh-p"></a></p>
-<h3 id="修改全局配置文件"><a href="#修改全局配置文件" class="headerlink" title="修改全局配置文件"></a>修改全局配置文件</h3><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration.html">Hexo 官方文档</a>中有对全局配置的详细说明，推荐阅读。</p>
-<blockquote>
-<p>小坑提醒，修改本地所有的配置文件时，注意所有的冒号<code>:</code>后边都要加一个空格，否则执行 Hexo 命令时会报错，一定注意。</p>
-</blockquote>
-<p>找到本地<code>blog</code>文件夹下<code>_config.yml</code>，打开后滑到最后，修改成下边的样子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https:&#x2F;&#x2F;github.com&#x2F;xxx&#x2F;xxx.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<p>您需要将<code>repository</code>后的所有<code>xxx</code>换成你自己的用户名，或者也可以在下图位置获取：</p>
-<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/6d9ac169f0d7ce162c61926fbc7438be266647c3/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30362f353964373166333333313334332e706e67"><img src="https://camo.githubusercontent.com/6d9ac169f0d7ce162c61926fbc7438be266647c3/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30362f353964373166333333313334332e706e67" alt="https 地址"></a></p>
-<p>然后，您需要为自己配置身份信息，终端输入<code>yourname</code>和<code>youremail</code>换成您自己的 GitHub 用户名和邮箱)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;yourname&quot;</span><br><span class="line">git config --global user.email &quot;youremail&quot;</span><br></pre></td></tr></table></figure>
-<p>终端<code>cd</code>到<code>blog</code>文件夹下执行生成静态页面命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-<p>此时若出现如下报错：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR Local hexo not found in ~&#x2F;blog</span><br><span class="line">ERROR Try runing: &#39;npm install hexo --save&#39;</span><br></pre></td></tr></table></figure>
-<p>尝试执行命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo --save</span><br></pre></td></tr></table></figure>
-<p>若无报错，自行忽略此步骤。</p>
-<p>然后在当前目录下，终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>这里踩了个坑，如果您执行命令<code>hexo d</code>仍然报错：无法连接 git 或找不到 git，则执行如下命令来安装<code>hexo-deployer-git</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>完成安装之后，再次执行<code>hexo g</code>和<code>hexo d</code>命令。</p>
-<p>随后按照提示，分别输入自己的 GitHub 用户名和密码，开始上传。</p>
-<p>完成上传之后，通过<code>http://xxx.github.io/</code> (<code>xxx</code>换成您自己的仓库名，也就是用户名)来访问自己刚刚上传的网站。</p>
-<ul>
-<li>为避免每次输入 GitHub 用户名和密码的麻烦，可参照后文 <strong>优化(个性化设置)</strong> <code>添加ssh key 到 GitHub</code>进行优化</li>
-</ul>
-<h2 id="常用指令和发布文章"><a href="#常用指令和发布文章" class="headerlink" title="常用指令和发布文章"></a>常用指令和发布文章</h2><ul>
-<li>常用指令</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;postName&quot;        &#x2F;&#x2F;新建文章</span><br><span class="line">hexo new page &quot;pageName&quot;        &#x2F;&#x2F;新建页面</span><br><span class="line">hexo g          &#x2F;&#x2F;生成静态页面至public目录</span><br><span class="line">hexo server         &#x2F;&#x2F;开启预览访问端口（默认端口4000，&#39;ctrl + c&#39;关闭server）</span><br><span class="line">hexo deploy         &#x2F;&#x2F;将.deploy目录部署到GitHub</span><br></pre></td></tr></table></figure>
-<ul>
-<li>常用组合</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br><span class="line">hexo d -g #生成部署</span><br><span class="line">hexo s -g #生成预览</span><br></pre></td></tr></table></figure>
-<ul>
-<li>发布文章</li>
-</ul>
-<p>终端<code>cd</code>到<code>blog</code>文件夹下，执行如下命令新建文章：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;xxx&quot;</span><br></pre></td></tr></table></figure>
-<p>名为<code>xxx.md</code>的文件会建在目录<code>.../blog/source/_posts</code>下。</p>
-<p>所有的文章都会以<code>md</code>形式保存在<code>_post</code>文件夹中，只要在<code>_post</code>文件夹中新建<code>md</code>类型的文档，就能在执行<code>hexo g</code>的时候被渲染。新建的文章头需要添加一些信息，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: xxx    &#x2F;&#x2F;在此处添加你的标题。</span><br><span class="line">date: 2016-10-07 13:38:49   &#x2F;&#x2F;在此处输入编辑这篇文章的时间。</span><br><span class="line">tags: xxx    &#x2F;&#x2F;在此处输入这篇文章的标签。</span><br><span class="line">categories: xxx    &#x2F;&#x2F;在此处输入这篇文章的分类。</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p>文章编辑完成后，终端<code>cd</code>到<code>blog</code>文件夹下，依次执行如下命令来发布：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>至此，Mac 上搭建基于 GitHub Pages + Hexo 的博客就完成了。</p>
-<p>下面的内容是介绍安装 Themes 、个性化设置以及优化。</p>
-<h2 id="设置-Themes"><a href="#设置-Themes" class="headerlink" title="设置 Themes"></a>设置 Themes</h2><p>如果您喜欢 Hexo 默认的主题的话，可以跳过这部分。如果您想换一个主题的话，可以到<a target="_blank" rel="noopener" href="https://hexo.io/themes/">Hexo 主题</a>挑选自己中意的主题。</p>
-<p>这里以<a target="_blank" rel="noopener" href="https://github.com/iissnan/hexo-theme-next">nexT 主题</a>为例。</p>
-<p>终端<code>cd</code>到<code>blog</code>目录下执行如下命令(这是目前的稳定版本，不是最新版。最新版有一些新特性，但是可能会不稳定，所以这里推荐选择安装稳定版)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone --branch v5.1.2 https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure>
-<p>如果想尝试最新版，请执行如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure>
-<p>打开<code>blog</code>目录下的<code>_config.yml</code>，找到<code>theme: landscape</code>修改为<code>theme: next</code>。</p>
-<p>终端<code>cd</code>到<code>blog</code>目录下，依次执行如下命令(每次部署文章的步骤)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>至于更改博客的名称、描述、头像等，只需要修改<code>blog/_config.yml</code>文件和<code>blog/themes/next/_config.yml</code>文件中对应的属性名称即可(不要忘记冒号<code>:</code>后加空格)。</p>
-<ul>
-<li>更多设置<a target="_blank" rel="noopener" href="http://theme-next.iissnan.com/">NexT 使用文档</a>里有极详细的介绍，推荐阅读。</li>
-</ul>
-<h2 id="个性化设置"><a href="#个性化设置" class="headerlink" title="个性化设置"></a>个性化设置</h2><ul>
-<li><strong>首先参照NexT 官方文档进行个性化设置，之后再看下文。</strong></li>
-</ul>
-<h3 id="为博客加上-GitHub-丝带"><a href="#为博客加上-GitHub-丝带" class="headerlink" title="为博客加上 GitHub 丝带"></a>为博客加上 GitHub 丝带</h3><p>这里以 Next 主题为例(其他主题也差不多)，添加 GitHub 丝带：在<code>blog\themes\next\layout\_layout.swig</code>中加入<a target="_blank" rel="noopener" href="https://github.com/blog/273-github-ribbons">相关代码</a>，记得修改自己的链接。</p>
-<h3 id="添加-README-md"><a href="#添加-README-md" class="headerlink" title="添加 README.md"></a>添加 README.md</h3><p>每个项目仓库下一般都有一个 <code>README.md</code> 文件，但是使用 hexo 部署到仓库后，项目仓库中是没有 <code>README.md</code> 文件的。</p>
-<p>在 <code>blog</code> 目录下的 <code>source</code> 目录下添加一个 <code>README.md</code> 文件，修改站点配置文件 <code>_config.yml</code>，将 <code>skip_render</code> 参数的值设置为 <code>README.md</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">skip_render: README.md</span><br></pre></td></tr></table></figure>
-<p>保存退出即可。</p>
-<h3 id="为博客添加-LICENSE"><a href="#为博客添加-LICENSE" class="headerlink" title="为博客添加 LICENSE"></a>为博客添加 LICENSE</h3><p>在主题配置文件中添加下面这段代码(添加之前先看看您的主题配置文件是否已经包含这段代码，已经包含就不用添加了，因为重复会报错)，LICENSE 会显示在侧边栏。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Creative Commons 4.0 International License.</span><br><span class="line"># http:&#x2F;&#x2F;creativecommons.org&#x2F;</span><br><span class="line"># Available: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero</span><br><span class="line">creative_commons: by-nc-sa</span><br><span class="line">#creative_commons:</span><br></pre></td></tr></table></figure>
-<h3 id="修改文章底部的带-号的标签"><a href="#修改文章底部的带-号的标签" class="headerlink" title="修改文章底部的带 # 号的标签"></a>修改文章底部的带 <code>#</code> 号的标签</h3><p>如果您觉得<code>#</code>不好看，想改成图标，那么请按照下面修改。<br>打开<code>/themes/next/layout/_macro/post.swig</code>，搜索(组合键<code>command</code>+<code>f</code>)<code>rel=&quot;tag&quot;&gt;#</code>，将<code>#</code>换成<code>&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;</code>。</p>
-<h3 id="将阅读量改为热度"><a href="#将阅读量改为热度" class="headerlink" title="将阅读量改为热度"></a>将阅读量改为热度</h3><p>很多人将文章标题下的 <strong>阅读次数</strong> 改为了 <strong>热度</strong>，如果您喜欢的话可以这样修改。</p>
-<p>打开<code>blog/themes/next/languages/zh-Hans</code>文件，查找<code>阅读次数</code>这几个字，可以看到，在<code>post</code>中的<code>visitors</code>被定义为<code>阅读次数</code>，把这里的<code>阅读次数</code>改为<code>热度</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">visitors: 热度</span><br></pre></td></tr></table></figure>
-<p>那么怎么在页面中显示呢？打开Next主题文件夹中<code>blog/themes/next/layout/_macro/post.swig</code>，在这个文件里加上摄氏度的标志，在<code>&lt;span class=&quot;leancloud-visitors-count&quot;&gt;&lt;/span&gt;</code>下面增加一行<code>&lt;span&gt;℃&lt;/span&gt;</code>即可：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;span class&#x3D;&quot;leancloud-visitors-count&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">&lt;span&gt;℃&lt;&#x2F;span&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="博文置顶"><a href="#博文置顶" class="headerlink" title="博文置顶"></a>博文置顶</h3><ul>
-<li>修改 hexo-generator-index 插件</li>
-</ul>
-<p>替换文件<code>blog/node_modules/hexo-generator-index/lib/generator.js</code> 内的代码为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#39;use strict&#39;;</span><br><span class="line">var pagination &#x3D; require(&#39;hexo-pagination&#39;);</span><br><span class="line">module.exports &#x3D; function(locals)&#123;</span><br><span class="line">  var config &#x3D; this.config;</span><br><span class="line">  var posts &#x3D; locals.posts;</span><br><span class="line">    posts.data &#x3D; posts.data.sort(function(a, b) &#123;</span><br><span class="line">        if(a.top &amp;&amp; b.top) &#123; &#x2F;&#x2F; 两篇文章top都有定义</span><br><span class="line">            if(a.top &#x3D;&#x3D; b.top) return b.date - a.date; &#x2F;&#x2F; 若top值一样则按照文章日期降序排</span><br><span class="line">            else return b.top - a.top; &#x2F;&#x2F; 否则按照top值降序排</span><br><span class="line">        &#125;</span><br><span class="line">        else if(a.top &amp;&amp; !b.top) &#123; &#x2F;&#x2F; 以下是只有一篇文章top有定义，那么将有top的排在前面（这里用异或操作居然不行233）</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(!a.top &amp;&amp; b.top) &#123;</span><br><span class="line">            return 1;</span><br><span class="line">        &#125;</span><br><span class="line">        else return b.date - a.date; &#x2F;&#x2F; 都没定义按照文章日期降序排</span><br><span class="line">    &#125;);</span><br><span class="line">  var paginationDir &#x3D; config.pagination_dir || &#39;page&#39;;</span><br><span class="line">  return pagination(&#39;&#39;, posts, &#123;</span><br><span class="line">    perPage: config.index_generator.per_page,</span><br><span class="line">    layout: [&#39;index&#39;, &#39;archive&#39;],</span><br><span class="line">    format: paginationDir + &#39;&#x2F;%d&#x2F;&#39;,</span><br><span class="line">    data: &#123;</span><br><span class="line">      __index: true</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>设置文章置顶</li>
-</ul>
-<p>在文章 Front-matter 中添加 top 值，数值越大文章越靠前，如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: xxx</span><br><span class="line">date: 2015-04-02 14:36:04</span><br><span class="line">categories: xxx</span><br><span class="line">tags: xxx</span><br><span class="line">top: 10</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<h3 id="NexT-首页文章-加载更多-设置"><a href="#NexT-首页文章-加载更多-设置" class="headerlink" title="NexT 首页文章 加载更多 设置"></a>NexT 首页文章 加载更多 设置</h3><p>这里只说一个方法：编辑文章时，在您希望显示 <code>加载更多</code> 按钮的地方，加上<code>&lt;!--more--&gt;</code>：</p>
-<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/a4a9629c1d7a4d8fe4a869a4656c208b9dc955a3/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30392f353964616366616432333134632e706e67"><img src="https://camo.githubusercontent.com/a4a9629c1d7a4d8fe4a869a4656c208b9dc955a3/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30392f353964616366616432333134632e706e67" alt="more"></a></p>
-<h3 id="首页分割线"><a href="#首页分割线" class="headerlink" title="首页分割线"></a>首页分割线</h3><p>  在 <code>\themes\next\source\css\_custom\custom.styl</code> 文件中添加以下代码，可以修改博客首页中每篇文章的分割线样式，<code>width</code>是长度，<code>height</code>是宽度。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;index页面中每篇文章相隔的那条线</span><br><span class="line">.posts-expand &#123;</span><br><span class="line">  .post-eof &#123;</span><br><span class="line">    display: block;</span><br><span class="line">    margin: $post-eof-margin-top auto $post-eof-margin-bottom;</span><br><span class="line">    width: 100%;</span><br><span class="line">    height: 3px;</span><br><span class="line">    background: $grey-light;</span><br><span class="line">    text-align: center;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="小图标设置"><a href="#小图标设置" class="headerlink" title="小图标设置"></a>小图标设置</h3><p>博客中一切小图标都可以在<a target="_blank" rel="noopener" href="http://fontawesome.io/icons/">fontawesome 图标库</a>自行搜索(qq、微博、微信等图标是有的，但知乎、豆瓣等图标目前还没有)。</p>
-<ul>
-<li>修改网页底部的桃心图标<br>打开<code>blog/themes/next/layout/_partials/footer.swig</code>，找到这段代码进行修改(还是在<a target="_blank" rel="noopener" href="http://fontawesome.io/icons/">fontawesome 图标库</a>找自己喜欢的图标)：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;span class&#x3D;&quot;with-love&quot;&gt;</span><br><span class="line">  &lt;i class&#x3D;&quot;fa fa-share-alt&quot;&gt;&lt;&#x2F;i&gt;</span><br><span class="line">&lt;&#x2F;span&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="设置网站的图标Favicon"><a href="#设置网站的图标Favicon" class="headerlink" title="设置网站的图标Favicon"></a>设置网站的图标Favicon</h3><p>准备一张 icon 图标文件，放在 source 目录下就可以了，在<code>主题配置文件</code>中找到 favicon 的设置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Put your favicon.ico into &#96;hexo-site&#x2F;source&#x2F;&#96; directory.</span><br><span class="line">favicon: &#x2F;favicon.ico</span><br></pre></td></tr></table></figure>
-<h3 id="主页文章添加阴影效果"><a href="#主页文章添加阴影效果" class="headerlink" title="主页文章添加阴影效果"></a>主页文章添加阴影效果</h3><p>具体实现方法</p>
-<p>打开<code>blog\themes\next\source\css\_custom\custom.styl</code>文件，添加以下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;主页文章添加阴影效果</span><br><span class="line"> .post &#123;</span><br><span class="line">   margin-top: 60px;</span><br><span class="line">   margin-bottom: 60px;</span><br><span class="line">   padding: 25px;</span><br><span class="line">   -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);</span><br><span class="line">   -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="隐藏网页底部-powered-By-Hexo-强力驱动"><a href="#隐藏网页底部-powered-By-Hexo-强力驱动" class="headerlink" title="隐藏网页底部 powered By Hexo / 强力驱动"></a>隐藏网页底部 powered By Hexo / 强力驱动</h3><p>打开<code>blog/themes/next/layout/_partials/footer.swig</code>，使用<code>&lt;!--</code> <code>--&gt;</code>隐藏符号之间的代码即可，或者直接将这段代码删除。位置如图：</p>
-<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/ccd1f539b033ed7f11d9f8ae7f5f052b9a79944e/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30382f353964396236313963646232372e706e67"><img src="https://camo.githubusercontent.com/ccd1f539b033ed7f11d9f8ae7f5f052b9a79944e/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30382f353964396236313963646232372e706e67" alt="隐藏底部 Hexo"></a></p>
-<h3 id="添加-SSH-key-到-GitHub"><a href="#添加-SSH-key-到-GitHub" class="headerlink" title="添加 SSH key 到 GitHub"></a>添加 SSH key 到 GitHub</h3><ul>
-<li>检查 SSH keys 是否已经存在</li>
-</ul>
-<p>终端执行如下命令，检查SSH keys是否存在。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls ~&#x2F;.ssh</span><br></pre></td></tr></table></figure>
-<p>如果显示如下信息(下面是我个人的显示，也许您跟我显示的不一样，但重点是只要有<code>id_rsa</code>和<code>id_rsa.pub</code>)，就说明 SSH keys 已经存在了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id_rsa	   id_rsa.pub	  known_hosts</span><br></pre></td></tr></table></figure>
-<p>如果存在，则直接跳过下一个步骤进入<code>将 SSH key 添加到 GitHub 中</code>，否则请继续下一步骤 <code>生成新的 SSH key</code>。</p>
-<ul>
-<li>生成新的 SSH key</li>
-</ul>
-<p>终端执行如下命令生成新的 SSH key，注意将<code>your_email@example.com</code>换成你自己注册 GitHub 的邮箱地址。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</span><br></pre></td></tr></table></figure>
-<p>默认会在相应路径<code>~/.ssh</code>下生成<code>id_rsa</code>和<code>id_rsa.pub</code>两个文件。</p>
-<p>1.3.将 SSH key 添加到 GitHub 中</p>
-<p>终端依次输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;.ssh</span><br><span class="line">cat id_rsa.pub</span><br></pre></td></tr></table></figure>
-<p>复制所有显示的内容</p>
-<p>进入GitHub –&gt; Settings –&gt; SSH and GPG keys –&gt; NEW SSH key，如下图所示：</p>
-<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/74765507927a29b4bef4b04a5c0dc470e4a62a5d/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30372f353964383466663639656337332e706e67"><img src="https://camo.githubusercontent.com/74765507927a29b4bef4b04a5c0dc470e4a62a5d/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30372f353964383466663639656337332e706e67" alt="settings"></a></p>
-<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/4aac3af0611d3b11a554f9d8b297826d8d73733c/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30372f353964383466663830393662372e706e67"><img src="https://camo.githubusercontent.com/4aac3af0611d3b11a554f9d8b297826d8d73733c/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30372f353964383466663830393662372e706e67" alt="ssh_key"></a></p>
-<p>Title 里任意添一个标题，将复制的内容粘贴到 Key 里，点击下方 Add SSH key 绿色按钮即可，如下图所示：</p>
-<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/d7f739371b722e2a5e69a4b10c536c866bc32a64/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30372f353964383532306339666362632e706e67"><img src="https://camo.githubusercontent.com/d7f739371b722e2a5e69a4b10c536c866bc32a64/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30372f353964383532306339666362632e706e67" alt="add_ssh_key"></a></p>
-<h3 id="绑定独立域名"><a href="#绑定独立域名" class="headerlink" title="绑定独立域名"></a>绑定独立域名</h3><ul>
-<li>首先，需要注册一个域名。可以选择<a target="_blank" rel="noopener" href="https://www.godaddy.com/">GoDaddy</a>或<a target="_blank" rel="noopener" href="https://wanwang.aliyun.com/">万网</a>中的任意一家。</li>
-<li>然后，我们需要配置一下域名解析。推荐使用<a target="_blank" rel="noopener" href="https://www.dnspod.cn/">DNSPod</a>的服务，免费稳定，解析速度也比较快。在域名注册商处(Godaddy 或万网)修改 NS 服务器地址为：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f1g1ns1.dnspod.net</span><br><span class="line">f1g1ns2.dnspod.net</span><br></pre></td></tr></table></figure>
-<p>域名解析详细的步骤这里我就不写了，给个图：</p>
-<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/ad380b4619e75b1267229118fb8cfc39c2aca851/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30382f353964613363333663663433362e706e67"><img src="https://camo.githubusercontent.com/ad380b4619e75b1267229118fb8cfc39c2aca851/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30382f353964613363333663663433362e706e67" alt="dnspod"></a></p>
-<p>图中设置国内国外的原因是想让博客加载速度更快，方法请阅读后文 <strong>将个人博客同时部署到 GitHub 和 Coding</strong>。</p>
-<ul>
-<li>如果将域名指向另一个域名，实现与被指向域名相同的访问效果，需要增加 CNAME 记录。</li>
-</ul>
-<p>进入 <code>blog/source</code> 目录下，添加并打开 <code>CNAME</code> 文件，输入您的域名，重新上传您的博客。</p>
-<p>在 GitHub 中打开您自己的博客仓库，进入库的 Settings 界面，如果看到了如下提示，说明配置成功了。</p>
-<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/6431246933090b54e265ac2ea1cc8c19ceefa85b/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30382f353964613432336336353138392e706e67"><img src="https://camo.githubusercontent.com/6431246933090b54e265ac2ea1cc8c19ceefa85b/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30382f353964613432336336353138392e706e67" alt="CNAME"></a></p>
-<p>在这一系列的操作中，修改 NS 服务器、设置解析等等，都需要一定的时间。短则10分钟，长则24小时，最长不会超过72小时。如果超过72小时，请检查自己的配置过程，或者修改自己本地的 DNS 服务器。</p>
-<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><h3 id="将个人博客同时部署到-GitHub-和-Coding"><a href="#将个人博客同时部署到-GitHub-和-Coding" class="headerlink" title="将个人博客同时部署到 GitHub 和 Coding"></a>将个人博客同时部署到 GitHub 和 Coding</h3><p><a target="_blank" rel="noopener" href="https://coding.net/">Coding</a> 可以理解为国内的 GitHub。通过将博客同时部署到 GitHub 和 Coding，可以提升博客的加载速度。</p>
-<p>这里有个提醒，Coding 会强制用户在网站上挂推广图标，通过 Coding 加载博客还会有5s广告，如果觉得这样不好，可以选择放弃部署在 Coding 上。还有一个选择，就是花钱成为 Coding 的会员，这样上述的问题就都没有了。</p>
-<ul>
-<li>首先到<a target="_blank" rel="noopener" href="https://coding.net/">Coding</a>注册。创建仓库跟 GitHub 上创建仓库的要求一样。</li>
-<li>打开本地 <code>blog</code> 目录下的 <code>_config.yml</code> 文件，滑到最下面，修改如下(xxx换成自己的用户名)：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository:</span><br><span class="line">    github: https:&#x2F;&#x2F;github.com&#x2F;xxx&#x2F;xxx.github.io.git</span><br><span class="line">    coding: https:&#x2F;&#x2F;git.coding.net&#x2F;xxx&#x2F;xxx.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<ul>
-<li>然后执行命令<code>hexo clean</code> <code>hexo g</code> <code>hexo d</code></li>
-<li>个人域名添加两条 CNAME 解析。将 GitHub 的地址 解析为 <code>国外</code> ，将 Coding 的地址 解析为 <code>国内</code> ：</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/ad380b4619e75b1267229118fb8cfc39c2aca851/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30382f353964613363333663663433362e706e67"><img src="https://camo.githubusercontent.com/ad380b4619e75b1267229118fb8cfc39c2aca851/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30382f353964613363333663663433362e706e67" alt="dnspod"></a></p>
-<ul>
-<li>如果您有个人域名的话，到 Coding 博客仓库的 <code>Pages 服务</code> 界面，添加域名绑定，输入个人域名就 OK 了，可能需要耐心等待几分钟。</li>
-</ul>
-<p>这样就可以实现从国内访问就通过 Coding 加载博客项目，从国外访问就通过 GitHub 加载博客项目，从而提升加载博客的速度。</p>
-<h3 id="压缩代码"><a href="#压缩代码" class="headerlink" title="压缩代码"></a>压缩代码</h3><p>压缩代码也是一个优化加载速度的方法。</p>
-<p>目前知道的有两个插件可以压缩博文，hexo-all-minifier 插件和 gulp 插件。hexo-all-minifier 使用比较简单，也可以压缩图片，不过对文章缩进不支持。如果您对文章缩进有要求，可以暂时使用 gulp 压缩手段。</p>
-<ul>
-<li>hexo-all-minifier 使用方法</li>
-</ul>
-<p>安装 hexo-all-minifier，在站点的根目录下执行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-all-minifier --save</span><br></pre></td></tr></table></figure>
-<p><code>hexo g</code>编译的时候就会自动压缩 HTML、JS、图片。详情参考插件介绍 <a target="_blank" rel="noopener" href="https://github.com/chenzhutian/hexo-all-minifier">hexo-all-minifier</a>。</p>
-<ul>
-<li>glup 使用方法</li>
-</ul>
-<p>Hexo 依赖 gulp 插件安装，在站点的根目录下执行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install gulp -g</span><br><span class="line">npm install gulp-minify-css gulp-uglify gulp-htmlmin gulp-htmlclean gulp --save</span><br></pre></td></tr></table></figure>
-<p>在<code>blog</code>目录下，新建 <code>gulpfile.js</code> 并填入以下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">var gulp &#x3D; require(&#39;gulp&#39;);</span><br><span class="line">var minifycss &#x3D; require(&#39;gulp-minify-css&#39;);</span><br><span class="line">var uglify &#x3D; require(&#39;gulp-uglify&#39;);</span><br><span class="line">var htmlmin &#x3D; require(&#39;gulp-htmlmin&#39;);</span><br><span class="line">var htmlclean &#x3D; require(&#39;gulp-htmlclean&#39;);</span><br><span class="line">&#x2F;&#x2F; 压缩 public 目录 css</span><br><span class="line">gulp.task(&#39;minify-css&#39;, function() &#123;</span><br><span class="line">    return gulp.src(&#39;.&#x2F;public&#x2F;**&#x2F;*.css&#39;)</span><br><span class="line">        .pipe(minifycss())</span><br><span class="line">        .pipe(gulp.dest(&#39;.&#x2F;public&#39;));</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F; 压缩 public 目录 html</span><br><span class="line">gulp.task(&#39;minify-html&#39;, function() &#123;</span><br><span class="line">  return gulp.src(&#39;.&#x2F;public&#x2F;**&#x2F;*.html&#39;)</span><br><span class="line">    .pipe(htmlclean())</span><br><span class="line">    .pipe(htmlmin(&#123;</span><br><span class="line">         removeComments: true,</span><br><span class="line">         minifyJS: true,</span><br><span class="line">         minifyCSS: true,</span><br><span class="line">         minifyURLs: true,</span><br><span class="line">    &#125;))</span><br><span class="line">    .pipe(gulp.dest(&#39;.&#x2F;public&#39;))</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F; 压缩 public&#x2F;js 目录 js</span><br><span class="line">gulp.task(&#39;minify-js&#39;, function() &#123;</span><br><span class="line">    return gulp.src(&#39;.&#x2F;public&#x2F;**&#x2F;*.js&#39;)</span><br><span class="line">        .pipe(uglify())</span><br><span class="line">        .pipe(gulp.dest(&#39;.&#x2F;public&#39;));</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F; 执行 gulp 命令时执行的任务</span><br><span class="line">gulp.task(&#39;default&#39;, [</span><br><span class="line">    &#39;minify-html&#39;,&#39;minify-css&#39;,&#39;minify-js&#39;</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
-<p>生成博文时执行 <code>hexo g &amp;&amp; gulp</code> 就会根据 <code>gulpfile.js</code> 中的配置，对 public 目录中的静态资源文件进行压缩。</p>
-<h2 id="SEO-搜索引擎优化"><a href="#SEO-搜索引擎优化" class="headerlink" title="SEO(搜索引擎优化)"></a>SEO(搜索引擎优化)</h2><h3 id="网站验证"><a href="#网站验证" class="headerlink" title="网站验证"></a>网站验证</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://accounts.google.com/signin/v2/sl/pwd?service=sitemaps&passive=1209600&continue=https://www.google.com/webmasters/verification/home?hl=zh-CN&followup=https://www.google.com/webmasters/verification/home?hl=zh-CN&hl=zh-CN&flowName=GlifWebSignIn&flowEntry=ServiceLogin">Google 提交入口</a></li>
-<li><a target="_blank" rel="noopener" href="http://zhanzhang.baidu.com/dashboard/index">百度提交入口</a></li>
-</ul>
-<p>验证方式有几种，推荐最简单的两种：文件验证和 CNAME 验证。</p>
-<ul>
-<li>文件验证</li>
-</ul>
-<ol>
-<li>登录百度站长选择添加网站，使用方式为文件验证</li>
-<li>将下载的文件放到<code>source</code>文件下</li>
-<li>由于 hexo 自动会对 html 文件进行渲染，所以在<code>站点配置文件</code>中找到<code>skip_render:</code></li>
-<li>在后面添加文件名字，若有多个用这样的形式<code>[xxx.html, xxx.html]</code>，比如： <code>skip_render: [googleff0226f76d5f451b.html, baidu_verify_vHC5EAW09E.html]</code></li>
-<li>重新渲染文件： <code>hexo clean</code> <code>hexo d -g</code></li>
-<li>点击站长的验证按钮，完成验证。</li>
-</ol>
-<ul>
-<li>CNAME 验证</li>
-</ul>
-<ol>
-<li>去站长添加网站选择 CNAME 验证</li>
-<li>把地址解析到<code>zz.baidu.com</code></li>
-<li>完成验证</li>
-</ol>
-<h3 id="添加并提交sitemap"><a href="#添加并提交sitemap" class="headerlink" title="添加并提交sitemap"></a>添加并提交sitemap</h3><p>安装 Hexo 的 sitemap 网站地图生成插件，终端<code>cd</code>到<code>blog</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure>
-<p>在<code>站点配置文件</code>中任意位置添加如下代码，但要看清您的 Hexo 版本。</p>
-<p>如果您的 Hexo 版本是 2.x.x</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sitemap:</span><br><span class="line">    path: sitemap.xml</span><br><span class="line">baidusitemap:</span><br><span class="line">    path: baidusitemap.xml</span><br></pre></td></tr></table></figure>
-<p>如果您的 Hexo 版本是 3.x.x</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sitemap:</span><br><span class="line">path: sitemap.xml</span><br><span class="line">baidusitemap:</span><br><span class="line">path: baidusitemap.xml</span><br></pre></td></tr></table></figure>
-<p>配置成功后，会生成<code>sitemap.xml</code>和<code>baidusitemap.xml</code>，前者适合提交给谷歌搜素引擎，后者适合提交百度搜索引擎。</p>
-<p>百度 sitemap 提交如图，Google 也是一样的：</p>
-<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/78d3ea331416e6c1a53b9a42bb0f539e1c4f0bca/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30392f353964623331643630633836612e706e67"><img src="https://camo.githubusercontent.com/78d3ea331416e6c1a53b9a42bb0f539e1c4f0bca/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30392f353964623331643630633836612e706e67" alt="sitemap_yz"></a></p>
-<p>验证成功之后就可以开始推送了。Google 的收录比较快，通常第二天就能搜得到，百度就比较慢了。</p>
-<h3 id="主动推送"><a href="#主动推送" class="headerlink" title="主动推送"></a>主动推送</h3><p>安装主动推送插件，终端<code>cd</code>到<code>blog</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-baidu-url-submit --save</span><br></pre></td></tr></table></figure>
-<p>在根目录下，把以下内容配置到站点配置文件中:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">baidu_url_submit:</span><br><span class="line">  count: 3     ## 比如3，代表提交最新的三个链接</span><br><span class="line">  host: xxx     ## 在百度站长平台中注册的域名</span><br><span class="line">  token: xxx       ## 请注意这是您的秘钥，请不要发布在公众仓库里!</span><br><span class="line">  path: baidu_urls.txt       ## 文本文档的地址，新链接会保存在此文本文档里</span><br></pre></td></tr></table></figure>
-<p>至于上面提到的<code>token</code>可在百度站长如下位置找到：</p>
-<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/0be351243233a8d88d3671a58368e0e583f49615/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30392f353964623361633931616635332e706e67"><img src="https://camo.githubusercontent.com/0be351243233a8d88d3671a58368e0e583f49615/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30392f353964623361633931616635332e706e67" alt="token"></a></p>
-<p>其次，记得查看<code>站点配置文件</code>中的<code>url</code>，必须包含站长平台注册的域名，比如:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">url: http:&#x2F;&#x2F;harleywang93.com</span><br><span class="line">root: &#x2F;</span><br><span class="line">permalink: :year&#x2F;:month&#x2F;:day&#x2F;:title&#x2F;</span><br></pre></td></tr></table></figure>
-<p>接下来添加一个新的 <code>deploy</code> 类型：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">- type: baidu_url_submitter</span><br><span class="line">- type: git</span><br><span class="line">  repository:</span><br><span class="line">    github: https:&#x2F;&#x2F;github.com&#x2F;xxx&#x2F;xxx.github.io.git</span><br><span class="line">    coding: https:&#x2F;&#x2F;git.coding.net&#x2F;xxx&#x2F;xxx.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<p>执行<code>hexo d</code>的时候，新的链接就会被推送了。原理：</p>
-<ul>
-<li>新链接的产生，<code>hexo g</code>会产生一个文本文件，里面包含最新的链接。</li>
-<li>新链接的提交，<code>hexo d</code>会从上述文件中读取链接，提交至百度搜索引擎。</li>
-</ul>
-<h3 id="自动推送"><a href="#自动推送" class="headerlink" title="自动推送"></a>自动推送</h3><p>把 NexT 主题配置文件中的<code>baidu_push:</code>设置为<code>true</code>，就可以了。</p>
-<h3 id="添加蜘蛛协议"><a href="#添加蜘蛛协议" class="headerlink" title="添加蜘蛛协议"></a>添加蜘蛛协议</h3><p>在<code>blog/source/</code>目录下新建一个<code>robots.txt</code>文件，添加下面的一段代码(可根据自己的需要修改)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#hexo robots.txt</span><br><span class="line">User-agent: *</span><br><span class="line"></span><br><span class="line">Allow: &#x2F;</span><br><span class="line">Allow: &#x2F;archives&#x2F;</span><br><span class="line"></span><br><span class="line">Disallow: &#x2F;vendors&#x2F;</span><br><span class="line">Disallow: &#x2F;js&#x2F;</span><br><span class="line">Disallow: &#x2F;css&#x2F;</span><br><span class="line">Disallow: &#x2F;fonts&#x2F;</span><br><span class="line">Disallow: &#x2F;vendors&#x2F;</span><br><span class="line">Disallow: &#x2F;fancybox&#x2F;</span><br><span class="line"></span><br><span class="line">Sitemap: http:&#x2F;&#x2F;xxx&#x2F;sitemap.xml</span><br><span class="line">Sitemap: http:&#x2F;&#x2F;xxx&#x2F;baidusitemap.xml</span><br></pre></td></tr></table></figure>
-<p>然后到站长(这里以百度为例，Google 一样)更新一下，就像这样：</p>
-<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/3ca54425ad21dd7925c9ce541cfc4ba60dc7f00d/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30392f353964623364636531616566382e706e67"><img src="https://camo.githubusercontent.com/3ca54425ad21dd7925c9ce541cfc4ba60dc7f00d/68747470733a2f2f692e6c6f6c692e6e65742f323031372f31302f30392f353964623364636531616566382e706e67" alt="robots"></a></p>
-<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>自己搭建博客时，很是折腾了一番，也学习到了很多知识，阅读了很多相关的博文，在此向相关博文的作者表示感谢，谢谢你们的文章让我进步。同时，我看到有很多人想拥有自己的博客或者优化自己的博客，期间可能会遇到很多问题，我也是这么一个坑一个坑踩过来的，所以我就写了这么一篇自己折腾博客的分享，希望可以在帮助自己的同时帮助到别人。(如果踩了新坑的话，一定会更新的。)</p>
-<ul>
-<li>目前已经弃掉了此方法写博客，因为想回到回归初心，写博客最初的目的 - 总结梳理知识以及分享一些感受，不在乎形式。( 其实是因为懒得折腾了，Hexo 有一些不稳定性，所以目前弃掉了，喜欢折腾的可以继续尝试 lol )</li>
-</ul>
-<p>希望大家也能有此感受。</p>
-<h3 id="欢迎关注微信公众号，获取更多资源"><a href="#欢迎关注微信公众号，获取更多资源" class="headerlink" title="欢迎关注微信公众号，获取更多资源"></a>欢迎关注微信公众号，获取更多资源</h3><p><img src="https://i.ibb.co/rMxVLpD/qrcode-for-gh-912975c21d10-344.jpg" alt="程序员小明"></p>
-
-        
-      </div>
-    </div>
-
-    
-
-  </div>
-
-  <footer class="article-footer">
-    <div class="article-more-info">
-      <div class="article-date">
-  <time datetime="2019-10-12T07:43:50.000Z" itemprop="datePublished">2019-10-12</time>
-</div>
-      
-        <div class="article-category">
-          <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
-        </div>
-      
-      
-        <div class="article-tag">
-          <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
-        </div>
-      
-    </div>
-  </footer>
-
-</article>
-
-    
-  
-
-  
-    <nav class="pagination">
-        <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/5/">Next</a>
-    </nav>
-  
-</div>
-
-                </section>
-            </section>
-
-             
-            <aside class="sidebar">
+        <ul class="menu-list">
             
+                <li class="menu-item">
+                    <a class="active"
+                       href="/"
+                    >
+                        首页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="active"
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+            </div>
+
+            <div class="page-main-content-middle">
+
+                <main class="main-content normal-code-theme">
+
+                    
+                        <div class="home-content-container fade-in-down-animation">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
                 
 
+                <h3 class="home-article-title">
+                    <a href="/p/707c.html">
+                        Mac安装Homebrew并配置Redis
+                    </a>
+                </h3>
 
-<div class="widget" id="widget">
-    
-      
-    
-      
-  <div class="widget-wrap widget-cate">
-    <div class="widget-title"><span>Categories</span></div>
-    <div class="widget-inner">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Elasticsearch/">Elasticsearch</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jenkins/">Jenkins</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MQ/">MQ</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mybatis/">Mybatis</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1/">微信</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">系统运维</a></li></ul>
+                <div class="home-article-content markdown-body">
+                    
+                        安装Homebrew如果已经安装可以忽略，没有安装的请查看小明之前写好的文章 Mac安装Homebrew的那些事儿
+使用Homebrew安装Redis(1) 安装命令1brew install redis
+(2) 查看软件安装及配置文件位置Homeb...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-edit"></i> <span class="home-article-date" data-date="Thu Nov 21 2019 15:12:06 GMT+0800">2019-11-21</span></span>
+        
+        
     </div>
-  </div>
 
+    <a href="/p/707c.html">阅读全文 <i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/p/7e8c.html">
+                        开发日常分享
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        数据库连接工具MacSequel Pro/Navicat
+win HeidiSQL
+hosts文件所在目录Mac1&#x2F;etc&#x2F;hosts
+
+
+win1c:\Windows\System32\divers\etc\hosts
+
+
+To...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-edit"></i> <span class="home-article-date" data-date="Tue Nov 19 2019 15:21:53 GMT+0800">2019-11-19</span></span>
+        
+        
+    </div>
+
+    <a href="/p/7e8c.html">阅读全文 <i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/p/268.html">
+                        订单超时取消的解决方案
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        背景
+为什么需要使用延迟队列？适用于什么场景？   场景一：订单下单之后30分钟后，如果用户没有付钱，则系统自动取消订单。   这样类似的需求是我们经常会遇见的问题。最常用的方法是定期轮训数据库，设置状态。在数据量小的时候并没有什么大的问题，但是数据...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-edit"></i> <span class="home-article-date" data-date="Wed Oct 30 2019 18:25:22 GMT+0800">2019-10-30</span></span>
+        
+        
+    </div>
+
+    <a href="/p/268.html">阅读全文 <i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/p/35e7.html">
+                        hexo用自己的服务器搭建博客
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        
+最近小明介绍过自己用hexo+git搭建个人博客之后，大家好像更关心的是域名mynamecoder.com，不是应该关注技术嘛，让小明哭笑不得😂，今天继续给大家讲一下如果觉得这两个代码托管平台打开加载太慢，我们可以考虑部署到自己的ECS服务器（小...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-edit"></i> <span class="home-article-date" data-date="Sat Oct 12 2019 15:45:12 GMT+0800">2019-10-12</span></span>
+        
+        
+    </div>
+
+    <a href="/p/35e7.html">阅读全文 <i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/p/2969.html">
+                        hexo+git搭建自己的博客
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        前言
+喜欢写 Blog 的人，会经历三个阶段。
+第一阶段，刚接触 Blog，觉得很新鲜，试着选择一个免费空间来写。第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-edit"></i> <span class="home-article-date" data-date="Sat Oct 12 2019 15:43:50 GMT+0800">2019-10-12</span></span>
+        
+        
+    </div>
+
+    <a href="/p/2969.html">阅读全文 <i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator">
+        <div class="paginator">
+    
+        <a class="prev btn"
+           href="/page/3/"
+        >上一页</a>
+    
 
     
-      
-  <div class="widget-wrap widget-tags">
-    <div class="widget-title"><span>Tags</span></div>
-    <div class="widget-inner">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elasticsearch/" rel="tag">Elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Freemarker/" rel="tag">Freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdn/" rel="tag">cdn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/" rel="tag">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/" rel="tag">dev</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/email/" rel="tag">email</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/homebrew/" rel="tag">homebrew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/" rel="tag">jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mq/" rel="tag">mq</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/" rel="tag">swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99/" rel="tag">建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E4%BB%98/" rel="tag">支付</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
-    </div>
-  </div>
-
-
-    
-      
-  <div class="widget-wrap widget-recent-posts">
-    <div class="widget-title"><span>Recent Posts</span></div>
-    <div class="widget-inner">
-      <ul>
-        
-          <li>
-            <a href="/p/21452.html">「Elasticsearch」SpringBoot快速集成ES</a>
-          </li>
-        
-          <li>
-            <a href="/p/35755.html">Linux服务器的晴雨表——top命令</a>
-          </li>
-        
-          <li>
-            <a href="/p/62773.html">通过shell脚本一键安装python3</a>
-          </li>
-        
-          <li>
-            <a href="/p/8425.html">如何使用Freemarker生成Word文件</a>
-          </li>
-        
-          <li>
-            <a href="/p/38722.html">解决SpringBoot jar包中的文件读取问题</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-    
-      
-  <div class="widget-wrap widget-archive">
-    <div class="widget-title"><span>Archive</span></div>
-    <div class="widget-inner">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">2018</a></li></ul>
-    </div>
-  </div>
-
-
+        <a class="next btn"
+           href="/page/5/"
+        >下一页</a>
     
 </div>
 
-<div id="backtop"><i class="icon icon-arrow-up"></i></div>
-            </aside>
+    </div>
+</div>
+
+
+                    
+                </main>
+
+            </div>
+
+            <div class="page-main-content-bottom">
+                <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span> -
+            
+            2020 <i class="fas fa-heart icon-animate"></i> <a href="/">Keep team</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a class="theme-version" target="_blank"></a>
         </div>
     </div>
-
-    <footer class="footer">
-    <div class="footer-wave">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
-    </div>
-
-    <div class="footer-wrap">
-        <div class="footer-inner"> 
-            程序员小明 | Java | Spring Boot | Spring Cloud | ElasticSearch |日常开发 |最新干货分享 &copy; 2020<br>
-            Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
-        </div>
-    </div>
-
 </footer>
 
+            </div>
+        </div>
+    </main>
+
+    <div class="sidebar-tools">
+        <div class="tools-container">
+    <ul class="tools-list">
+        
+
+        
+
+        <!-- TOC aside toggle -->
+        
+
+    </ul>
+</div>
+
+    </div>
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-top flex-center">
+            <i class="fas fa-arrow-up"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="tools-ul-1">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+    </ul>
+</div>
+
+    </div>
+
+    <!-- page aside -->
+    <aside class="page-aside">
+        
+    </aside>
+
+    <!-- image viewer -->
+    <div class="image-viewer-container">
+    <div class="img-box">
+        <img src="">
+    </div>
+</div>
+
+
+</div>
 
 
 
-<script src="/dist/build.js?1.13.0.js"></script>
 
-
-<script src="/dist/custom.js?1.13.0.js"></script>
-
-
-
-
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/dark-light-toggle.js"></script>
 
 
 
 
 
 </body>
-
 </html>
