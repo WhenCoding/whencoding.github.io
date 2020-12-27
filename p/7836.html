@@ -272,126 +272,47 @@
                 <div class="comments-container">
     <div id="comment-anchor"></div>
     
-        .valine-container {
-
-  #vcomments {
-
-    .vwrap {
-
-      border: 1px solid var(--third-text-color);
-
-      .vheader {
-
-        .vinput {
-
-          color: var(--default-text-color);
-          border-color: var(--third-text-color);
-
-          &:focus {
-            border-bottom: 1px dashed var(--primary-color) !important;
-          }
-        }
-      }
+        
+    <div class="valine-container">
+        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+        <div id="vcomments"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'RYD6fM3F1jQ4aTSXOzbclYi6-9Nh9j0Va',
+                appKey: 'mjF7jJLYlbIcPU2mUOoh0I88',
+                meta: 'nick,mail,link'.split(','),
+                avatar: 'wavatar',
+                enableQQ: true,
+                placeholder: '说点什么',
+                lang: 'zh-CN'.toLowerCase()
+            });
 
 
-      .vedit {
+            // Valine 评论列表增加"博主"标识
+            const getValineDomTimer = setInterval(() => {
+                const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                if (vcards.length > 0) {
 
-        .veditor {
-          color: var(--default-text-color);
-        }
+                    let author = '辛国帅';
+                    if (author) {
+                        author = author.toLocaleLowerCase();
+                    }
 
-        .vctrl {
+                    for (let vcard of vcards) {
+                        const vnick = vcard.querySelector('.vhead .vnick');
+                        if (vnick.innerHTML.toLocaleLowerCase() === author) {
+                            vcard.classList.add('author');
+                        }
+                    }
+                    clearInterval(getValineDomTimer);
+                } else {
+                    clearInterval(getValineDomTimer);
+                }
+            }, 2000);
+        </script>
+    </div>
 
-          .vicon {
-
-            fill: var(--default-text-color);
-
-            &.actived {
-              fill: var(--primary-color);
-            }
-          }
-        }
-
-      }
-
-      button.vsubmit {
-
-        background: transparent !important;
-        color: var(--default-text-color) !important;
-        border: 1px solid var(--default-text-color) !important;
-
-        &:hover {
-          color: var(--primary-color) !important;
-          border: 1px solid var(--primary-color) !important;
-        }
-      }
-
-
-    }
-
-
-    .vcount {
-      color: var(--default-text-color);
-
-      .vnum {
-        color: var(--second-text-color);
-      }
-    }
-
-    .vcard {
-
-      // author
-      &.author {
-        .vnick {
-          font-weight: bold;
-
-          &::after {
-            font-weight: 500;
-            font-size: 12px;
-            content: '博主';
-            padding: 2px;
-            background: -webkit-linear-gradient(45deg, #e3565e, #ee854b, #f6c258, #90c68a, #5fb3b3, #6699cc, #c594c5);
-            background: linear-gradient(45deg, #e3565e, #ee854b, #f6c258, #90c68a, #5fb3b3, #6699cc, #c594c5);
-            color: #fff;
-            margin-left: 5px;
-            border-radius: 2px;
-          }
-        }
-      }
-
-      .vhead {
-
-        .vnick {
-          color: var(--primary-color);
-        }
-
-        .vsys {
-          color: var(--default-text-color);
-          background: var(--fourth-text-color) !important;
-        }
-      }
-
-
-      .vcontent {
-        P {
-          color: var(--default-text-color);
-        }
-      }
-
-      .vh {
-        border-bottom-color: var(--border-color);
-      }
-    }
-
-
-    .vcopy {
-      color: var(--third-text-color);
-    }
-
-  }
-
-
-}
 
     
 </div>
