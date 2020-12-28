@@ -459,14 +459,14 @@
 
   
   <url>
-    <loc>https://mynamecoder.com/tags/git/</loc>
+    <loc>https://mynamecoder.com/tags/Java/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/tags/Java/</loc>
+    <loc>https://mynamecoder.com/tags/git/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -494,7 +494,7 @@
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/tags/springboot/</loc>
+    <loc>https://mynamecoder.com/tags/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -508,7 +508,7 @@
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/tags/%E5%B7%A5%E5%85%B7/</loc>
+    <loc>https://mynamecoder.com/tags/springboot/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -543,6 +543,13 @@
   </url>
   
   <url>
+    <loc>https://mynamecoder.com/tags/jenkins/</loc>
+    <lastmod>2020-12-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://mynamecoder.com/tags/mysql/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
@@ -565,13 +572,6 @@
   
   <url>
     <loc>https://mynamecoder.com/tags/linux/</loc>
-    <lastmod>2020-12-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://mynamecoder.com/tags/jenkins/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -706,14 +706,14 @@
 
   
   <url>
-    <loc>https://mynamecoder.com/categories/Git/</loc>
+    <loc>https://mynamecoder.com/categories/Java/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/categories/Java/</loc>
+    <loc>https://mynamecoder.com/categories/Git/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -776,14 +776,14 @@
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/categories/Mysql/</loc>
+    <loc>https://mynamecoder.com/categories/Jenkins/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/categories/Jenkins/</loc>
+    <loc>https://mynamecoder.com/categories/Mysql/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
