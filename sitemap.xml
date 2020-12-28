@@ -352,14 +352,14 @@
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/p/1b5.html</loc>
+    <loc>https://mynamecoder.com/p/2bdc.html</loc>
     
     <lastmod>2020-03-29</lastmod>
     
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/p/2bdc.html</loc>
+    <loc>https://mynamecoder.com/p/1b5.html</loc>
     
     <lastmod>2020-03-29</lastmod>
     
@@ -494,7 +494,7 @@
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/tags/%E5%B7%A5%E5%85%B7/</loc>
+    <loc>https://mynamecoder.com/tags/springboot/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -508,7 +508,7 @@
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/tags/springboot/</loc>
+    <loc>https://mynamecoder.com/tags/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -543,7 +543,7 @@
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/tags/jenkins/</loc>
+    <loc>https://mynamecoder.com/tags/mysql/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -571,14 +571,7 @@
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/tags/mysql/</loc>
-    <lastmod>2020-12-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://mynamecoder.com/tags/mybatis/</loc>
+    <loc>https://mynamecoder.com/tags/jenkins/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -586,6 +579,13 @@
   
   <url>
     <loc>https://mynamecoder.com/tags/maven/</loc>
+    <lastmod>2020-12-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://mynamecoder.com/tags/mybatis/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -655,14 +655,14 @@
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/tags/Freemarker/</loc>
+    <loc>https://mynamecoder.com/tags/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/tags/%E7%AE%97%E6%B3%95/</loc>
+    <loc>https://mynamecoder.com/tags/Freemarker/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -748,14 +748,14 @@
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
+    <loc>https://mynamecoder.com/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/</loc>
+    <loc>https://mynamecoder.com/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -776,13 +776,6 @@
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/categories/Jenkins/</loc>
-    <lastmod>2020-12-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://mynamecoder.com/categories/Mysql/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
@@ -790,7 +783,7 @@
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/categories/Mybatis/</loc>
+    <loc>https://mynamecoder.com/categories/Jenkins/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -798,6 +791,13 @@
   
   <url>
     <loc>https://mynamecoder.com/categories/Maven/</loc>
+    <lastmod>2020-12-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://mynamecoder.com/categories/Mybatis/</loc>
     <lastmod>2020-12-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
