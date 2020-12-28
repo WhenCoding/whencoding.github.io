@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://mynamecoder.com/about/index.html</loc>
+    
+    <lastmod>2020-12-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://mynamecoder.com/categories/index.html</loc>
+    
+    <lastmod>2020-12-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://mynamecoder.com/tags/index.html</loc>
+    
+    <lastmod>2020-12-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://mynamecoder.com/links/index.html</loc>
+    
+    <lastmod>2020-12-28</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://mynamecoder.com/p/21452.html</loc>
     
     <lastmod>2020-12-24</lastmod>
