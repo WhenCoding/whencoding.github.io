@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script data-ad-client="ca-pub-1566816837076058" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     
     <title>
         分类: Hexo |
@@ -142,41 +143,92 @@
             <i class="fas fa-folder"></i> Hexo (3)
         </div>
         <div class="category-post-list">
-            
-<div class="archive-list-container">
-    
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2019</span>
-                <span class="archive-year-post-count">(3)</span>
-            </div>
-            <ul class="article-list">
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/p/35e7.html"
-                        >hexo用自己的服务器搭建博客</a>
-                        <span class="article-date">10-12</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/p/2969.html"
-                        >hexo+git搭建自己的博客</a>
-                        <span class="article-date">10-12</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/p/d2c.html"
-                        >hexo忽略编译某些文件</a>
-                        <span class="article-date">10-10</span>
-                    </li>
-                
-            </ul>
-        </section>
-    
-</div>
+            $archive-year-font-size = 1.8rem;
+$archive-year-count-font-size = 1.2rem;
+$article-title-font-size = 1.2rem;
+$article-date-font-size = 1rem;
+
+.archive-list-container {
+
+  .archive-item {
+    margin-bottom: $component-interspace;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .archive-item-header {
+      margin-bottom: 10px;
+
+      .archive-year {
+        font-size: $archive-year-font-size;
+
+        +keep-tablet() {
+          font-size: $archive-year-font-size - 0.2rem;
+        }
+
+        color: var(--second-text-color);
+        font-weight: 600;
+        margin-right: 6px;
+      }
+
+
+      .archive-year-post-count {
+        font-size: $archive-year-count-font-size;
+
+        +keep-tablet() {
+          font-size: $archive-year-count-font-size * 0.9;
+        }
+
+        color: var(--second-text-color);
+        font-weight: 500;
+      }
+
+    }
+
+
+    .article-list {
+
+      padding-left: 10px;
+
+      +keep-tablet() {
+        padding-left: 0;
+      }
+
+      .article-item {
+        font-size: 1rem;
+        margin-top: 18px;
+
+        +keep-tablet() {
+          margin-top: 16px;
+        }
+
+        +keep-mobile() {
+          margin-top: 14px;
+        }
+
+        &:hover {
+          color: var(--primary-color);
+        }
+
+        a.article-title {
+          color: var(--default-text-color);
+
+          &:hover {
+            color: var(--primary-color);
+          }
+        }
+
+        .article-date {
+          font-size: $article-date-font-size;
+          float: right;
+        }
+      }
+    }
+  }
+}
+
+
 
         </div>
     </div>
