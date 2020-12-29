@@ -443,11 +443,69 @@
     <!-- page aside -->
     <aside class="page-aside">
         
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFHomebrew"><span class="nav-number">1.</span> <span class="nav-text">什么是Homebrew?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85Homebrew%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">如何安装Homebrew？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%97%B6%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">安装时可能遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%86%99%E6%9D%83%E9%99%90%E4%B8%8D%E5%A4%9F"><span class="nav-number">3.1.</span> <span class="nav-text">读写权限不够</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.1.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%8F%90%E9%AB%98brew%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E7%9A%84%E9%80%9F%E5%BA%A6%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">如何提高brew安装软件的速度？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2Bottles%E6%BA%90"><span class="nav-number">4.1.</span> <span class="nav-text">更换Bottles源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#brew%E5%87%A0%E4%B8%AA%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">5.</span> <span class="nav-text">brew几个基本使用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%94%A8brew%E5%B9%B2%E4%BB%80%E4%B9%88"><span class="nav-number">6.</span> <span class="nav-text">我用brew干什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6"><span class="nav-number">6.1.</span> <span class="nav-text">解压文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">6.1.1.</span> <span class="nav-text">安装命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">6.1.2.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BDbrew"><span class="nav-number">7.</span> <span class="nav-text">卸载brew</span></a></li></ol>
-    </div>
-</div>
+            .post-toc-wrap {
+  width: 100%;
+  font-size: 0.92rem;
+  box-sizing: border-box;
+
+  .post-toc {
+
+    ol {
+      list-style: none;
+      margin: 0;
+      padding: 0 2px 12px 10px;
+      text-align: left;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+
+      > ol {
+        padding-left: 0;
+      }
+
+      a {
+        transition-property: all;
+        transition();
+      }
+    }
+
+    .nav-item {
+      line-height: 1.8;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nav {
+      .nav-child {
+        display: hexo-config('toc.expand_all') ? block : none;
+      }
+
+      .active > .nav-child {
+        display: block;
+      }
+
+      .active-current > .nav-child {
+        display: block;
+
+        > .nav-item {
+          display: block;
+        }
+      }
+
+      .active > a {
+        color: var(--primary-color);
+      }
+
+      .active-current > a {
+        color: var(--primary-color);
+      }
+    }
+  }
+}
+
+
         
     </aside>
 

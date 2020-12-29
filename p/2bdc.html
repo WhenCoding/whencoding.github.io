@@ -386,11 +386,69 @@
     <!-- page aside -->
     <aside class="page-aside">
         
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#compile-%EF%BC%88%E7%BC%96%E8%AF%91%E8%8C%83%E5%9B%B4%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">compile （编译范围）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#provided-%EF%BC%88%E5%B7%B2%E6%8F%90%E4%BE%9B%E8%8C%83%E5%9B%B4%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">provided （已提供范围）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#runtime-%EF%BC%88%E8%BF%90%E8%A1%8C%E6%97%B6%E8%8C%83%E5%9B%B4%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">runtime （运行时范围）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#test-%EF%BC%88%E6%B5%8B%E8%AF%95%E8%8C%83%E5%9B%B4%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">test （测试范围）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#system-%EF%BC%88%E7%B3%BB%E7%BB%9F%E8%8C%83%E5%9B%B4%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">system （系统范围）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%A2%E8%BF%8E%E5%85%B3%E6%B3%A8%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%EF%BC%8C%E8%8E%B7%E5%8F%96%E6%9B%B4%E5%A4%9A%E8%B5%84%E6%BA%90"><span class="nav-number">5.1.</span> <span class="nav-text">欢迎关注微信公众号，获取更多资源</span></a></li></ol></li></ol>
-    </div>
-</div>
+            .post-toc-wrap {
+  width: 100%;
+  font-size: 0.92rem;
+  box-sizing: border-box;
+
+  .post-toc {
+
+    ol {
+      list-style: none;
+      margin: 0;
+      padding: 0 2px 12px 10px;
+      text-align: left;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+
+      > ol {
+        padding-left: 0;
+      }
+
+      a {
+        transition-property: all;
+        transition();
+      }
+    }
+
+    .nav-item {
+      line-height: 1.8;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nav {
+      .nav-child {
+        display: hexo-config('toc.expand_all') ? block : none;
+      }
+
+      .active > .nav-child {
+        display: block;
+      }
+
+      .active-current > .nav-child {
+        display: block;
+
+        > .nav-item {
+          display: block;
+        }
+      }
+
+      .active > a {
+        color: var(--primary-color);
+      }
+
+      .active-current > a {
+        color: var(--primary-color);
+      }
+    }
+  }
+}
+
+
         
     </aside>
 

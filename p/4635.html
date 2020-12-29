@@ -413,11 +413,69 @@
     <!-- page aside -->
     <aside class="page-aside">
         
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#yum%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E4%B8%BE%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">yum命令使用举例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#yum%E5%AE%89%E8%A3%85nginx"><span class="nav-number">1.1.</span> <span class="nav-text">yum安装nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yum%E5%AE%89%E8%A3%85tomcat"><span class="nav-number">1.2.</span> <span class="nav-text">yum安装tomcat</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">vim命令使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#yum-%E5%AE%89%E8%A3%85maven"><span class="nav-number">2.1.</span> <span class="nav-text">yum 安装maven</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E6%89%BEmaven%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84"><span class="nav-number">2.1.1.</span> <span class="nav-text">查找maven安装路径</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pgrep"><span class="nav-number">3.</span> <span class="nav-text">pgrep</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-number">3.1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E4%B8%BE%E4%BE%8B"><span class="nav-number">3.3.</span> <span class="nav-text">常用举例</span></a></li></ol></li></ol>
-    </div>
-</div>
+            .post-toc-wrap {
+  width: 100%;
+  font-size: 0.92rem;
+  box-sizing: border-box;
+
+  .post-toc {
+
+    ol {
+      list-style: none;
+      margin: 0;
+      padding: 0 2px 12px 10px;
+      text-align: left;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+
+      > ol {
+        padding-left: 0;
+      }
+
+      a {
+        transition-property: all;
+        transition();
+      }
+    }
+
+    .nav-item {
+      line-height: 1.8;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nav {
+      .nav-child {
+        display: hexo-config('toc.expand_all') ? block : none;
+      }
+
+      .active > .nav-child {
+        display: block;
+      }
+
+      .active-current > .nav-child {
+        display: block;
+
+        > .nav-item {
+          display: block;
+        }
+      }
+
+      .active > a {
+        color: var(--primary-color);
+      }
+
+      .active-current > a {
+        color: var(--primary-color);
+      }
+    }
+  }
+}
+
+
         
     </aside>
 

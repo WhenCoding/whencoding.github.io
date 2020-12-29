@@ -381,11 +381,69 @@
     <!-- page aside -->
     <aside class="page-aside">
         
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7%E5%85%A8%E8%A7%88"><span class="nav-number">1.</span> <span class="nav-text">在线工具全览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%8D%E8%B4%B9%E7%9A%84%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E8%8E%B7%E5%8F%96%E9%93%BE%E6%8E%A5"><span class="nav-number">2.</span> <span class="nav-text">免费的图片上传获取链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MarkDown%E6%A0%B7%E5%BC%8F%E8%87%AA%E7%94%B1%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.</span> <span class="nav-text">MarkDown样式自由转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A5%BD%E7%94%A8%E7%9A%84%E5%9B%BE%E6%A0%87"><span class="nav-number">4.</span> <span class="nav-text">好用的图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AD%A6python%E4%B9%A6%E7%B1%8D%E6%8E%A8%E8%8D%90%E3%80%8A%E8%87%AA%E5%AD%A6%E6%98%AF%E9%97%A8%E6%89%8B%E8%89%BA%E3%80%8B"><span class="nav-number">5.</span> <span class="nav-text">自学python书籍推荐《自学是门手艺》</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%A2%E7%A5%A8%E5%BF%85%E5%A4%87"><span class="nav-number">6.</span> <span class="nav-text">抢票必备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%A9%E7%9F%AD%E4%BD%A0%E7%9A%84%E7%BD%91%E5%9D%80"><span class="nav-number">7.</span> <span class="nav-text">缩短你的网址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E6%A0%BC%E8%BD%AC%E6%8D%A2"><span class="nav-number">8.</span> <span class="nav-text">表格转换</span></a></li></ol>
-    </div>
-</div>
+            .post-toc-wrap {
+  width: 100%;
+  font-size: 0.92rem;
+  box-sizing: border-box;
+
+  .post-toc {
+
+    ol {
+      list-style: none;
+      margin: 0;
+      padding: 0 2px 12px 10px;
+      text-align: left;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+
+      > ol {
+        padding-left: 0;
+      }
+
+      a {
+        transition-property: all;
+        transition();
+      }
+    }
+
+    .nav-item {
+      line-height: 1.8;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nav {
+      .nav-child {
+        display: hexo-config('toc.expand_all') ? block : none;
+      }
+
+      .active > .nav-child {
+        display: block;
+      }
+
+      .active-current > .nav-child {
+        display: block;
+
+        > .nav-item {
+          display: block;
+        }
+      }
+
+      .active > a {
+        color: var(--primary-color);
+      }
+
+      .active-current > a {
+        color: var(--primary-color);
+      }
+    }
+  }
+}
+
+
         
     </aside>
 
