@@ -275,6 +275,57 @@
         
 
         
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    
+        
+    <div class="valine-container">
+        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+        <div id="vcomments"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'RYD6fM3F1jQ4aTSXOzbclYi6-9Nh9j0Va',
+                appKey: 'mjF7jJLYlbIcPU2mUOoh0I88',
+                meta: 'nick,mail,link'.split(','),
+                avatar: 'wavatar',
+                enableQQ: true,
+                placeholder: '说点什么',
+                lang: 'zh-CN'.toLowerCase()
+            });
+
+
+            // Valine 评论列表增加"博主"标识
+            const getValineDomTimer = setInterval(() => {
+                const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                if (vcards.length > 0) {
+
+                    let author = '小明';
+                    if (author) {
+                        author = author.toLocaleLowerCase();
+                    }
+
+                    for (let vcard of vcards) {
+                        const vnick = vcard.querySelector('.vhead .vnick');
+                        if (vnick.innerHTML.toLocaleLowerCase() === author) {
+                            vcard.classList.add('author');
+                        }
+                    }
+                    clearInterval(getValineDomTimer);
+                } else {
+                    clearInterval(getValineDomTimer);
+                }
+            }, 2000);
+        </script>
+    </div>
+
+
+    
+</div>
+
+            </div>
+        
     </div>
 </div>
 
@@ -324,6 +375,10 @@
     <ul class="tools-list">
         
 
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
         
 
         <!-- TOC aside toggle -->
@@ -383,69 +438,11 @@
     <!-- page aside -->
     <aside class="page-aside">
         
-            .post-toc-wrap {
-  width: 100%;
-  font-size: 0.92rem;
-  box-sizing: border-box;
-
-  .post-toc {
-
-    ol {
-      list-style: none;
-      margin: 0;
-      padding: 0 2px 12px 10px;
-      text-align: left;
-
-      &:last-child {
-        padding-bottom: 0;
-      }
-
-      > ol {
-        padding-left: 0;
-      }
-
-      a {
-        transition-property: all;
-        transition();
-      }
-    }
-
-    .nav-item {
-      line-height: 1.8;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .nav {
-      .nav-child {
-        display: hexo-config('toc.expand_all') ? block : none;
-      }
-
-      .active > .nav-child {
-        display: block;
-      }
-
-      .active-current > .nav-child {
-        display: block;
-
-        > .nav-item {
-          display: block;
-        }
-      }
-
-      .active > a {
-        color: var(--primary-color);
-      }
-
-      .active-current > a {
-        color: var(--primary-color);
-      }
-    }
-  }
-}
-
-
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redis%E7%9A%84%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">redis的相关配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E7%9B%B8%E5%85%B3%E4%BE%9D%E8%B5%96"><span class="nav-number">1.1.</span> <span class="nav-text">引入相关依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEredis%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.2.</span> <span class="nav-text">配置redis数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AECacheManager"><span class="nav-number">1.3.</span> <span class="nav-text">配置CacheManager</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87RedisCacheManager%E7%9A%84%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95create"><span class="nav-number">1.3.1.</span> <span class="nav-text">通过RedisCacheManager的静态方法create</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87Spring%E6%8F%90%E4%BE%9B%E7%9A%84RedisCacheConfiguration%E7%B1%BB%EF%BC%8C%E6%9E%84%E9%80%A0%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84redis%E9%85%8D%E7%BD%AE%E7%B1%BB%EF%BC%8C%E4%BB%8E%E8%AF%A5%E9%85%8D%E7%BD%AE%E7%B1%BB%E4%B8%AD%E5%8F%AF%E4%BB%A5%E8%AE%BE%E7%BD%AE%E4%B8%80%E4%BA%9B%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E7%BC%93%E5%AD%98%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E3%80%81%E5%8F%8A%E5%AF%B9%E5%BA%94%E7%9A%84%E9%BB%98%E8%AE%A4%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AD%89%E5%B1%9E%E6%80%A7%EF%BC%8C%E5%86%8D%E5%88%A9%E7%94%A8RedisCacheManager%E4%B8%AD%E7%9A%84builder-build-%E7%9A%84%E6%96%B9%E5%BC%8F%E7%94%9F%E6%88%90cacheManager%EF%BC%9A"><span class="nav-number">1.3.2.</span> <span class="nav-text">通过Spring提供的RedisCacheConfiguration类，构造一个自己的redis配置类，从该配置类中可以设置一些初始化的缓存命名空间、及对应的默认过期时间等属性，再利用RedisCacheManager中的builder.build()的方式生成cacheManager：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AERedisTemplate%EF%BC%8C%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84key%E3%80%81value%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.3.</span> <span class="nav-text">配置RedisTemplate，进行简单的key、value相关操作</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
         
     </aside>
 

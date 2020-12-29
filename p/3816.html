@@ -313,6 +313,57 @@
         
 
         
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    
+        
+    <div class="valine-container">
+        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+        <div id="vcomments"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'RYD6fM3F1jQ4aTSXOzbclYi6-9Nh9j0Va',
+                appKey: 'mjF7jJLYlbIcPU2mUOoh0I88',
+                meta: 'nick,mail,link'.split(','),
+                avatar: 'wavatar',
+                enableQQ: true,
+                placeholder: '说点什么',
+                lang: 'zh-CN'.toLowerCase()
+            });
+
+
+            // Valine 评论列表增加"博主"标识
+            const getValineDomTimer = setInterval(() => {
+                const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                if (vcards.length > 0) {
+
+                    let author = '小明';
+                    if (author) {
+                        author = author.toLocaleLowerCase();
+                    }
+
+                    for (let vcard of vcards) {
+                        const vnick = vcard.querySelector('.vhead .vnick');
+                        if (vnick.innerHTML.toLocaleLowerCase() === author) {
+                            vcard.classList.add('author');
+                        }
+                    }
+                    clearInterval(getValineDomTimer);
+                } else {
+                    clearInterval(getValineDomTimer);
+                }
+            }, 2000);
+        </script>
+    </div>
+
+
+    
+</div>
+
+            </div>
+        
     </div>
 </div>
 
@@ -362,6 +413,10 @@
     <ul class="tools-list">
         
 
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
         
 
         <!-- TOC aside toggle -->
@@ -421,69 +476,11 @@
     <!-- page aside -->
     <aside class="page-aside">
         
-            .post-toc-wrap {
-  width: 100%;
-  font-size: 0.92rem;
-  box-sizing: border-box;
-
-  .post-toc {
-
-    ol {
-      list-style: none;
-      margin: 0;
-      padding: 0 2px 12px 10px;
-      text-align: left;
-
-      &:last-child {
-        padding-bottom: 0;
-      }
-
-      > ol {
-        padding-left: 0;
-      }
-
-      a {
-        transition-property: all;
-        transition();
-      }
-    }
-
-    .nav-item {
-      line-height: 1.8;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .nav {
-      .nav-child {
-        display: hexo-config('toc.expand_all') ? block : none;
-      }
-
-      .active > .nav-child {
-        display: block;
-      }
-
-      .active-current > .nav-child {
-        display: block;
-
-        > .nav-item {
-          display: block;
-        }
-      }
-
-      .active > a {
-        color: var(--primary-color);
-      }
-
-      .active-current > a {
-        color: var(--primary-color);
-      }
-    }
-  }
-}
-
-
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DATE-ADD-date-expr-type"><span class="nav-number">1.</span> <span class="nav-text">DATE_ADD(date,expr,type)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E5%92%8C%E7%94%A8%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">定义和用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">语法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TIMESTAMPDIFF-interval-datetime-expr1-datetime-expr2"><span class="nav-number">2.</span> <span class="nav-text">TIMESTAMPDIFF(interval,datetime_expr1,datetime_expr2)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E5%92%8C%E7%94%A8%E6%B3%95-1"><span class="nav-number">2.1.</span> <span class="nav-text">定义和用法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%BD%93%E5%A4%A9%E3%80%81%E6%9C%AC%E5%91%A8%EF%BC%8C%E6%9C%AC%E6%9C%88%EF%BC%8C%E4%B8%8A%E4%B8%80%E4%B8%AA%E6%9C%88%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">3.</span> <span class="nav-text">查询当天、本周，本月，上一个月的数据</span></a></li></ol>
+    </div>
+</div>
         
     </aside>
 

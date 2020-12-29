@@ -273,6 +273,57 @@
         
 
         
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    
+        
+    <div class="valine-container">
+        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+        <div id="vcomments"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'RYD6fM3F1jQ4aTSXOzbclYi6-9Nh9j0Va',
+                appKey: 'mjF7jJLYlbIcPU2mUOoh0I88',
+                meta: 'nick,mail,link'.split(','),
+                avatar: 'wavatar',
+                enableQQ: true,
+                placeholder: '说点什么',
+                lang: 'zh-CN'.toLowerCase()
+            });
+
+
+            // Valine 评论列表增加"博主"标识
+            const getValineDomTimer = setInterval(() => {
+                const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                if (vcards.length > 0) {
+
+                    let author = '小明';
+                    if (author) {
+                        author = author.toLocaleLowerCase();
+                    }
+
+                    for (let vcard of vcards) {
+                        const vnick = vcard.querySelector('.vhead .vnick');
+                        if (vnick.innerHTML.toLocaleLowerCase() === author) {
+                            vcard.classList.add('author');
+                        }
+                    }
+                    clearInterval(getValineDomTimer);
+                } else {
+                    clearInterval(getValineDomTimer);
+                }
+            }, 2000);
+        </script>
+    </div>
+
+
+    
+</div>
+
+            </div>
+        
     </div>
 </div>
 
@@ -322,6 +373,10 @@
     <ul class="tools-list">
         
 
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
         
 
         <!-- TOC aside toggle -->
@@ -381,69 +436,11 @@
     <!-- page aside -->
     <aside class="page-aside">
         
-            .post-toc-wrap {
-  width: 100%;
-  font-size: 0.92rem;
-  box-sizing: border-box;
-
-  .post-toc {
-
-    ol {
-      list-style: none;
-      margin: 0;
-      padding: 0 2px 12px 10px;
-      text-align: left;
-
-      &:last-child {
-        padding-bottom: 0;
-      }
-
-      > ol {
-        padding-left: 0;
-      }
-
-      a {
-        transition-property: all;
-        transition();
-      }
-    }
-
-    .nav-item {
-      line-height: 1.8;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .nav {
-      .nav-child {
-        display: hexo-config('toc.expand_all') ? block : none;
-      }
-
-      .active > .nav-child {
-        display: block;
-      }
-
-      .active-current > .nav-child {
-        display: block;
-
-        > .nav-item {
-          display: block;
-        }
-      }
-
-      .active > a {
-        color: var(--primary-color);
-      }
-
-      .active-current > a {
-        color: var(--primary-color);
-      }
-    }
-  }
-}
-
-
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EICP-Internet-Content-Provider-%E5%8D%B3%E7%BD%91%E7%BB%9C%E5%86%85%E5%AE%B9%E6%8F%90%E4%BE%9B%E5%95%86"><span class="nav-number">1.</span> <span class="nav-text">关于ICP(Internet Content Provider)即网络内容提供商</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%82%A3%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E9%80%9A%E8%BF%87ICP%E5%A4%87%E6%A1%88%E5%91%A2%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">那我们为什么要通过ICP备案呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%A4%87%E6%A1%88%E6%89%80%E9%9C%80%E5%9F%BA%E6%9C%AC%E8%B5%84%E6%96%99"><span class="nav-number">3.</span> <span class="nav-text">准备备案所需基本资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%87%E6%A1%88%E6%B5%81%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">备案流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%A2%E8%BF%8E%E5%85%B3%E6%B3%A8%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%EF%BC%8C%E8%8E%B7%E5%8F%96%E6%9B%B4%E5%A4%9A%E8%B5%84%E6%BA%90"><span class="nav-number">4.1.</span> <span class="nav-text">欢迎关注微信公众号，获取更多资源</span></a></li></ol></li></ol>
+    </div>
+</div>
         
     </aside>
 
