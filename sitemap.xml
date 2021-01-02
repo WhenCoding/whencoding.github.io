@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://mynamecoder.com/p/undefined.html</loc>
+    <loc>https://mynamecoder.com/p/20547.html</loc>
     
     <lastmod>2021-01-02</lastmod>
     
@@ -107,14 +107,14 @@
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/p/35755.html</loc>
+    <loc>https://mynamecoder.com/p/4298.html</loc>
     
     <lastmod>2020-12-24</lastmod>
     
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/p/4298.html</loc>
+    <loc>https://mynamecoder.com/p/35755.html</loc>
     
     <lastmod>2020-12-24</lastmod>
     
@@ -508,6 +508,13 @@
   </url>
   
   <url>
+    <loc>https://mynamecoder.com/tags/Elasticsearch/</loc>
+    <lastmod>2021-01-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://mynamecoder.com/tags/Linux/</loc>
     <lastmod>2021-01-02</lastmod>
     <changefreq>daily</changefreq>
@@ -578,14 +585,14 @@
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/tags/mysql/</loc>
+    <loc>https://mynamecoder.com/tags/jenkins/</loc>
     <lastmod>2021-01-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/tags/jenkins/</loc>
+    <loc>https://mynamecoder.com/tags/mysql/</loc>
     <lastmod>2021-01-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -656,13 +663,6 @@
   
   <url>
     <loc>https://mynamecoder.com/tags/vue/</loc>
-    <lastmod>2021-01-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://mynamecoder.com/tags/Elasticsearch/</loc>
     <lastmod>2021-01-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -755,7 +755,7 @@
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/categories/Linux/</loc>
+    <loc>https://mynamecoder.com/categories/Elasticsearch/</loc>
     <lastmod>2021-01-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -763,6 +763,13 @@
   
   <url>
     <loc>https://mynamecoder.com/categories/Mac/</loc>
+    <lastmod>2021-01-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://mynamecoder.com/categories/Linux/</loc>
     <lastmod>2021-01-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -811,14 +818,14 @@
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/categories/Mysql/</loc>
+    <loc>https://mynamecoder.com/categories/Jenkins/</loc>
     <lastmod>2021-01-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://mynamecoder.com/categories/Jenkins/</loc>
+    <loc>https://mynamecoder.com/categories/Mysql/</loc>
     <lastmod>2021-01-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -840,13 +847,6 @@
   
   <url>
     <loc>https://mynamecoder.com/categories/MQ/</loc>
-    <lastmod>2021-01-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://mynamecoder.com/categories/Elasticsearch/</loc>
     <lastmod>2021-01-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
