@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script data-ad-client="ca-pub-1566816837076058" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    <title>
+        ES重建索引怎么才能做到数据无缝迁移呢？ |
+        
+        程序员小明
+    </title>
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"mynamecoder.com","root":"/"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true},"style":{"primary_color":"#0066cc","avatar":"/images/avatar.png","favicon":"/images/logo.svg","img_position":"left","left_side_width":"260px","content_max_width":"900px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"冰冻三尺 非一日之寒"}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":false},"version":"3.0.4"};
+    KEEP.language = {"search":"搜索...","prev":"上一页","next":"下一页","prev_posts":"上一篇","next_posts":"下一篇","page":"第 %d 页","recent_posts":"最新文章","share":"分享","powered_by":"由 %s 驱动","theme":"主题","rss_feed":"RSS Feed","category":"分类","categories":"分类","tag":"标签","tags":"标签","tagcloud":"标签云","comment":"评论","home":"首页","archive":"归档","archives":"归档","about":"关于","site_uv":"访问人数","site_pv":"总访问量","links":"友链","link":"友链","top":"顶置","read_more":"阅读全文","wordcount":"字","min2read":"分钟","changelog":"更新日志","copyright":{"title":"本文标题","author":"本文作者","link":"本文链接","create_time":"创建时间","license_title":"版权声明","license_content":"本博客所有文章除特别声明外，均采用 %s 许可协议。转载请注明出处！"},"ago":{"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"}};
+  </script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+<div class="page-container">
+
+    
+
+    <header class="page-header">
+        <div class="header-progress"></div>
+    </header>
+
+    <main class="page-main">
+
+        <div class="page-main-content">
+
+            <div class="page-main-content-top">
+                <header class="header-wrapper">
+
+    <div class="header-content">
+        <a class="logo-title" href="/">
+            程序员小明
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        首页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/categories"
+                    >
+                        分类
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/tags"
+                    >
+                        标签
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/about"
+                    >
+                        关于
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+            </div>
+
+            <div class="page-main-content-middle">
+
+                <main class="main-content normal-code-theme">
+
+                    
+                        <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">ES重建索引怎么才能做到数据无缝迁移呢？</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span>小明</span>
+                        <span class="level">Lv7</span>
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-calendar"></i> 2021-01-02 10:37:49
+    </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i> <span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p><img src="https://img.mynamecoder.com/bar-621033_640.jpg"></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>众所周知，Elasticsearch是⼀个实时的分布式搜索引擎，为⽤户提供搜索服务。当我们决定存储某种数据，在创建索引的时候就需要将数据结构，即Mapping确定下来，于此同时索引的设定和很多固定配置将不能改变。</p>
+<a id="more"></a>
+<p>那如果后续业务发生变化，需要改变数据结构或者更换ES更换分词器怎么办呢？为此，Elastic团队提供了很多通过辅助⼯具来帮助开发⼈员进⾏重建索引的方案。<br>如果对 <code>reindex</code> API 不熟悉，那么在遇到重构的时候，必然事倍功半，效率低下。反之，就可以方便地进行索引重构，省时省力。</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>假设之前我们已经存在一个blog索引，因为更换分词器需要对该索引中的数据进行重建索引，以便支持业务使用新的分词规则搜索数据，并且尽可能使这个变化对外服务没有感知，大概分为以下几个步骤：​</p>
+<ul>
+<li>新增⼀个索引<code>blog_lastest</code>，Mapping数据结构与<code>blog</code>索引一致</li>
+<li>将<code>blog</code>数据同步至<code>blog_lastest</code></li>
+<li>删除<code>blog</code>索引</li>
+<li>数据同步后给<code>blog_lastest</code>添加别名<code>blog</code></li>
+</ul>
+<h3 id="新建索引"><a href="#新建索引" class="headerlink" title="新建索引"></a>新建索引</h3><blockquote>
+<p>在这里推荐一个ES管理工具<strong>Kibana</strong>，主要针对数据的探索、可视化和分析。</p>
+</blockquote>
+<p><img src="https://img.mynamecoder.com/mweb/16093371925425.jpg" alt="官网"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">put &#x2F;blog_lastest&#x2F;</span><br><span class="line">&#123;</span><br><span class="line">    &quot;mappings&quot;:&#123;</span><br><span class="line">        &quot;properties&quot;:&#123;</span><br><span class="line">            &quot;title&quot;:&#123;</span><br><span class="line">                &quot;type&quot;:&quot;text&quot;,</span><br><span class="line">                &quot;analyzer&quot;:&quot;ik_max_word&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;author&quot;:&#123;</span><br><span class="line">                &quot;type&quot;:&quot;keyword&quot;,</span><br><span class="line">                &quot;fields&quot;:&#123;</span><br><span class="line">                    &quot;seg&quot;:&#123;</span><br><span class="line">                        &quot;type&quot;:&quot;text&quot;,</span><br><span class="line">                        &quot;analyzer&quot;:&quot;ik_max_word&quot;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="将旧索引数据copy到新索引"><a href="#将旧索引数据copy到新索引" class="headerlink" title="将旧索引数据copy到新索引"></a>将旧索引数据copy到新索引</h3><h4 id="同步等待"><a href="#同步等待" class="headerlink" title="同步等待"></a>同步等待</h4><p>接⼝将会在 reindex 结束后返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;_reindex</span><br><span class="line">&#123;</span><br><span class="line">	&quot;source&quot;: &#123;</span><br><span class="line">		&quot;index&quot;: &quot;blog&quot;</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;dest&quot;: &#123;</span><br><span class="line">		&quot;index&quot;: &quot;blog_lastest&quot;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 <code>kibana</code> 中的使用如下所示<br><img src="https://img.mynamecoder.com/mweb/16093465633359.jpg" alt="-w706"></p>
+<p>当然高版本（7.1.1）中，ES都有提供对应的<code>Java REST Client</code>，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ReindexRequest reindexRequest &#x3D; new ReindexRequest();</span><br><span class="line">reindexRequest.setSourceIndices(&quot;blog&quot;).setSource.setDestIndex(&quot;blog_lastest&quot;);</span><br><span class="line">TaskSubmissionResponse taskSubmissionResponse &#x3D; client.submitReindexTask(reindexRequest, RequestOptions.DEFAULT);</span><br></pre></td></tr></table></figure>
+<p>为了防止赘述，接下来举例全部以<code>kibana</code>中请求介绍，如果有需要用<code>Java REST Client</code>，可以自行去ES官网查看。</p>
+<h4 id="异步执⾏"><a href="#异步执⾏" class="headerlink" title="异步执⾏"></a>异步执⾏</h4><p>如果 reindex 时间过⻓，建议加上 <code>wait_for_completion=false</code> 的参数条件，这样 reindex 将直接返回 <code>taskId</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;_reindex?wait_for_completion&#x3D;false</span><br><span class="line">&#123;</span><br><span class="line">	&quot;source&quot;: &#123;</span><br><span class="line">		&quot;index&quot;: &quot;blog&quot;</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;dest&quot;: &#123;</span><br><span class="line">		&quot;index&quot;: &quot;blog_lastest&quot;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>返回：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;task&quot; : &quot;dpBihNSMQfSlboMGlTgCBA:4728038&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="op-type-参数"><a href="#op-type-参数" class="headerlink" title="op_type 参数"></a>op_type 参数</h4><p><code>op_type</code> 参数控制着写入数据的冲突处理方式，如果把 <code>op_type</code> 设置为 <code>create</code>【默认值】，在 <code>_reindex</code> API 中，表示写入时只在 <code>dest</code> <code>index</code>中添加不存在的 doucment，如果相同的 document 已经存在，则会报 <code>version confilct</code> 的错误，那么索引操作就会失败。【这种方式与使用 _create API 时效果一致】</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">POST _reindex</span><br><span class="line">&#123;</span><br><span class="line">  &quot;source&quot;: &#123;</span><br><span class="line">    &quot;index&quot;: &quot;blog&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;dest&quot;: &#123;</span><br><span class="line">    &quot;index&quot;: &quot;blog_lastest&quot;,</span><br><span class="line">    &quot;op_type&quot;: &quot;create&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果这样设置了，也就不存在更新数据的场景了【冲突数据无法写入】，我们也可以把 <code>op_type</code> 设置为 <code>index</code>，表示所有的数据全部重新索引创建。</p>
+<h4 id="conflicts-配置"><a href="#conflicts-配置" class="headerlink" title="conflicts 配置"></a>conflicts 配置</h4><p>默认情况下，当发生 <code>version conflict</code> 的时候，<code>_reindex</code> 会被 <code>abort</code>，任务终止【此时数据还没有 <code>reindex</code> 完成】，在返回体中的 <code>failures</code> 指标中会包含冲突的数据【有时候数据会非常多】，除非把 <code>conflicts</code> 设置为 <code>proceed</code>。</p>
+<p>关于 <code>abort</code> 的说明，如果产生了 <code>abort</code>，已经执行的数据【例如更新写入的】仍然存在于目标索引，此时任务终止，还会有数据没有被执行，也就是漏数了。换句话说，该执行过程不会回滚，只会终止。如果设置了 <code>proceed</code>，任务在检测到数据冲突的情况下，不会终止，会跳过冲突数据继续执行，直到所有数据执行完成，此时不会漏掉正常的数据，只会漏掉有冲突的数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">POST _reindex</span><br><span class="line">&#123;</span><br><span class="line">  &quot;source&quot;: &#123;</span><br><span class="line">    &quot;index&quot;: &quot;blog&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;dest&quot;: &#123;</span><br><span class="line">    &quot;index&quot;: &quot;blog_lastest&quot;,</span><br><span class="line">    &quot;op_type&quot;: &quot;create&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;conflicts&quot;: &quot;proceed&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以故意把 <code>op_type</code> 设置为 <code>create</code>，人为制造数据冲突的场景，测试时更容易观察到冲突现象。</p>
+<p>如果把 <code>conflicts</code> 设置为 <code>proceed</code>，在返回体结果中不会再出现 <code>failures</code> 的信息，但是通过 <code>version_conflicts</code> 指标可以看到具体的数量。</p>
+<h4 id="批次大小配置"><a href="#批次大小配置" class="headerlink" title="批次大小配置"></a>批次大小配置</h4><p>当你发现<code>reindex</code>的速度有些慢的时候，可以在 <code>query</code> 参数的同一层次【即 <code>source</code> 参数中】添加 <code>size</code> 参数，表示 <code>scroll size</code> 的大小【会影响批次的次数，进而影响整体的速度】，如果不显式设置，默认是一批 1000 条数据，在一开始的简单示例中也看到了。<br>如下，设置 <code>scroll size</code> 为 5000：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;_reindex?wait_for_completion&#x3D;false</span><br><span class="line">&#123;</span><br><span class="line">	&quot;source&quot;: &#123;</span><br><span class="line">		&quot;index&quot;: &quot;blog&quot;,</span><br><span class="line">		&quot;size&quot;:5000</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;dest&quot;: &#123;</span><br><span class="line">		&quot;index&quot;: &quot;blog_lastest&quot;,</span><br><span class="line">		&quot;op_type&quot;: &quot;create&quot;</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;conflicts&quot;: &quot;proceed&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试后，速度达到了 30 分钟 500 万左右，明显提升了很多。</p>
+<h4 id="根据taskId可以实时查看任务的执行状态"><a href="#根据taskId可以实时查看任务的执行状态" class="headerlink" title="根据taskId可以实时查看任务的执行状态"></a>根据taskId可以实时查看任务的执行状态</h4><p>一般来说，如果我们的 <code>source index</code> 很大【比如几百万数据量】，则可能需要比较长的时间来完成 <code>_reindex</code> 的工作，可能需要几十分钟。而在此期间不可能一直等待结果返回，可以去做其它事情，如果中途需要查看进度，可以通过 <code>_tasks</code> API 进行查看。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;_tasks&#x2F;&#123;taskId&#125;</span><br></pre></td></tr></table></figure>
+<p>返回：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;completed&quot; : false,</span><br><span class="line">  &quot;task&quot; : &#123;</span><br><span class="line">    &quot;node&quot; : &quot;dpBihNSMQfSlboMGlTgCBA&quot;,</span><br><span class="line">    &quot;id&quot; : 4704218,</span><br><span class="line">    &quot;type&quot; : &quot;transport&quot;,</span><br><span class="line">    &quot;action&quot; : &quot;indices:data&#x2F;write&#x2F;reindex&quot;,</span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当执行完毕时，<code>completed</code>为true<br>查看任务进度以及取消任务，除了根据taskId查看以外，我们还可以通过查看所有的任务中筛选本次<code>reindex</code>的任务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET _tasks?detailed&#x3D;true&amp;actions&#x3D;*reindex</span><br></pre></td></tr></table></figure>
+<p>返回结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;nodes&quot; : &#123;</span><br><span class="line">    &quot;dpBihNSMQfSlboMGlTgCBA&quot; : &#123;</span><br><span class="line">      &quot;name&quot; : &quot;node-16111-9210&quot;,</span><br><span class="line">      &quot;transport_address&quot; : &quot;192.168.XXX.XXX:9310&quot;,</span><br><span class="line">      &quot;host&quot; : &quot;192.168.XXX.XXX&quot;,</span><br><span class="line">      &quot;ip&quot; : &quot;192.168.16.111:9310&quot;,</span><br><span class="line">      &quot;roles&quot; : [</span><br><span class="line">        &quot;ingest&quot;,</span><br><span class="line">        &quot;master&quot;</span><br><span class="line">      ],</span><br><span class="line">      &quot;attributes&quot; : &#123;</span><br><span class="line">        &quot;xpack.installed&quot; : &quot;true&quot;,</span><br><span class="line">        &quot;transform.node&quot; : &quot;false&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;tasks&quot; : &#123;</span><br><span class="line">        &quot;dpBihNSMQfSlboMGlTgCBA:6629305&quot; : &#123;</span><br><span class="line">          &quot;node&quot; : &quot;dpBihNSMQfSlboMGlTgCBA&quot;,</span><br><span class="line">          &quot;id&quot; : 6629305,</span><br><span class="line">          &quot;type&quot; : &quot;transport&quot;,</span><br><span class="line">          &quot;action&quot; : &quot;indices:data&#x2F;write&#x2F;reindex&quot;,</span><br><span class="line">          &quot;status&quot; : &#123;</span><br><span class="line">            &quot;total&quot; : 8361421,</span><br><span class="line">            &quot;updated&quot; : 0,</span><br><span class="line">            &quot;created&quot; : 254006,</span><br><span class="line">            &quot;deleted&quot; : 0,</span><br><span class="line">            &quot;batches&quot; : 743,</span><br><span class="line">            &quot;version_conflicts&quot; : 3455994,</span><br><span class="line">            &quot;noops&quot; : 0,</span><br><span class="line">            &quot;retries&quot; : &#123;</span><br><span class="line">              &quot;bulk&quot; : 0,</span><br><span class="line">              &quot;search&quot; : 0</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;throttled_millis&quot; : 0,</span><br><span class="line">            &quot;requests_per_second&quot; : -1.0,</span><br><span class="line">            &quot;throttled_until_millis&quot; : 0</span><br><span class="line">          &#125;,</span><br><span class="line">          &quot;description&quot; : &quot;reindex from [blog] to [blog_lastest][_doc]&quot;,</span><br><span class="line">          &quot;start_time_in_millis&quot; : 1609338953464,</span><br><span class="line">          &quot;running_time_in_nanos&quot; : 1276738396689,</span><br><span class="line">          &quot;cancellable&quot; : true,</span><br><span class="line">          &quot;headers&quot; : &#123; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意观察里面的几个重要指标，例如从 <code>description</code> 中可以看到任务描述，从 tasks 中可以找到任务的 <code>id</code>【例如 <code>dpBihNSMQfSlboMGlTgCBA:6629305</code>】，从 <code>cancellable</code> 可以判断任务是否支持取消操作。<br>这个 API 其实就是模糊匹配，同理也可以查询其它类型的任务信息，例如使用 <code>GET _tasks?detailed=true&amp;actions=*byquery</code> 查看查询请求的状态。<br>当集群的任务太多时我们就可以根据<code>task_id</code>，也就是上面提到<code>GET /_tasks/task_id</code> 方式更加准确地查询指定任务的状态，避免集群的任务过多，不方便查看。<br>如果遇到操作失误的场景，想取消任务，有没有办法呢？<br>当然有啦，虽然覆水难收，通过调用<br><code>_tasks API</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">POST _tasks&#x2F;task_id&#x2F;_cancel</span><br></pre></td></tr></table></figure>
+<p>这里的 <code>task_id</code> 就是通过上面的查询任务接口获取的任务id（任务要支持取消操作，即【cancellable 为 true】时方能收效）。</p>
+<h3 id="删除旧索引"><a href="#删除旧索引" class="headerlink" title="删除旧索引"></a>删除旧索引</h3><p>当我们通过 API 查询发现任务完成后，就可以进行后续操作，我这里是要删除旧索引，然后再给新索引起别名，用于替换旧索引，这样才能保证对外服务没有任何感知。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE &#x2F;blog</span><br></pre></td></tr></table></figure>
+<h3 id="使用别名"><a href="#使用别名" class="headerlink" title="使用别名"></a>使用别名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;_aliases</span><br><span class="line">&#123;</span><br><span class="line">    &quot;actions&quot;:[</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;add&quot;:&#123;</span><br><span class="line">                &quot;index&quot;:&quot;blog_lastest&quot;,</span><br><span class="line">                &quot;alias&quot;:&quot;blog&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="通过别名访问新索引"><a href="#通过别名访问新索引" class="headerlink" title="通过别名访问新索引"></a>通过别名访问新索引</h3><p>进行过以上操作后，我们可以使用一个简单的搜索验证服务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;blog&#x2F;_search</span><br><span class="line">&#123;</span><br><span class="line">	&quot;query&quot;: &#123;</span><br><span class="line">		&quot;match&quot;: &#123;</span><br><span class="line">			&quot;author&quot;: &quot;james&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果搜索结果达到我们的预期目标，至此，数据索引重建迁移完成。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：ES重建索引怎么才能做到数据无缝迁移呢？</li>
+        <li>本文作者：小明</li>
+        <li>创建时间：2021-01-02 10:37:49</li>
+        <li>
+            本文链接：https://mynamecoder.com/p/undefined.html
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/p/21452.html"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">「Elasticsearch」SpringBoot快速集成ES</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center" >
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    
+        
+    <div class="valine-container">
+        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+        <div id="vcomments"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'RYD6fM3F1jQ4aTSXOzbclYi6-9Nh9j0Va',
+                appKey: 'mjF7jJLYlbIcPU2mUOoh0I88',
+                meta: 'nick,mail,link'.split(','),
+                avatar: 'wavatar',
+                enableQQ: true,
+                placeholder: '说点什么',
+                lang: 'zh-CN'.toLowerCase()
+            });
+
+
+            // Valine 评论列表增加"博主"标识
+            const getValineDomTimer = setInterval(() => {
+                const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                if (vcards.length > 0) {
+
+                    let author = '小明';
+                    if (author) {
+                        author = author.toLocaleLowerCase();
+                    }
+
+                    for (let vcard of vcards) {
+                        const vnick = vcard.querySelector('.vhead .vnick');
+                        if (vnick.innerHTML.toLocaleLowerCase() === author) {
+                            vcard.classList.add('author');
+                        }
+                    }
+                    clearInterval(getValineDomTimer);
+                } else {
+                    clearInterval(getValineDomTimer);
+                }
+            }, 2000);
+        </script>
+    </div>
+
+
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                    
+                </main>
+
+            </div>
+
+            <div class="page-main-content-bottom">
+                <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span> -
+            
+            2021 <i class="fas fa-heart icon-animate"></i> <a href="/">小明</a>
+        </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数 <span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量 <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <!-- 由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a class="theme-version" target="_blank"></a> -->
+            <a href="//beian.miit.gov.cn" target="_blank">京ICP备19029015号-1</a>
+        </div>
+    </div>
+</footer>
+
+            </div>
+        </div>
+    </main>
+
+    <div class="sidebar-tools">
+        <div class="tools-container">
+    <ul class="tools-list">
+        
+
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+    </ul>
+</div>
+
+    </div>
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-top flex-center">
+            <i class="fas fa-arrow-up"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="tools-ul-1">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+    </ul>
+</div>
+
+    </div>
+
+    <!-- page aside -->
+    <aside class="page-aside">
+        
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E7%B4%A2%E5%BC%95"><span class="nav-number">2.1.</span> <span class="nav-text">新建索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86%E6%97%A7%E7%B4%A2%E5%BC%95%E6%95%B0%E6%8D%AEcopy%E5%88%B0%E6%96%B0%E7%B4%A2%E5%BC%95"><span class="nav-number">2.2.</span> <span class="nav-text">将旧索引数据copy到新索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E7%AD%89%E5%BE%85"><span class="nav-number">2.2.1.</span> <span class="nav-text">同步等待</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E6%89%A7%E2%BE%8F"><span class="nav-number">2.2.2.</span> <span class="nav-text">异步执⾏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#op-type-%E5%8F%82%E6%95%B0"><span class="nav-number">2.2.3.</span> <span class="nav-text">op_type 参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#conflicts-%E9%85%8D%E7%BD%AE"><span class="nav-number">2.2.4.</span> <span class="nav-text">conflicts 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%B9%E6%AC%A1%E5%A4%A7%E5%B0%8F%E9%85%8D%E7%BD%AE"><span class="nav-number">2.2.5.</span> <span class="nav-text">批次大小配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AEtaskId%E5%8F%AF%E4%BB%A5%E5%AE%9E%E6%97%B6%E6%9F%A5%E7%9C%8B%E4%BB%BB%E5%8A%A1%E7%9A%84%E6%89%A7%E8%A1%8C%E7%8A%B6%E6%80%81"><span class="nav-number">2.2.6.</span> <span class="nav-text">根据taskId可以实时查看任务的执行状态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%97%A7%E7%B4%A2%E5%BC%95"><span class="nav-number">2.3.</span> <span class="nav-text">删除旧索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%88%AB%E5%90%8D"><span class="nav-number">2.4.</span> <span class="nav-text">使用别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%88%AB%E5%90%8D%E8%AE%BF%E9%97%AE%E6%96%B0%E7%B4%A2%E5%BC%95"><span class="nav-number">2.5.</span> <span class="nav-text">通过别名访问新索引</span></a></li></ol></li></ol>
+    </div>
+</div>
+        
+    </aside>
+
+    <!-- image viewer -->
+    <div class="image-viewer-container">
+    <div class="img-box">
+        <img src="">
+    </div>
+</div>
+
+
+</div>
+
+
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fas fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/local-search.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/left-side-toggle.js"></script>
+
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/code-copy.js"></script>
+    
+
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/toc.js"></script>
+    
+
+
+</body>
+</html>
