@@ -6,7 +6,7 @@
     <script data-ad-client="ca-pub-1566816837076058" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     
     <title>
-        Springboot日志配置logback |
+        Springboot配置logback日志 |
         
         程序员小明
     </title>
@@ -141,7 +141,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Springboot日志配置logback</span>
+            <span class="title-hover-animation">Springboot配置logback日志</span>
         </div>
 
         
@@ -242,7 +242,7 @@
 <p>这个文件在springboot中默认叫做<strong>logback-spring.xml</strong>，我们只要新建一个同名文件放在<strong>resources</strong>下面， 配置即可生效。</p>
 <p>每个配置的解释如下所示：</p>
 <h4 id="contextName"><a href="#contextName" class="headerlink" title="contextName"></a>contextName</h4><p>每个<code>logger</code>都关联到<code>logger</code>上下文，默认上下文名称为<code>“default”</code>。但可以使用<code>contextName</code>标签设置成其他名字，用于区分不同应用程序的记录</p>
-<h4 id="property"><a href="#property" class="headerlink" title="property"></a>property</h4><p>用来定义变量值的标签，<code>property</code>标签有两个属性，<code>name</code>和<code>value</code>；其中<code>name</code>的值是变量的名称，<code>value</code>的值时变量定义的值。通过<code>property</code>定义的值会被插入到<code>logger</code>上下文中。定义变量后，可以使“${name}”来使用变量。如上面的<code>xml</code>所示。</p>
+<h4 id="property"><a href="#property" class="headerlink" title="property"></a>property</h4><p>用来定义变量值的标签，<code>property</code>标签有两个属性，<code>name</code>和<code>value</code>；其中<code>name</code>的值是变量的名称，<code>value</code>的值是变量定义的值。通过<code>property</code>定义的值会被插入到<code>logger</code>上下文中。定义变量后，可以使“${name}”来使用变量。如上面的<code>xml</code>所示。</p>
 <h4 id="logger"><a href="#logger" class="headerlink" title="logger"></a>logger</h4><p>用来设置某一个包或者具体的某一个类的日志打印级别以及指定<code>appender</code>。</p>
 <h4 id="root"><a href="#root" class="headerlink" title="root"></a>root</h4><p>根logger，也是一种logger，且只有一个level属性</p>
 <h4 id="appender"><a href="#appender" class="headerlink" title="appender"></a>appender</h4><p>负责写日志的组件</p>
@@ -280,7 +280,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private Logger xiaoming &#x3D; LoggerFactory.getLogger(&quot;xiaoming&quot;);</span><br></pre></td></tr></table></figure>
 <p>如果我们使用的是<strong>lomok</strong>插件，则<strong>xiaoming</strong>指的是<strong>topic</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Slf4j(topic &#x3D; &quot;xiaoming&quot;)</span><br><span class="line">public class XiaoMingTest &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当然，我们还可以根据环境配置logback，比如生产环境(dev)、开发环境(prod)等，举例如下</p>
+<p>当然，我们还可以根据环境配置logback，比如开发环境(dev)输出到控制台，生产环境(prod)输出到文件中，举例如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;springProfile name&#x3D;&quot;dev&quot;&gt;</span><br><span class="line">    &lt;root level&#x3D;&quot;INFO&quot;&gt;</span><br><span class="line">        &lt;appender-ref ref&#x3D;&quot;consoleLog&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;root&gt;</span><br><span class="line">&lt;&#x2F;springProfile&gt;</span><br><span class="line"></span><br><span class="line">&lt;springProfile name&#x3D;&quot;prod&quot;&gt;</span><br><span class="line">    &lt;root level&#x3D;&quot;INFO&quot;&gt;</span><br><span class="line">        &lt;appender-ref ref&#x3D;&quot;fileInfoLog&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;root&gt;</span><br><span class="line">&lt;&#x2F;springProfile&gt;</span><br></pre></td></tr></table></figure>
 
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>小明目前用到的就这么多啦，更多的日志配置场景，欢迎大家补充～</p>
@@ -291,7 +291,7 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：Springboot日志配置logback</li>
+        <li>本文标题：Springboot配置logback日志</li>
         <li>本文作者：小明</li>
         <li>创建时间：2021-01-05 16:32:00</li>
         <li>
