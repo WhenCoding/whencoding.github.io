@@ -612,7 +612,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Springboot日志配置-sl4j</title>
+    <title>Springboot日志配置logback</title>
     <url>/p/d0da.html</url>
     <content><![CDATA[<blockquote>
 <p>本文主要给大家介绍SpringBoot中如何通过sl4j日志组件优雅地记录日志。其实，我们入门 <strong>JAVA</strong> 的第一行代码就是一行日志，那你现在还在使用<code>System.out.println(&quot;Hello,小明!&quot;)</code>记录日志吗？</p>
@@ -686,10 +686,10 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private Logger xiaoming &#x3D; LoggerFactory.getLogger(&quot;xiaoming&quot;);</span><br></pre></td></tr></table></figure>
 <p>如果我们使用的是<strong>lomok</strong>插件，则<strong>xiaoming</strong>指的是<strong>topic</strong></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Slf4j(topic &#x3D; &quot;xiaoming&quot;)</span><br><span class="line">public class XiaoMingTest &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然，我们还可以根据环境配置logback，比如生产环境(dev)、开发环境(prod)等，举例如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;springProfile name&#x3D;&quot;dev&quot;&gt;</span><br><span class="line">    &lt;root level&#x3D;&quot;INFO&quot;&gt;</span><br><span class="line">        &lt;appender-ref ref&#x3D;&quot;consoleLog&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;root&gt;</span><br><span class="line">&lt;&#x2F;springProfile&gt;</span><br><span class="line"></span><br><span class="line">&lt;springProfile name&#x3D;&quot;prod&quot;&gt;</span><br><span class="line">    &lt;root level&#x3D;&quot;INFO&quot;&gt;</span><br><span class="line">        &lt;appender-ref ref&#x3D;&quot;fileInfoLog&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;root&gt;</span><br><span class="line">&lt;&#x2F;springProfile&gt;</span><br></pre></td></tr></table></figure>
 
-
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>小明目前用到的就这么多啦，更多的日志配置场景，大家可以访问：<a class="link"   href="https://juejin.im/post/5b51f85c5188251af91a7525" >看完这个不会配置 logback ，请你吃瓜！<i class="fas fa-external-link-alt"></i></a></p>
-<p>有什么问题，欢迎大家留言～</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>小明目前用到的就这么多啦，更多的日志配置场景，欢迎大家补充～</p>
 ]]></content>
       <categories>
         <category>SpringBoot</category>

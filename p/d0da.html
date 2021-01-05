@@ -6,7 +6,7 @@
     <script data-ad-client="ca-pub-1566816837076058" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     
     <title>
-        Springboot日志配置-sl4j |
+        Springboot日志配置logback |
         
         程序员小明
     </title>
@@ -141,7 +141,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Springboot日志配置-sl4j</span>
+            <span class="title-hover-animation">Springboot日志配置logback</span>
         </div>
 
         
@@ -157,7 +157,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-calendar"></i> 2019-05-09 15:13:59
+        <i class="fas fa-calendar"></i> 2021-01-05 16:32:00
     </span>
     
         <span class="article-categories article-meta-item">
@@ -192,7 +192,7 @@
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i> <span>11 分钟</span>
+            <i class="fas fa-clock"></i> <span>12 分钟</span>
         </span>
     
     
@@ -280,10 +280,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private Logger xiaoming &#x3D; LoggerFactory.getLogger(&quot;xiaoming&quot;);</span><br></pre></td></tr></table></figure>
 <p>如果我们使用的是<strong>lomok</strong>插件，则<strong>xiaoming</strong>指的是<strong>topic</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Slf4j(topic &#x3D; &quot;xiaoming&quot;)</span><br><span class="line">public class XiaoMingTest &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然，我们还可以根据环境配置logback，比如生产环境(dev)、开发环境(prod)等，举例如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;springProfile name&#x3D;&quot;dev&quot;&gt;</span><br><span class="line">    &lt;root level&#x3D;&quot;INFO&quot;&gt;</span><br><span class="line">        &lt;appender-ref ref&#x3D;&quot;consoleLog&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;root&gt;</span><br><span class="line">&lt;&#x2F;springProfile&gt;</span><br><span class="line"></span><br><span class="line">&lt;springProfile name&#x3D;&quot;prod&quot;&gt;</span><br><span class="line">    &lt;root level&#x3D;&quot;INFO&quot;&gt;</span><br><span class="line">        &lt;appender-ref ref&#x3D;&quot;fileInfoLog&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;root&gt;</span><br><span class="line">&lt;&#x2F;springProfile&gt;</span><br></pre></td></tr></table></figure>
 
-
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>小明目前用到的就这么多啦，更多的日志配置场景，大家可以访问：<a class="link"   target="_blank" rel="noopener" href="https://juejin.im/post/5b51f85c5188251af91a7525" >看完这个不会配置 logback ，请你吃瓜！<i class="fas fa-external-link-alt"></i></a></p>
-<p>有什么问题，欢迎大家留言～</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>小明目前用到的就这么多啦，更多的日志配置场景，欢迎大家补充～</p>
 
         </div>
 
@@ -291,9 +291,9 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：Springboot日志配置-sl4j</li>
+        <li>本文标题：Springboot日志配置logback</li>
         <li>本文作者：小明</li>
-        <li>创建时间：2019-05-09 15:13:59</li>
+        <li>创建时间：2021-01-05 16:32:00</li>
         <li>
             本文链接：https://mynamecoder.com/p/d0da.html
         </li>
@@ -309,29 +309,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/p/de65.html"
-                        >
-                            <span class="left arrow-icon flex-center" >
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">SpringBoot:如何优雅地处理全局异常？</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/p/8834.html"
+                           href="/p/20547.html"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">git小技巧--如何从其他分支merge个别文件或文件夹</span>
+                                <span class="post-nav-title-item">「Elasticsearch」ES重建索引怎么才能做到数据无缝迁移呢？</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center" >
